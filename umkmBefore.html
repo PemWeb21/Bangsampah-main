@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Profile | Plastic World</title>
+    <title>UMKM | Plastic World</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -16,35 +16,29 @@
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="BerandaAfter.html"><img src="img/logo.png" width="55px" alt="logo-pw"></a>      
+      <a class="navbar-brand" href="beranda.html"><img src="img/logo.png" width="55px" alt="logo-pw"></a>      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="BerandaAfter.html">Beranda<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="beranda.html">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="umkm.html">UMKM</a>
+            <a class="nav-link" id="penanda" href="umkmBefore.html">Umkm<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="event.html">Event</a>
+            <a class="nav-link" href="eventBefore.html">Event</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="artikel.html">Artikel</a>
+            <a class="nav-link" href="artikelBefore.html">Artikel</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item pd-0" href="profile-masyarakat.html"><i class="fas fa-user mr-3"></i>Profile</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="edit-profile-masyarakat.html"><i class="fas fa-user-edit mr-3"></i>Edit Profile</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="tukar-poin.html"><i class="fas fa-coins mr-3"></i>Poin</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="#"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="daftar.html">Daftar</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-edit" href="masuk.html">Masuk</a>
           </li>
         </ul>
       </div>
@@ -52,8 +46,7 @@
   </nav>
 
   <!-- JUMBOTRON -->
-
-  <div class="jumbotron jumbotron-fluid bot" style="background-image: url(img/jumbotron6.png); background-repeat: no-repeat;">
+  <div class="jumbotron jumbotron-fluid" style="background: url('img/jumbotron5.png'); background-repeat: no-repeat;">
     <div class="container">
       
     </div>
@@ -62,77 +55,85 @@
   
   <!-- BREADCUMBR -->
   
-  <!-- <nav aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <div class="container">
       <div class="">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="beranda.html">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Profil</li>
+        <li class="breadcrumb-item active" aria-current="page">UMKM</li>
       </ol>
     </div>
     </div>
   </nav>
-   -->
   <!-- AKHUR BREADCUMBR -->
-  
-  <div class="profile">
+
+  <!-- DATA KOMUNITAS -->
+
+  <section class="data" id="data">
     <div class="container">
-      <div class="row mg-lg-btm">
-        <div class="col-lg-8">
-          <div class="row">
-            <div class="col-lg-3 col-sm-5 col-md-4 mb-sm-7 pl-minus">
-              <div class="wrapper-kelas rounded minus-top logo-center white-bg wrapper-kelas-sm">
-                <img src="img/yan.JPG" class="img-fluid img-thumbnail" alt="">
-              </div>
-            </div>
-            <div class="col-lg-9 col-sm-7 col-md-8">
-              <h3>Yan Saputra</h3>
-              <p><i class="fa fa-map-marker mr-2 warna"></i>Planet mars</p>  
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 text-lg-right">
-          <a href="tukar-sampah.html" class="btn btn-edit"><i class="fas fa-exchange-alt mr-2"></i></i>Tukar Plastik</a>
-          <a href="tukar-poin.html" class="btn btn-edit"><i class="fas fa-exchange-alt mr-2"></i>Tukar Poin</a>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  
-  <section class="detail" id="detail">
-    <div class="container">
-      <div class="row color">
-        <div class="col-lg-4">  
-          <div class="card btn-edit">
+      <div class="row">
+        <div class="col">
+          <div class="card">
             <div class="card-body">
-              <div class="card-body-icon font-size">
-                <i class="fas fa-coins mr-2"></i>
+              <h1 class="mg-sm-btm">Data UMKM</h1>
+              <div class="row">
+                <div class="col-lg-3">
+                  <form class="form-inline input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text" id="btnGroupAddon">
+                        <i class="fas fa-search"></i>
+                      </div>
+                    </div>
+                    <input type="search" class="form-control" placeholder="cari UMKM" aria-label="Search" aria-describedby="btnGroupAddon">
+                  </form>
+                </div>
               </div>
-              <h5><b>JUMLAH POIN</h5></b>
-              <div class="display-4"><a href="">2020</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">  
-          <div class="card btn-edit">
-            <div class="card-body">
-              <div class="card-body-icon font-size">
-               <i class="fas fa-recycle mr-2"></i>
-              </div>
-              <h5><b>JUMLAH PENUKARAN</h5></b>
-              <div class="display-4"><a href="">3</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">  
-          <div class="card btn-edit">
-            <div class="card-body">
-              <div class="card-body-icon font-size">
-                <i class="fas fa-certificate mr-2"></i>
-              </div>
-              <h5><b>EVENT TELAH DIIKUTI</h5></b>
-              <div class="display-4"><a href="">21</a></div>
+              <table class="table mg-btm mg-sm-top table-edit">
+                <!-- <caption>List of users</caption> -->
+                <thead class="thead-edit">
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Nama UMKM</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">Penanggung Jawab</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td><a href="profile-umkm.html" class="warna">88QQ</a></td>
+                    <td>001, Kakalik Jaya, Sekarbela, Mataram </td>
+                    <td>Yan Saputra</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td><a href="profile-umkm.html" class="warna">Lombok Plastic 3R</a></td>
+                    <td>002, Kakalik Jaya, Sekarbela, Mataram </td>
+                    <td>Dhira Wahyu</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td><a href="profile-umkm.html" class="warna">Zero Waste ehe</a></td>
+                    <td>003, Udayana, Ampenan, Mataram </td>
+                    <td>Aldar</td>
+                  </tr>
+                </tbody>
+              </table>
+              <nav aria-label="">
+                <ul class="pagination justify-content-end">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                  </li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
@@ -140,10 +141,13 @@
     </div>
   </section>
 
-  <section class="mg-lg-top">
+<!--   <div class="input-group">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </div> -->
+
+  
     
-  </section>
-
   <footer>
     <div class="foot">
       <div class="container">
@@ -189,9 +193,9 @@
     </div>
     </div>
   </footer>
+
   
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

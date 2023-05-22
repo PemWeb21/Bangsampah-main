@@ -6,14 +6,16 @@
   <link rel="icon" type="image/png" href="img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Data Plastik | Plastic World</title>
+  <title>Profile | Plastic World</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
+  <script>
+    $('body').scrollspy({ target: '#list-example' })
+  </script>
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
@@ -43,82 +45,103 @@
   </nav>
 
 
-  <section class="umkm-side" id="umkm-side">
-    <!-- <div class="container"> -->
-    <div class="row mg-top mr-ml-plus">
-      <div class="col-lg-3 color pr pl-minus">
-        <div class="card shadow btn-edit">
-          <ul class="nav flex-column pd-18">
-            <li class="nav-item ml-25">
-              <a class="nav-link active mg-btm-10" href="admin-dashboard.html"><i
-                  class="fas fa-tachometer-alt mr-3"></i>Dashboard</a>
-              <hr>
-            </li>
-            <li class="nav-item ml-25">
-              <a class="nav-link" href="data-masyarakat.html"><i class="fas fa-user mr-3"></i>Data Masyarakat</a>
-              <hr>
-            </li>
-            <li class="nav-item ml-25">
-              <a class="nav-link " href="data-umkm.html"><i class="fas fa-house-user mr-3"></i>Data UMKM</a>
-              <hr>
-            </li>
-            <li class="nav-item ml-25">
-              <a class="nav-link " href="data-plastik.html"><i class="fas fa-dumpster mr-3"></i>Data Plastik</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-9 pr-pl-minus">
-        <div class="card pd-20">
-          <h1><i class="fas fa-dumpster mr-3 warna"></i>Data Plastik</h1>
-          <hr>
-          <div class="row">
-            <div class="col-lg-4">
-              <form class="form-inline input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text" id="btnGroupAddon">
-                    <i class="fas fa-search"></i>
-                  </div>
-                </div>
-                <input type="search" class="form-control" placeholder="cari plastik" aria-label="Search"
-                  aria-describedby="btnGroupAddon">
-              </form>
-            </div>
-            <div class="col-lg-8 text-right">
-              <a href="#"><i class="fas fa-plus-circle fa-3x warna"></i></a>
-            </div>
-          </div>
-          <table class="table mg-btm mg-sm-top table-edit ukuran-font">
-            <!-- <caption>List of users</caption> -->
-            <thead class="thead-edit text-center">
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Gambar</th>
-                <th scope="col">Jenis</th>
-                <th scope="col">Deskripsi</th>
-                <th scope="col">Poin</th>
-                <th scope="col">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td><img src="img/profpic.jpg" width="50px" alt="img-profile"></td>
-                <td>PET atau PETE (polyethylene terephthalate)</td>
-                <td>
-                  <p>Botol air mineral, jus, softdrink, dan bumbu dapur.</p>
-                </td>
-                <td>99</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-edit"></i></a> | <a href="" class="btn btn-edit"><i
-                      class="fas fa-trash"></i></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <!-- BREADCUMBR -->
+
+  <nav aria-label="breadcrumb">
+    <div class="container">
+      <div class="mg-sm-top">
+        <ol class="breadcrumb">
+
+        </ol>
       </div>
     </div>
+  </nav>
+
+  <!-- AKHUR BREADCUMBR -->
+
+  <!-- <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+  <h4 id="list-item-1">Item 1</h4>
+  <p>...</p>
+  <h4 id="list-item-2">Item 2</h4>
+  <p>...</p>
+  <h4 id="list-item-3">Item 3</h4>
+  <p>...</p>
+  <h4 id="list-item-4">Item 4</h4>
+  <p>...</p>
+</div>
+ -->
+  <section class="edit-profile" id="edit-profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div id="list-example" class="list-group">
+            <a class="list-group-item list-group-item-action" href="#list-item-1">Informasi Akun</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-2">Password</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-3">Data UMKM</a>
+          </div>
+        </div>
+        <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
+          <div class="card pd-20">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade active show" id="account" role="tabpanel">
+                <h1>Edit Profile</h1>
+                <hr>
+                <div class="akun">
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="wrapper-kelas rounded logo-center white-bg">
+                          <img src="img/profpic.jpg" class="img-fluid" alt="">
+                        </div>
+                      </div>
+                      <div class="col-lg4">
+                        <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image"
+                          accept="image/*">
+                      </div>
+                    </div>
+
+                    <div class="mg-sm-btm mg-sm-top">
+                      <h3 id="list-item-1">Informasi Akun</h3>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nama">username</label>
+                      <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="admin">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Email"
+                        value="contact@bangsampah.com">
+                    </div>
+
+                    <div class="mg-sm-btm mg-sm-top">
+                      <h3 id="list-item-2">Ganti Password</h3>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nama">Password Sekarang</label>
+                      <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="uname">Password Baru</label>
+                      <input type="password" name="new-pass" class="form-control" id="new-pass" placeholder="Password"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Konfirmasi Password</label>
+                      <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password"
+                        required>
+                    </div>
+                    <div class="form-group mg-sm-btm mg-sm-top">
+                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Simpan</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -167,7 +190,6 @@
     </div>
     </div>
   </footer>
-
 
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 
