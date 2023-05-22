@@ -7,12 +7,12 @@ body {
 }
 .btn-edit {
 	color: white;
-	background-image: linear-gradient(to left, #077, #066);
+	background-image: linear-gradient(to left, #396B5B, #204136);
 }
 
 .btn-edit:hover {
 	color: white;
-	background-image: linear-gradient(to right, #077, #066);
+	background-image: linear-gradient(to right, #396B5B, #204136);
 }
 
 .mg-btm {
@@ -333,7 +333,7 @@ section {
 	color: white;
 	max-height: 1024px;
 	width: 100%;
-	background-image: linear-gradient(to left, #004c4c, #066);
+	background-image: linear-gradient(to left, #007661, #204136);
 }		
 .foot h4 {
 	font-weight: bold;
