@@ -17,7 +17,7 @@
 
 <body>
 
-  <script>
+  <!-- <script>
 
     function login() {
 
@@ -66,7 +66,7 @@
       swal.fire('Username/password yang dimasukkan salah', "", 'error');
     }
 
-  </script>
+  </script> -->
 
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -125,7 +125,7 @@
                   <div class="col">
                     <div class="register">
                       <div class="masuk">
-                        <form action="" method="post">
+                        <form action="login.php" method="post">
                           <input type="text" name="uname" class="form-control" id="uname" placeholder="Username"><br>
                           <input type="password" name="pass" class="form-control" id="pass" placeholder="Password"
                             required><br>
@@ -133,8 +133,7 @@
                           <label for="tnc">Ingat akun saya</label><br>
                           <p>Lupa password? <span><a href="atur_pass.html" class="warna">Atur di sini</a></span></p>
                           <div class="text-center">
-                            <input type="button" name="submit" id="submit" class="btn btn-edit wid" onclick="login()"
-                              value="Masuk">
+                            <button class="btn btn-edit wid">Masuk</button>
                           </div>
                         </form>
                       </div>
