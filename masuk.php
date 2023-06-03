@@ -8,7 +8,7 @@
 
   <title>BANG SAMPAH</title>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
   <script src="sweetalert/sweetalert2.min.js"></script>
@@ -30,7 +30,7 @@
           'Save the planet', 'success'
         ).then((result) => {
           if (result.value) {
-            window.location = 'profile-masyarakat.html';
+            window.location = 'profile-masyarakat.php';
 
           }
         })
@@ -43,7 +43,7 @@
           'Save the planet!', 'success'
         ).then((result) => {
           if (result.value) {
-            window.location = 'admin-dashboard.html';
+            window.location = 'admin-dashboard.php';
 
           }
         })
@@ -56,7 +56,7 @@
           'Save the planet!', 'success'
         ).then((result) => {
           if (result.value) {
-            window.location = 'umkm-dashboard.html';
+            window.location = 'umkm-dashboard.php';
 
           }
         })
@@ -71,30 +71,26 @@
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="beranda.html"><img src="img/logo.png" width="55px" alt="logo-pw"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand"><img src="img/logo.png" width="55px" alt="logo-pw"></a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="beranda.html">Beranda<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="beranda.php">Beranda<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="umkmBefore.html">UMKM</a>
+            <a class="nav-link" href="umkmBefore.php">UMKM</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="eventBefore.html">Event</a>
+            <a class="nav-link" href="eventBefore.php">Event</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="artikelBefore.html">Artikel</a>
+            <a class="nav-link" href="artikelBefore.php">Artikel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="daftar.html">Daftar</a>
+            <a class="nav-link" href="daftar.php">Daftar</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-edit" href="masuk.html">Masuk</a>
+            <a class="btn btn-edit" href="masuk.php">Masuk</a>
           </li>
         </ul>
       </div>
@@ -125,13 +121,13 @@
                   <div class="col">
                     <div class="register">
                       <div class="masuk">
-                        <form action="login.php" method="post">
+                        <form action="backend/login.php" method="post">
                           <input type="text" name="uname" class="form-control" id="uname" placeholder="Username"><br>
                           <input type="password" name="pass" class="form-control" id="pass" placeholder="Password"
                             required><br>
                           <input type="checkbox" id="tnc" name="tnc">
                           <label for="tnc">Ingat akun saya</label><br>
-                          <p>Lupa password? <span><a href="atur_pass.html" class="warna">Atur di sini</a></span></p>
+                          <p>Lupa password? <span><a href="atur_pass.php" class="warna">Atur di sini</a></span></p>
                           <div class="text-center">
                             <button class="btn btn-edit wid">Masuk</button>
                           </div>
@@ -160,10 +156,10 @@
             <h4>Menu BANG SAMPAH</h4>
             <div class="hov">
               <ul>
-                <li><a href="about-us-before.html">Tentang Kami</a></li>
-              <li><a href="umkmBefore.html">UMKM</a></li>
-              <li><a href="eventBefore.html">Event</a></li>
-              <li><a href="artikelBefore.html">Artikel</a></li>
+                <li><a href="about-us-before.php">Tentang Kami</a></li>
+              <li><a href="umkmBefore.php">UMKM</a></li>
+              <li><a href="eventBefore.php">Event</a></li>
+              <li><a href="artikelBefore.php">Artikel</a></li>
               </ul>
             </div>
           </div>
@@ -203,4 +199,4 @@
     crossorigin="anonymous"></script>
 </body>
 
-</html>
+  </html>
