@@ -70,7 +70,6 @@
           <div id="list-example" class="list-group">
             <a class="list-group-item list-group-item-action" href="#list-item-1">Informasi Akun</a>
             <a class="list-group-item list-group-item-action" href="#list-item-2">Password</a>
-            <a class="list-group-item list-group-item-action" href="#list-item-3">Data Diri</a>
           </div>
         </div>
         <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
@@ -106,6 +105,17 @@
                       <label for="email">Email</label>
                       <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
                     </div>
+                    <div class="form-group">
+                      <label for="nama">Nomor Telepon</label>
+                      <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
+                    </div>
+                    <div class="form-group">
+                      <label for="uname">Alamat</label>
+                      <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
+                    </div>
+                    <div class="form-group mg-sm-btm mg-sm-top">
+                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Profile</button>
+                    </div>
                     
                     <div class="mg-sm-btm mg-sm-top"><h3 id="list-item-2">Ganti Password</h3></div>
 
@@ -121,19 +131,8 @@
                       <label for="email">Konfirmasi Password</label>
                       <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                     </div>
-
-                    <div class="mg-sm-btm mg-sm-top"><h3 id="list-item-3">Data Diri</h3></div>
-
-                    <div class="form-group">
-                      <label for="nama">Nomor Telepon</label>
-                      <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
-                    </div>
-                    <div class="form-group">
-                      <label for="uname">Alamat</label>
-                      <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
-                    </div>
                     <div class="form-group mg-sm-btm mg-sm-top">
-                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Simpan</button>
+                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Password</button>
                     </div>
                   </form>
                 </div>

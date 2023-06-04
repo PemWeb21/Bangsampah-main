@@ -309,9 +309,9 @@ body {
 	color: white;
 }
 
-/*.table-edit tbody tr:nth-of-type(odd) {
+.table-edit tbody tr:nth-of-type(odd) {
 }
-*/
+
 
 /*AKHIR TABEL*/
 
@@ -923,3 +923,70 @@ Extra large devices (large desktops, 1200px and up) @media (min-width: 1200px) {
 .card-kartu :hover{
 	transform: scale(1.05);
 }
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .responsive-table .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .responsive-table .text-center {
+    text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    .responsive-table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .responsive-table th,
+    .responsive-table td {
+      display: inline-block;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .responsive-table .text-center {
+      text-align: left;
+    }
+
+    .responsive-table .btn {
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .responsive-table .btn {
+      padding: 4px 8px;
+    }
+  }
