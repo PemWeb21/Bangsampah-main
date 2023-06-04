@@ -77,7 +77,7 @@
         <div class="col-lg-10">
           <div class="row">
             <div class="col-lg-3 col-sm-5 col-md-4 mb-sm-7 pl-minus">
-              <div class="wrapper-kelas rounded minus-top logo-center white-bg wrapper-kelas-sm">
+              <div class="wrapper-kelas rounded logo-center white-bg wrapper-kelas-sm">
                 <img src="../img/profpic.jpg" class="img-fluid img-thumbnail" alt="event">
               </div>
             </div>

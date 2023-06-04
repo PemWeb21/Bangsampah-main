@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -11,11 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
   <script type="text/javascript" src="javascript.js"></script>
-
-
   <script src="http://maps.googleapis.com/maps/api/js"></script>
-
-
   <script>
     // event jendela di-load  
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -338,18 +333,7 @@
       <!-- </div> -->
     </section>
 
-
-    <div class="container-fluid mg-btm">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div id="googleMap" style="width:100%;height:380px;"></div>
-          </div>
-          
-
-        </div>
-      </div>
-    </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31560.693755340377!2d116.09599381754276!3d-8.587660818594406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbf5f22de1ef1%3A0x3030bfbcaf7d0d0!2sMataram%2C%20Kota%20Mataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1685874786337!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
   <footer>
     <div class="foot">

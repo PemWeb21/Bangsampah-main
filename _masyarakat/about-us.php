@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" id="penanda" href="BerandaAfter.php">Beranda<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="BerandaAfter.php">Beranda<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="umkm.php">Umkm</a>
