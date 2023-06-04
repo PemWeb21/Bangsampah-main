@@ -10,44 +10,6 @@ function query($query){
     }
     return $rows;
 }
-/*function getPaginationData($table, $offset, $jumlah_per_halaman) {
-    // Menghitung jumlah total data
-    $query_count = "SELECT COUNT(*) AS total FROM $table";
-    $result_count = mysqli_query($_SESSION['conn'], $query_count);
-    $total_data = mysqli_fetch_assoc($result_count)['total'];
-
-    // Menghitung jumlah total halaman
-    $total_halaman = ceil($total_data / $jumlah_per_halaman);
-
-    // Mendapatkan halaman saat ini dari URL
-    $halaman_saat_ini = (isset($_GET['page'])) ? $_GET['page'] : 1;
-
-    // Menghitung offset untuk query database
-    $offset = ($halaman_saat_ini - 1) * $jumlah_per_halaman;
-
-    // Query untuk mendapatkan data sesuai halaman saat ini
-    $query_data = "SELECT * FROM $table LIMIT $offset, $jumlah_per_halaman";
-    $data_tabel = query($query_data);
-
-    return [
-        'total_halaman' => $total_halaman,
-        'halaman_saat_ini' => $halaman_saat_ini,
-        'data_tabel' => $data_tabel
-    ];
-}*/
-function searchInTable($table_name, $search) {
-    $conn = $_SESSION['conn'];
-    $search = mysqli_real_escape_string($conn, $search);
-    
-    // Query untuk mencari data berdasarkan kata kunci pencarian di tabel yang ditentukan
-    $query = "SELECT * FROM $table_name WHERE nama LIKE '%$search%' OR no_hp LIKE '%$search%' OR username LIKE '%$search%' OR email LIKE '%$search%' OR alamat LIKE '%$search%' OR penanggung_jawab LIKE '%$search%'";
-    
-    $result = mysqli_query($conn, $query);
-    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
-    return $data;
-}
-
 
 function getPaginationData($table_name, $offset, $jumlah_per_halaman, $search = '') {
     // Koneksi ke database dan pengaturan lainnya
@@ -57,15 +19,23 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman, $search = 
     $conn = $_SESSION['conn'];
     
     // Query untuk mendapatkan data UMKM dengan filter pencarian
-    $umkm_query = "SELECT * FROM $table_name";
+    $query = "SELECT * FROM $table_name";
     
     // Menambahkan kondisi WHERE ke query jika ada pencarian
     if (!empty($search)) {
       $search = mysqli_real_escape_string($conn, $search);
-      $umkm_query .= " WHERE nama LIKE '%$search%' OR no_hp LIKE '%$search%' OR username LIKE '%$search%' OR email LIKE '%$search%' OR alamat LIKE '%$search%' OR penanggung_jawab LIKE '%$search%'";
-      $count_query .= " WHERE nama LIKE '%$search%' OR no_hp LIKE '%$search%' OR username LIKE '%$search%' OR email LIKE '%$search%' OR alamat LIKE '%$search%' OR penanggung_jawab LIKE '%$search%'";
+      if($table_name === 'umkm'){
+        $query .= " WHERE nama LIKE '%$search%' OR no_hp LIKE '%$search%' OR username LIKE '%$search%' OR email LIKE '%$search%' OR alamat LIKE '%$search%' OR penanggung_jawab LIKE '%$search%'";
+      }elseif ($table_name === 'pelanggan') {
+        $query .= " WHERE nama LIKE '%$search%' OR alamat LIKE '%$search%' OR no_hp LIKE '%$search%' OR email LIKE '%$search%' OR username LIKE '%$search%' OR password LIKE '%$search%'";
+      }elseif ($table_name === 'event') {
+        $query .= " WHERE nama LIKE '%$search%' OR tanggal LIKE '%$search%' OR deskripsi LIKE '%$search%'";
+      }elseif ($table_name === 'artikel') {
+        $query .= " WHERE judul LIKE '%$search%' OR isi LIKE '%$search%'";
+      }
+
     }
-  
+      
     // Eksekusi query untuk menghitung jumlah total data
     $count_result = mysqli_query($conn, $count_query);
     $row = mysqli_fetch_assoc($count_result);
@@ -82,19 +52,17 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman, $search = 
     $offset = ($halaman_saat_ini - 1) * $jumlah_per_halaman;
   
     // Query untuk mendapatkan data UMKM dengan batasan halaman dan filter pencarian
-    $umkm_query .= " LIMIT $offset, $jumlah_per_halaman";
-    $umkm_result = mysqli_query($conn, $umkm_query);
-    $umkm = mysqli_fetch_all($umkm_result, MYSQLI_ASSOC);
+    $query .= " LIMIT $offset, $jumlah_per_halaman";
+    $result = mysqli_query($conn, $query);
+    $data_tabel = mysqli_fetch_all($result, MYSQLI_ASSOC);
   
     // Menyiapkan data yang akan dikembalikan
     $paginationData = array(
       'total_halaman' => $total_halaman,
       'halaman_saat_ini' => $halaman_saat_ini,
-      'data_tabel' => $umkm
+      'data_tabel' => $data_tabel
     );
   
     // Mengembalikan data paginasi
     return $paginationData;
   }
-
-?>

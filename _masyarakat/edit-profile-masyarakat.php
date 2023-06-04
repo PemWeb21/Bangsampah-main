@@ -1,24 +1,32 @@
+<?php
+//session_start();
+include "../backend/masyarakat/tampilProfil.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Profile | BANG SAMPAH</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body> 
-<script>
-  $('body').scrollspy({ target: '#list-example' })
-</script>
+  <title>Profile | BANG SAMPAH</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <script>
+    $('body').scrollspy({
+      target: '#list-example'
+    })
+  </script>
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="beranda.php"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>      
+      <a class="navbar-brand" href="beranda.php"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -50,18 +58,18 @@
     </div>
   </nav>
 
-  
+
   <!-- BREADCUMBR -->
-  
+
   <nav aria-label="breadcrumb">
     <div class="container">
       <div class="mg-sm-top">
-      <ol class="breadcrumb">
-      </ol>
-    </div>
+        <ol class="breadcrumb">
+        </ol>
+      </div>
     </div>
   </nav>
-  
+
   <!-- AKHUR BREADCUMBR -->
   <section class="edit-profile" id="edit-profile">
     <div class="container">
@@ -75,11 +83,11 @@
         <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
           <div class="card pd-20">
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade active show" id="account" role="tabpanel">    
+              <div class="tab-pane fade active show" id="account" role="tabpanel">
                 <h1>Edit Profile</h1>
                 <hr>
                 <div class="akun">
-                  <form action="" method="post" enctype="multipart/form-data">
+                  <form action="../backend/masyarakat/tampilProfil.php" method="post" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="wrapper-kelas rounded logo-center white-bg">
@@ -91,33 +99,39 @@
                       </div>
                     </div>
 
-                    <div class="mg-sm-btm mg-sm-top"><h3 id="list-item-1">Informasi Akun</h3></div>
-                    
-                    <div class="form-group">
-                      <label for="nama">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
+                    <form action="../backend/masyarakat/tampilProfil.php" method="post">
+                      
+                      <div class="mg-sm-btm mg-sm-top">
+                        <h3 id="list-item-1">Informasi Akun</h3>
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="uname">Username</label>
+                        <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
+                      </div>
+                      <div class="form-group">
+                        <label for="nama">Nomor Telepon</label>
+                        <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="uname">Alamat</label>
+                        <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
+                      </div>
+                      <div class="form-group mg-sm-btm mg-sm-top">
+                        <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Profile</button>
+                      </div>
+                    </form>
+                    <form action="../backend/masyarakat/tampilProfil.php" method="post">
+                    <div class="mg-sm-btm mg-sm-top">
+                      <h3 id="list-item-2">Ganti Password</h3>
                     </div>
-                    <div class="form-group">
-                      <label for="uname">Username</label>
-                      <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" " readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
-                    </div>
-                    <div class="form-group">
-                      <label for="nama">Nomor Telepon</label>
-                      <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
-                    </div>
-                    <div class="form-group">
-                      <label for="uname">Alamat</label>
-                      <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
-                    </div>
-                    <div class="form-group mg-sm-btm mg-sm-top">
-                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Profile</button>
-                    </div>
-                    
-                    <div class="mg-sm-btm mg-sm-top"><h3 id="list-item-2">Ganti Password</h3></div>
 
                     <div class="form-group">
                       <label for="nama">Password Sekarang</label>
@@ -132,8 +146,9 @@
                       <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                     </div>
                     <div class="form-group mg-sm-btm mg-sm-top">
-                      <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Password</button>
+                      <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">perbarui Password</button>
                     </div>
+                    </form>
                   </form>
                 </div>
               </div>
@@ -143,7 +158,7 @@
       </div>
     </div>
   </section>
-  
+
   <footer>
     <div class="foot">
       <div class="container">
@@ -157,9 +172,9 @@
             <div class="hov">
               <ul>
                 <li><a href="about-us.php">Tentang Kami</a></li>
-              <li><a href="umkm.php">UMKM</a></li>
-              <li><a href="event.php">Event</a></li>
-              <li><a href="artikel.php">Artikel</a></li>
+                <li><a href="umkm.php">UMKM</a></li>
+                <li><a href="event.php">Event</a></li>
+                <li><a href="artikel.php">Artikel</a></li>
               </ul>
             </div>
           </div>
@@ -184,13 +199,14 @@
     </div>
   </footer>
 
-  
+
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-  
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
 </html>

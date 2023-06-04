@@ -108,7 +108,7 @@
             <div class="row justify-content-center pd-20 align-items-center">
               <div class="col-lg-6 pos">
                 <div class="foto">
-                  <img src="img/masuk.jpg" class="img-fluid" alt="gambar-senang" style="">
+                  <img src="img/masuk.jpg" class="img-fluid" alt="gambar-senang">
                 </div>
               </div>
               <div class="col-lg-6">
