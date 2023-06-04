@@ -47,8 +47,78 @@
       </div>
     <!-- </div> -->
   </nav>
+  
+  <section class="edit-profile" id="edit-profile">
+    <div class="row mg-top mr-ml-plus">
+      <div class="col-lg-3 color pr pl-minus">
+        <div class="card shadow btn-edit">
+          <ul class="nav flex-column pd-18">
+            <li class="nav-item ml-25">
+              <a class="nav-link active" href="umkm-dashboard.php"><i class="fas fa-tachometer-alt mr-3"></i>Dashboard</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link mg-btm-10" href="data-event.php"><i class="fas fa-calendar-alt mr-3"></i>Data Event</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link" href="data-artikel.php"><i class="fas fa-newspaper mr-3"></i>Data Artikel</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link" href="umkm-side-penukaran.php"><i class="fas fa-recycle mr-3"></i>Data Penukaran</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- DATA KOMUNITAS -->
+      <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
+        <div class="card pd-20">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="account" role="tabpanel">
+              <h1>Tambah Event</h1>
+              <hr>
+              <div class="akun">
+                <form action="" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="wrapper-kelas rounded logo-center white-bg">
+                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                      </div>
+                    </div>
+                    <div class="col-lg4">
+                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                    </div>
+                  </div>
+                  <div class="form-group mg-sm-top">
+                    <label for="judul-artikel">Nama Event</label>
+                      <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Event">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Tanggal</label>
+                      <input type="date" name="tanggal-event" class="form-control" id="tanggal-event" placeholder="tanggal-event" value="">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Waktu</label>
+                      <input type="time" name="waktu-event" class="form-control" id="waktu-event" placeholder="waktu-event" value="">
+                  </div>
+                 
+                   <div class="form-group mg-sm-top">
+                    <label for="isi-artikel">Deskripsi Event</label>
+                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini ..."></textarea>
+                  </div>
+                  <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Post</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- DATA KOMUNITAS 
 
   <section class="daftar fdb-block pl-40" id="daftar">
     <div class="container">
@@ -99,7 +169,7 @@
     </div>
   </section>
 
-  
+-->
     <script>
       $('#summernote').summernote({
         placeholder: 'Isi Event...',

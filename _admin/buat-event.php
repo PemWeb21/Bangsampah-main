@@ -52,19 +52,47 @@
   </nav>
 
   <!-- DATA KOMUNITAS -->
+  <section class="edit-profile" id="edit-profile">
+  <div class="row mg-top mr-ml-plus">
+      <div class="col-lg-3 color pr pl-minus">
+        <div class="card shadow btn-edit">
+          <ul class="nav flex-column pd-18">
+            <li class="nav-item ml-25">
+              <a class="nav-link active mg-btm-10" href="admin-dashboard.php"><i class="fas fa-tachometer-alt mr-3"></i>Dashboard</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link" href="data-masyarakat.php"><i class="fas fa-user mr-3"></i>Data Masyarakat</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link " href="data-umkm.php"><i class="fas fa-house-user mr-3"></i>Data UMKM</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link mg-btm-10" href="data-event.php"><i class="fas fa-calendar-alt mr-3"></i>Data Event</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link" href="data-artikel.php"><i class="fas fa-newspaper mr-3"></i>Data Artikel</a>
+              <hr>
+            </li>
+            <li class="nav-item ml-25">
+              <a class="nav-link" href="umkm-side-penukaran.php"><i class="fas fa-recycle mr-3"></i>Data Penukaran</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <section class="daftar fdb-block pl-40" id="daftar">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
-            <div class="row">
-              <div class="col-lg-12 pd-20">
-                <h1>Tambah event</h1>
-                <hr>
-
-              <form action="" method="post" enctype="multipart/form-data">
-                <div class="row">
+      <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
+        <div class="card pd-20">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active show" id="account" role="tabpanel">
+              <h1>Tambah Event</h1>
+              <hr>
+              <div class="akun">
+                <form action="" method="post" enctype="multipart/form-data">
+                  <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
                         <img src="../img/profpic.jpg" class="img-fluid" alt="">
@@ -92,16 +120,15 @@
                     <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini ..."></textarea>
                   </div>
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Post</button>
-              </form> 
-              
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
   </section>
-
   
     <script>
       $('#summernote').summernote({
