@@ -94,10 +94,6 @@
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
                   <div class="form-group">
-                    <label for="nama">ID UMKM</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
-                  </div>
-                  <div class="form-group">
                     <label for="nama">Nama UMKM</label>
                     <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
                   </div>
