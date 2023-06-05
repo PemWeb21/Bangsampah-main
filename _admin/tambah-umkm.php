@@ -14,11 +14,7 @@
 </head>
 
 <body>
-  <script>
-    $('body').scrollspy({
-      target: '#list-example'
-    })
-  </script>
+  
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
@@ -79,7 +75,7 @@
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Edit Profile</h1>
+              <h1>Tambah UMKM</h1>
               <hr>
               <div class="akun">
                 <form action="" method="post" enctype="multipart/form-data">
@@ -97,29 +93,28 @@
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
-
                   <div class="form-group">
-                    <label for="nama">username</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="admin">
+                    <label for="nama">Nama UMKM</label>
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
+                  </div>
+                  <div class="form-group">
+                    <label for="uname">Username</label>
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" " readonly>
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="contact@bangsampah.com">
-                  </div>
-                  <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>
-                  </div>
-
-                  <div class="mg-sm-btm mg-sm-top">
-                    <h3 id="list-item-2">Ganti Password</h3>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="nama">Password Sekarang</label>
-                    <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
                   </div>
                   <div class="form-group">
-                    <label for="uname">Password Baru</label>
+                    <label for="nama">Nomor Telepon</label>
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
+                  </div>
+                  <div class="form-group">
+                    <label for="uname">Alamat</label>
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="uname">Masukan Password</label>
                     <input type="password" name="new-pass" class="form-control" id="new-pass" placeholder="Password" required>
                   </div>
                   <div class="form-group">
@@ -127,7 +122,7 @@
                     <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Password</button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">tambahkan</button>
                   </div>
                 </form>
               </div>

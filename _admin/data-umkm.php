@@ -101,12 +101,9 @@
               </form>
             </div>
             <div class="col-lg-8 text-right">
-              <a href=""><i class="fas fa-plus-circle fa-3x warna"></i></a>
+              <a href="tambah-umkm.php"><i class="fas fa-plus-circle fa-3x warna"></i></a>
             </div>
           </div>
-
-
-
           <form action=" ">
             <table class="table mg-btm mg-sm-top table-edit ukuran-font">
               <!-- <caption>List of users</caption> -->
