@@ -1,4 +1,8 @@
+<?php
+//session_start();
+include "../backend/masyarakat/tampilProfil.php";
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,10 +80,10 @@
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Tambah Akun</h1>
+              <h1>Edit Akun</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/admin/tambah_masyarakat.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="../backend/masyarakat/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -96,37 +100,39 @@
                   </div>
                   <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" ">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
                   </div>
                   <div class="form-group">
                     <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value=" ">
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
                   </div>
+                </form>
+                <form action="../backend/masyarakat/tampilProfil.php" method="post">
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-2">Password</h3>
                   </div>
                   <div class="form-group">
                     <label for="uname">Masukan Password</label>
-                    <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
+                    <input type="password" name="new-pass" class="form-control" id="new-pass" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <label for="email">Konfirmasi Password</label>
                     <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Tambahkan</button>
+                    <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">Perbarui Akun</button>
                   </div>
                 </form>
               </div>

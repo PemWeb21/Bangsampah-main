@@ -4,28 +4,13 @@ session_start();
 include __DIR__ . '../../conn.php';
 //$conn = $_SESSION['conn'];
 
-$id = $_SESSION['id_pelanggan'];
+$id = $_SESSION['id_admin'];
   if (isset($_POST['submit'])) {
     // Ambil data dari form
-    $nama = $_POST['nama'];
     $username = $_POST['uname'];
     $email = $_POST['email'];
-    $no_hp = $_POST['notelp'];
-    $alamat = $_POST['alamat-masy'];
-     // Ambil data gambar
-  $gambar = $_FILES['gambar'];
-  $gambarTmpPath = $gambar['tmp_name'];
-
-  // Baca isi file gambar menjadi blob
-  $gambarBlob = file_get_contents($gambarTmpPath);
     // Lakukan operasi update data di sini
-    $query = "UPDATE pelanggan SET nama = '$nama', 
-                                  email = '$email', 
-                                  no_hp = '$no_hp', 
-                                  alamat = '$alamat', 
-                                  username = '$username', 
-                                  gambar = '$gambarBlob' 
-                                  WHERE id_pelanggan = '$id'";
+    $query = "UPDATE admin SET username = '$username', email = '$email' WHERE id_admin = '$id'";
 
       // Eksekusi query
       $result = mysqli_query($conn, $query);
@@ -34,7 +19,7 @@ $id = $_SESSION['id_pelanggan'];
     if ($result) {
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
       echo "Data berhasil diperbarui";
-      header('Location: ../../_masyarakat/edit-profile-masyarakat.php');
+      header('Location: ../../_admin/edit-profile-admin.php');
       exit;
     } else {
       // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
@@ -51,7 +36,7 @@ $id = $_SESSION['id_pelanggan'];
     //$username = $_SESSION['username'];
 
     // Validasi password saat ini
-    $query = "SELECT password FROM pelanggan WHERE id_pelanggan = '$id'";
+    $query = "SELECT password FROM admin WHERE id_admin = '$id'";
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($result);
     $currentPassword = $data['password'];
@@ -69,7 +54,7 @@ $id = $_SESSION['id_pelanggan'];
       }
 
     // Lakukan operasi update password
-    $query = "UPDATE pelanggan SET password = '$newPassword' WHERE id_pelanggan = '$id'";
+    $query = "UPDATE admin SET password = '$newPassword' WHERE id_admin = '$id'";
 
       // Eksekusi query
       $result = mysqli_query($conn, $query);
@@ -78,7 +63,7 @@ $id = $_SESSION['id_pelanggan'];
     if ($result) {
       echo "Password berhasil diperbarui";
       // Redirect pengguna ke halaman profil atau halaman lain yang diinginkan
-      header('Location: ../../_masyarakat/edit-profile-masyarakat.php');
+      header('Location: ../../_admin/edit-profile-admin.php');
       exit;
     } else {
       // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
@@ -87,7 +72,7 @@ $id = $_SESSION['id_pelanggan'];
   }
 
 
-$query = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$query = "SELECT * FROM admin WHERE id_admin = '$id'";
 // Eksekusi query
 $result = mysqli_query($conn, $query);
 
@@ -97,14 +82,10 @@ $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($result);
 
   // Masukkan data ke dalam variabel
-  $id = $data['id_pelanggan'];
-  $nama = $data['nama'];
+  $id = $data['id_admin'];
   $uname = $data['username'];
   $email = $data['email'];
-  $no_hp = $data['no_hp'];
-  $alamat = $data['alamat'];
-  $gambarDefault = '../../img/profpic.jpg';
-  $gambar = $data['gambar'];
+
 } else {
   // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
   echo "Error: " . mysqli_error($conn);

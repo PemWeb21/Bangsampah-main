@@ -78,18 +78,8 @@
               <h1>Tambah UMKM</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
-                    </div>
-                  </div>
-
+                <form action="../backend/admin/tambah_umkm.php" method="post" enctype="multipart/form-data" autocomplete="off">
+               
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
@@ -99,7 +89,7 @@
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" " readonly>
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" ">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
@@ -115,7 +105,7 @@
                   </div>
                   <div class="form-group">
                     <label for="uname">Masukan Password</label>
-                    <input type="password" name="new-pass" class="form-control" id="new-pass" placeholder="Password" required>
+                    <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <label for="email">Konfirmasi Password</label>

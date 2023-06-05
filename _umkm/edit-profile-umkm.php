@@ -75,8 +75,7 @@ include "../backend/umkm/tampilProfil.php";
               <h1>Edit Profile</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/umkm/tampilProfil.php" method="post">
-                  
+                <form action="../backend/umkm/tampilProfil.php" method="post" autocomplete="off">
                   <input type="hidden" name="id" class="form-control" id="id" value="<?= $id ?>">
                   <div class="row">
                     <div class="col-lg-4">

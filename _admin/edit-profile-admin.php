@@ -1,3 +1,8 @@
+<?php
+//session_start();
+include "../backend/admin/tampilProfil.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +87,7 @@
               <h1>Edit Profile</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../backend/admin/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -98,18 +103,19 @@
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" >
                     <label for="nama">username</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="admin">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="contact@bangsampah.com">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>
                   </div>
-
+                </form>
+                  <form action="../backend/admin/tampilProfil.php" method="post" enctype="multipart/form-data">
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-2">Ganti Password</h3>
                   </div>
@@ -127,7 +133,7 @@
                     <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Password</button>
+                    <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">Perbarui Password</button>
                   </div>
                 </form>
               </div>

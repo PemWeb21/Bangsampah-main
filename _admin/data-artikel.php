@@ -1,14 +1,22 @@
 <?php
-session_start();
-include "../backend/umkmBefore.php";
-$jumlah_per_halaman = 10;
-$table_name = 'artikel';
-$offset = 0;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman, $search);
-$total_halaman = $paginationData['total_halaman'];
-$halaman_saat_ini = $paginationData['halaman_saat_ini'];
-$artikel = $paginationData['data_tabel'];
+  session_start();
+  include "../backend/umkmBefore.php";
+  $jumlah_per_halaman = 10;
+  $table_name = 'artikel';
+  $offset = 0; 
+  $search = isset($_GET['search']) ? $_GET['search'] : '';
+  if (!empty($search)) {
+    $artikel = search($table_name, $search);
+    $total_data = count($artikel);
+    $total_halaman = ceil($total_data / $jumlah_per_halaman);
+    $halaman_saat_ini = 1;
+    $artikel = array_slice($artikel, $offset, $jumlah_per_halaman);
+} else {
+    $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
+    $total_halaman = $paginationData['total_halaman'];
+    $halaman_saat_ini = $paginationData['halaman_saat_ini'];
+    $artikel = $paginationData['data_tabel'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +99,7 @@ $artikel = $paginationData['data_tabel'];
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form class="form-inline input-group" method="get">
+              <form class="form-inline input-group" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
@@ -123,10 +131,10 @@ $artikel = $paginationData['data_tabel'];
                 <tr>
                   <th scope="row"><?= $i ?></th>
                   <td><?= $row['judul']; ?></td>
-                  <td><img src="<?= $row['gambar']; ?>" alt="<?= $row['judul']; ?>"></td>
+                  <td><img src=" " alt="<?= $row['judul']; ?>"></td>
                   <td><?= $row['isi']; ?></td>
                   <td class="text-center">
-                    <a href="" class="btn btn-edit"><i class="fas fa-edit"></i></a><a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-artikel.php" class="btn btn-edit"><i class="fas fa-edit"></i></a><a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php

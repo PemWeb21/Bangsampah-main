@@ -1,23 +1,46 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$jumlah_per_halaman = 10;
+
+$table_name = 'umkm';
+$offset = 0;
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+if (!empty($search)) {
+  $umkm = search($table_name, $search);
+  $total_data = count($umkm);
+  $total_halaman = ceil($total_data / $jumlah_per_halaman);
+  $halaman_saat_ini = 1;
+  $umkm = array_slice($umkm, $offset, $jumlah_per_halaman);
+} else {
+  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
+  $total_halaman = $paginationData['total_halaman'];
+  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
+  $umkm = $paginationData['data_tabel'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>UMKM | BANG SAMPAH</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body> 
+  <title>UMKM | BANG SAMPAH</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
 
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      
-      <a class="navbar-brand"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>      
+
+      <a class="navbar-brand"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -52,21 +75,21 @@
   <!-- JUMBOTRON -->
   <div class="jumbotron jumbotron-fluid" style="background: url('../img/3.png'); background-repeat: no-repeat;">
     <div class="container">
-      
+
     </div>
   </div>
   <!-- AKHIT JUMBOTRON -->
-  
+
   <!-- BREADCUMBR -->
-  
- <nav aria-label="breadcrumb">
+
+  <nav aria-label="breadcrumb">
     <div class="container">
       <div class="">
-      <ol class="breadcrumb">
-        <!--<li class="breadcrumb-item"><a href="BerandaAfter.php">Beranda</a></li>
+        <ol class="breadcrumb">
+          <!--<li class="breadcrumb-item"><a href="BerandaAfter.php">Beranda</a></li>
         <li class="breadcrumb-item active" aria-current="page">UMKM</li>-->
-      </ol>
-    </div>
+        </ol>
+      </div>
     </div>
   </nav>
   <!-- AKHUR BREADCUMBR -->
@@ -82,13 +105,13 @@
               <h1 class="mg-sm-btm">Data UMKM</h1>
               <div class="row">
                 <div class="col-lg-3">
-                  <form class="form-inline input-group">
+                  <form class="form-inline input-group" method="get" autocomplete="off">
                     <div class="input-group-prepend">
                       <div class="input-group-text" id="btnGroupAddon">
                         <i class="fas fa-search"></i>
                       </div>
                     </div>
-                    <input type="search" class="form-control" placeholder="cari UMKM" aria-label="Search" aria-describedby="btnGroupAddon">
+                    <input type="search" name="search" class="form-control" placeholder="cari UMKM" aria-label="Search" aria-describedby="btnGroupAddon">
                   </form>
                 </div>
               </div>
@@ -103,39 +126,39 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td class = "warna">88QQ</td>
-                    <td>001, Kakalik Jaya, Sekarbela, Mataram </td>
-                    <td>Yan Saputra</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td class="warna">Lombok Plastic 3R</td>
-                    <td>002, Kakalik Jaya, Sekarbela, Mataram </td>
-                    <td>Dhira Wahyu</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td class="warna">Zero Waste ehe</td>
-                    <td>003, Udayana, Ampenan, Mataram </td>
-                    <td>Aldar</td>
-                  </tr>
+                  <?php
+                  $i = ($halaman_saat_ini - 1) * $jumlah_per_halaman + 1;
+                  foreach ($umkm as $row) {
+                  ?>
+                    <tr>
+                      <th scope="row"><?= $i; ?></th>
+                      <td><a class="warna"><?= $row['nama']; ?></a></td>
+                      <td><?= $row['alamat']; ?></td>
+                      <td><?= $row['penanggung_jawab']; ?></td>
+                    </tr>
+                  <?php
+                    $i++;
+                  }
+                  ?>
                 </tbody>
               </table>
               <nav aria-label="">
                 <ul class="pagination justify-content-end">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                  </li>
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
+                  <?php if ($halaman_saat_ini > 1) : ?>
+                    <li class="page-item">
+                      <a class="page-link" href="?page=<?= $halaman_saat_ini - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                  <?php endif; ?>
+                  <?php for ($i = 1; $i <= $total_halaman; $i++) : ?>
+                    <li class="page-item <?= ($i == $halaman_saat_ini) ? 'active' : ''; ?>" aria-current="page">
+                      <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                    </li>
+                  <?php endfor; ?>
+                  <?php if ($halaman_saat_ini < $total_halaman) : ?>
+                    <li class="page-item">
+                      <a class="page-link" href="?page=<?= $halaman_saat_ini + 1; ?>">Next</a>
+                    </li>
+                  <?php endif; ?>
                 </ul>
               </nav>
             </div>
@@ -158,9 +181,9 @@
             <div class="hov">
               <ul>
                 <li><a href="about-us.php">Tentang Kami</a></li>
-              <li><a href="umkm.php">UMKM</a></li>
-              <li><a href="event.php">Event</a></li>
-              <li><a href="artikel.php">Artikel</a></li>
+                <li><a href="umkm.php">UMKM</a></li>
+                <li><a href="event.php">Event</a></li>
+                <li><a href="artikel.php">Artikel</a></li>
               </ul>
             </div>
           </div>
@@ -185,12 +208,13 @@
     </div>
   </footer>
 
-  
+
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
 </html>

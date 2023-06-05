@@ -1,3 +1,23 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$jumlah_per_halaman = 10;
+$table_name = 'pelanggan';
+$offset = 0;
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+if (!empty($search)) {
+  $masyarakat = search($table_name, $search);
+  $total_data = count($masyarakat);
+  $total_halaman = ceil($total_data / $jumlah_per_halaman);
+  $halaman_saat_ini = 1;
+  $masyarakat = array_slice($masyarakat, $offset, $jumlah_per_halaman);
+} else {
+  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
+  $total_halaman = $paginationData['total_halaman'];
+  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
+  $masyarakat = $paginationData['data_tabel'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,13 +99,13 @@
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form class="form-inline input-group">
+              <form class="form-inline input-group" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
                   </div>
                 </div>
-                <input type="search" class="form-control" placeholder="cari masyarakat" aria-label="Search" aria-describedby="btnGroupAddon">
+                <input type="search" name="search" class="form-control" placeholder="cari masyarakat" aria-label="Search" aria-describedby="btnGroupAddon">
               </form>
             </div>
             <div class="col-lg-8 text-right">
@@ -108,60 +128,46 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Yan Saputra</td>
-                <td><img src="../img/profpic.jpg" width="50px" alt="img-profile"></td>
-                <td>kekalik</td>
-                <td>0877715757460</td>
-                <td>YnaSptra21</td>
-                <td>yan123</td>
-                <td>yansaputra675.com</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-edit"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Dhira Wahyu</td>
-                <td><img src="../img/profpic.jpg" width="50px" alt="img-profile"></td>
-                <td>kekalik</td>
-                <td>081234567890</td>
-                <td>Dhira</td>
-                <td>dhira123</td>
-                <td>dhira@gmail.com</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-edit"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Aldar</td>
-                <td><img src="../img/profpic.jpg" width="50px" alt="img-profile"></td>
-                <td>Udayana</td>
-                <td>081234567890</td>
-                <td>prik</td>
-                <td>aldar123</td>
-                <td>prik@gmail.com</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-edit"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
-                </td>
-              </tr>
+              <?php
+              $i = ($halaman_saat_ini - 1) * $jumlah_per_halaman + 1;
+              foreach ($masyarakat as $row) {
+              ?>
+                <tr>
+                  <th scope="row"><?= $i ?></th>
+                  <td><?= $row['nama']; ?></td>
+                  <td><img src="<?= $row['gambar']; ?>" width="50px" alt="img-profile"></td>
+                  <td><?= $row['alamat']; ?></td>
+                  <td><?= $row['no_hp']; ?></td>
+                  <td><?= $row['username']; ?></td>
+                  <td><?= $row['password']; ?></td>
+                  <td><?= $row['email']; ?></td>
+                  <td class="text-center">
+                    <a href="edit-data-masyarakat.php" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                  </td>
+                </tr>
+              <?php
+                $i++;
+              }
+              ?>
             </tbody>
           </table>
           <nav aria-label="">
             <ul class="pagination justify-content-end">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
+              <?php if ($halaman_saat_ini > 1) : ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $halaman_saat_ini - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+              <?php endif; ?>
+              <?php for ($i = 1; $i <= $total_halaman; $i++) : ?>
+                <li class="page-item <?= ($i == $halaman_saat_ini) ? 'active' : ''; ?>" aria-current="page">
+                  <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                </li>
+              <?php endfor; ?>
+              <?php if ($halaman_saat_ini < $total_halaman) : ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $halaman_saat_ini + 1; ?>">Next</a>
+                </li>
+              <?php endif; ?>
             </ul>
           </nav>
         </div>

@@ -1,4 +1,8 @@
+<?php
+//session_start();
+include "../backend/admin/tampilProfil.php";
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +11,28 @@
   <link rel="icon" type="image/png" href="../img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Profil | BANG SAMPAH</title>
+  <title>Buat Artikel | BANG SAMPAH</title>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
   <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
 </head>
 
+
 <body>
-  
+
+
+
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
@@ -40,7 +57,8 @@
     <!-- </div> -->
   </nav>
 
-  <!-- AKHUR BREADCUMBR -->
+
+  <!-- DATA KOMUNITAS -->
   <section class="edit-profile" id="edit-profile">
     <div class="row mg-top mr-ml-plus">
       <div class="col-lg-3 color pr pl-minus">
@@ -72,14 +90,15 @@
           </ul>
         </div>
       </div>
+
       <div class="col-lg-8 scrollspy-example" data-spy="scroll" data-target="#list-example" data-offset="50">
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Tambah Akun</h1>
+              <h1>Edit Artikel</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/admin/tambah_masyarakat.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="" method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -90,44 +109,24 @@
                       <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
+                  <div class="form-group mg-sm-top">
+                    <label for="judul-artikel">Judul Artikel</label>
+                    <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Artikel">
+                  </div>
 
-                  <div class="mg-sm-btm mg-sm-top">
-                    <h3 id="list-item-1">Informasi Akun</h3>
-                  </div>
+                  <label for="isi-artikel">Isi artikel</label>
+                  <div id="summernote"></div>
+
                   <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
+                    <label for="email">Author</label>
+                    <select name="Umkm" id="Umkm" class="form-control">
+                      <option value="Umkm">Pilih Umkm</option>
+                      <option value="Exo-L Peduli">Exo-L Peduli</option>
+                      <option value="Tastura">Earth Hour</option>
+                      <option value="Yuk Ngaji">Yuk Ngaji</option>
+                    </select>
                   </div>
-                  <div class="form-group">
-                    <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" ">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
-                  </div>
-                  <div class="form-group">
-                    <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
-                  </div>
-                  <div class="form-group">
-                    <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value=" ">
-                  </div>
-                  <div class="mg-sm-btm mg-sm-top">
-                    <h3 id="list-item-2">Password</h3>
-                  </div>
-                  <div class="form-group">
-                    <label for="uname">Masukan Password</label>
-                    <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Konfirmasi Password</label>
-                    <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
-                  </div>
-                  <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Tambahkan</button>
-                  </div>
+                  <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Artikel</button>
                 </form>
               </div>
             </div>
@@ -139,13 +138,14 @@
   </section>
 
 
+  <script>
+    $('#summernote').summernote({
+      placeholder: ' Isi Artikel...',
+      tabsize: 2,
+      height: 100
+    });
+  </script>
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 
 </html>

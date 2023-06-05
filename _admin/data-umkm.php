@@ -5,10 +5,18 @@
   $table_name = 'umkm';
   $offset = 0; 
   $search = isset($_GET['search']) ? $_GET['search'] : '';
-  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman, $search);
-  $total_halaman = $paginationData['total_halaman'];
-  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
-  $umkm = $paginationData['data_tabel'];
+  if (!empty($search)) {
+    $umkm = search($table_name, $search);
+    $total_data = count($umkm);
+    $total_halaman = ceil($total_data / $jumlah_per_halaman);
+    $halaman_saat_ini = 1;
+    $umkm = array_slice($umkm, $offset, $jumlah_per_halaman);
+} else {
+    $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
+    $total_halaman = $paginationData['total_halaman'];
+    $halaman_saat_ini = $paginationData['halaman_saat_ini'];
+    $umkm = $paginationData['data_tabel'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +99,7 @@
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form class="form-inline input-group" method="get">
+              <form class="form-inline input-group" method="get" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
@@ -135,7 +143,7 @@
                     <td><?= $row['alamat']; ?></td>
                     <td><?= $row['penanggung_jawab']; ?></td>
                     <td class="text-center">
-                      <a href="" class="btn btn-edit"><i class="fas fa-edit fa-sm"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash fa-sm"></i></a>
+                      <a href="edit-data-umkm.php" class="btn btn-edit"><i class="fas fa-edit fa-sm"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash fa-sm"></i></a>
                     </td>
                   </tr>
                 <?php

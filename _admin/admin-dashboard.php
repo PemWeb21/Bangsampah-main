@@ -1,3 +1,6 @@
+<?php
+  include "../backend/dashboard.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,7 +79,7 @@
                     <i class="fas fa-user mr-2"></i>
                   </div>
                   <h6>Data Masyarakat</h6>
-                  <div class="display-4"><a href="data-masyarakat.php">2103</a></div><!-- atur menggunakan php untuk nilai 2013 -->
+                  <div class="display-4"><a href="data-masyarakat.php"><?= $jumlahMasyarakat; ?></a></div><!-- atur menggunakan php untuk nilai 2013 -->
                 </div>
               </div>
               <div class="card btn-edit ml-3" style="width: 18rem">
@@ -85,7 +88,7 @@
                     <i class="fas fa-house-user mr-2"></i>
                   </div>
                   <h6>Data Umkm</h6>
-                  <div class="display-4"><a href="data-umkm.php">3</a></div>
+                  <div class="display-4"><a href="data-umkm.php"><?= $jumlahUMKM; ?></a></div>
                 </div>
               </div>
               <div class="card btn-edit ml-3" style="width: 18rem">
@@ -94,7 +97,7 @@
                     <i class="fas fa-newspaper mr-2"></i>
                   </div>
                   <h6>Data Artikel</h6>
-                  <div class="display-4"><a href="data-artikel.php">6</a></div>
+                  <div class="display-4"><a href="data-artikel.php"><?= $jumlahArtikel; ?></a></div>
                 </div>
               </div>
               <div class="card btn-edit ml-3" style="width: 18rem">
@@ -103,7 +106,7 @@
                     <i class="fas fa-calendar-alt mr-2"></i>
                   </div>
                   <h6>Data Event</h6>
-                  <div class="display-4"><a href="data-event.php">3</a></div>
+                  <div class="display-4"><a href="data-event.php"><?= $jumlahEvent; ?></a></div>
                 </div>
               </div>
               <div class="card btn-edit ml-3" style="width: 18rem">

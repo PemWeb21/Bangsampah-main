@@ -1,3 +1,6 @@
+<?php
+  include "../backend/dashboard.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,19 +68,19 @@
               <div class="card btn-edit ml-3" style="width: 18rem">
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fas fa-recycle mr-3"></i>
+                    <i class="fas fa-calendar-alt mr-2"></i>
                   </div>
                   <h6>Data Event</h6>
-                  <div class="display-4"><a href="data-event.php">3</a></div>
+                  <div class="display-4"><a href="data-event.php"><?= $jumlahEvent; ?></a></div>
                 </div>
               </div>
               <div class="card btn-edit ml-3" style="width: 18rem">
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fas fa-recycle mr-3"></i>
+                    <i class="fas fa-newspaper mr-2"></i>
                   </div>
                   <h6>Data Artikel</h6>
-                  <div class="display-4"><a href="data-artikel.php">6</a></div>
+                  <div class="display-4"><a href="data-artikel.php"><?= $jumlahArtikel; ?></a></div>
                 </div>
               </div><div class="card btn-edit ml-3" style="width: 18rem">
                 <div class="card-body">
@@ -85,7 +88,7 @@
                     <i class="fas fa-recycle mr-3"></i>
                   </div>
                   <h6>Data Penukaran</h6>
-                  <div class="display-4"><a href="umkm-side-penukaran.php">2</a></div>
+                  <div class="display-4"><a href="umkm-side-penukaran.php">#</a></div>
                 </div>
               </div>
             </div>

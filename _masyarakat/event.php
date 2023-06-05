@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$sql = "SELECT * FROM event";
+$event = query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +16,9 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
   <!--  AWAL NAV  -->
@@ -35,14 +40,11 @@
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px"
-                alt="img-profile"></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="edit-profile-masyarakat.php"><i
-                  class="fas fa-user-edit mr-3"></i>Edit Profile</a>
+              <a class="dropdown-item pd-0" href="edit-profile-masyarakat.php"><i class="fas fa-user-edit mr-3"></i>Edit Profile</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
@@ -85,70 +87,39 @@
   <section class="event" id="event">
     <div class="container">
       <div class="row">
-        <!-- col-sm-offset-1 -->
-        <div class="col-lg-4">
-          <div class="card">
-            <img src="../img/event1.png" class="card-img-top" alt="latifa">
-            <div class="tanggal btn-edit">Juli, 26 2023</div>
-            <div class="card-body">
-              <p class="komunitas">RENTAL_PES PEDULI</p>
-              <h4 class="nama-event">Membersihkan Laut Senggigi</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor numquam, natus sequi
-                blanditiis, accusamus repellendus libero. Cupiditate aliquid, dicta dignissimos.</p>
-              <hr>
-              <div class="row">
-                <div class="mr-auto text-left pl-minus">
-                  <a class="nav-link warna" href="share.php"><i class="fas fa-share-alt warna mr-3"></i></a>
-                </div>
-                <div class="pr-15">
-                  <a href="rincian-event.php" class="btn btn-edit">Selengkapnya</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="card">
-            <img src="../img/event2.png" class="card-img-top" alt="latifa">
-            <div class="tanggal btn-edit">Mei, 28 2023</div>
-            <div class="card-body">
-              <p class="komunitas">EARTH HOUR</p>
-              <h4 class="nama-event">Mataram Bersih</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor numquam, natus sequi
-                blanditiis, accusamus repellendus libero. Cupiditate aliquid, dicta dignissimos.</p>
-              <hr>
-              <div class="row">
-                <div class="mr-auto text-left pl-minus">
-                  <a class="nav-link warna" href="share.php"><i class="fas fa-share-alt warna mr-3"></i></a>
-                </div>
-                <div class="pr-15">
-                  <a href="rincian-event.php" class="btn btn-edit">Selengkapnya</a>
+        <?php
+        foreach ($event as $row) {
+          $id_umkm = $row['id_umkm'];
+          $sql_umkm = "SELECT nama FROM umkm WHERE id_umkm = $id_umkm";
+          $result_umkm = query($sql_umkm);
+          $nama_umkm = $result_umkm[0]['nama'];
+
+        ?>
+          <!-- col-sm-offset-1 -->
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="../img/event1.png" class="card-img-top" alt="latifa">
+              <div class="tanggal btn-edit"><?= $row['tanggal']; ?></div>
+              <div class="card-body">
+                <p class="komunitas"><?= $nama_umkm ?></p>
+                <h4 class="nama-event"><?= $row['nama']; ?></h4>
+                <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['deskripsi']), 0, 14)); ?></p>
+                <hr>
+                <div class="row">
+                  <div class="mr-auto text-left pl-minus">
+                    <a class="nav-link warna" href="share.php"><i class="fas fa-share-alt warna mr-3"></i></a>
+                  </div>
+                  <div class="pr-15">
+                    <a href="rincian-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>"  class="btn btn-edit">Selengkapnya</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <!-- style="width: 18rem;" -->
-          <div class="card">
-            <img src="../img/event3.png" class="card-img-top" alt="latifa">
-            <div class="tanggal btn-edit">November, 15 2023</div>
-            <div class="card-body">
-              <p class="komunitas">No Plastic</p>
-              <h4 class="nama-event">RE Fest</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor numquam, natus sequi
-                blanditiis, accusamus repellendus libero. Cupiditate aliquid, dicta dignissimos.</p>
-              <hr>
-              <div class="row">
-                <div class="mr-auto text-left pl-minus">
-                  <a class="nav-link warna" href="share.php"><i class="fas fa-share-alt warna mr-3"></i></a>
-                </div>
-                <div class="pr-15">
-                  <a href="rincian-event.php" class="btn btn-edit">Selengkapnya</a>
-            </div>
-          </div>
-        </div>
-      </div>
+        <?php
+
+        }
+        ?>
       </div>
     </div>
   </section>
@@ -166,9 +137,9 @@
             <div class="hov">
               <ul>
                 <li><a href="about-us.php">Tentang Kami</a></li>
-              <li><a href="umkm.php">UMKM</a></li>
-              <li><a href="event.php">Event</a></li>
-              <li><a href="artikel.php">Artikel</a></li>
+                <li><a href="umkm.php">UMKM</a></li>
+                <li><a href="event.php">Event</a></li>
+                <li><a href="artikel.php">Artikel</a></li>
               </ul>
             </div>
           </div>
@@ -201,12 +172,8 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -138,46 +138,7 @@
       </div>
     </div>
   </section>
-  
-  <footer>
-    <div class="foot">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <h4>BANG SAMPAH</h4>
-            <p>Website yang memudahkan proses pengolahan sampah plastik di Lombok NTB</p>
-          </div>
-          <div class="col-lg-4 ">
-            <h4>Menu BANG SAMPAH</h4>
-            <div class="hov">
-              <ul>
-                <li><a href="about-us-before.html">Tentang Kami</a></li>
-              <li><a href="umkmBefore.html">UMKM</a></li>
-              <li><a href="eventBefore.html">Event</a></li>
-              <li><a href="artikelBefore.html">Artikel</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <h4>HUBUNGI KAMI</h4>
-            <p>1, Vila Ali, Gunung Sari, Mataram</p>
-            <p>(021) 098 082</p>
-            <p>contact@bangsampah.com</p>
-            <a href="www.facebook.com" class="fa fa-facebook mr-3 fa-3x"></a>
-            <a href="www.twiter.com" class="fa fa-twitter mr-3 fa-3x"></a>
-            <a href="www.instagram.com" class="fa fa-instagram mr-3 fa-3x"></a>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-lg-6">
-            <p>copyright © 2023 - Bang Sampah. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </footer>
+
   
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
   

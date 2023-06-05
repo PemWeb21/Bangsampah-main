@@ -1,3 +1,34 @@
+<?php
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$kd_event = $_GET['kd_event'];
+
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM event WHERE kd_event = $kd_event";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $event = $result[0];
+  $id_umkm = $event['id_umkm'];
+
+  // Query ke tabel umkm untuk mendapatkan nama UMKM berdasarkan ID UMKM
+  $sql_umkm = "SELECT nama FROM umkm WHERE id_umkm = $id_umkm";
+  $result_umkm = query($sql_umkm);
+
+  // Memastikan UMKM ditemukan
+  if (!empty($result_umkm)) {
+    $nama_umkm = $result_umkm[0]['nama'];
+  } else {
+    // Jika UMKM tidak ditemukan, Anda dapat menampilkan pesan kesalahan atau menggunakan nilai default
+    $nama_umkm = "Nama UMKM tidak ditemukan";
+  }
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "Event tidak ditemukan.";
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,14 +113,14 @@
               </div>
             </div>
             <div class="col-lg-9 col-sm-7 col-md-8">
-              <p class="komunitas mg-lg-btm">RENTAL_PES PEDULI</p>
-              <h3 class="mg-top-5">Membersihkan Laut Senggigi</h3>
+              <p class="komunitas mg-lg-btm"><?= $nama_umkm ?></p>
+              <h3 class="mg-top-5"><?= $event['nama'] ?></h3>
             </div>
           </div>
         </div>
         <div class="col-lg-2 text-lg-right">
           <p>Terbuka Hingga:</p>
-          <p class="btn btn-edit">26 Juli 2023</p>
+          <p class="btn btn-edit"><?= $event['tanggal'] ?></p>
         </div>
       </div>
     </div>
@@ -101,7 +132,7 @@
         <div class="col-lg-8">
           <h2>Deskripsi Event</h2>
           <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et inventore, maxime, aliquid accusamus nisi consequatur quas, sit nemo quam nostrum consequuntur, ab voluptatem aperiam? Dignissimos velit unde corrupti voluptatum atque autem in quasi accusantium impedit minima fugit ea deleniti architecto mollitia nobis at, alias. Odit numquam architecto incidunt mollitia odio error doloribus quidem itaque, natus neque soluta, nesciunt inventore omnis minima quasi consequatur tempora eveniet doloremque blanditiis tempore ullam, dicta sit! Tempora reprehenderit porro maiores excepturi ex. Illo nobis, dolores ex a dignissimos minus autem eaque. Et numquam, neque maiores quia deserunt? Enim, magni autem necessitatibus temporibus reiciendis perspiciatis! Quasi.</p>
+          <p><?= $event['deskripsi'] ?></p>
           <a href="#" class="btn btn-edit mg-sm-top mg-btm">Ikut Event</a>
         </div>
         <div class="col-lg-4 text-lg-right">
