@@ -1,3 +1,8 @@
+<?php
+//session_start();
+include "../backend/masyarakat/tampilProfil.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,8 +73,8 @@
               </div>
             </div>
             <div class="col-lg-9 col-sm-7 col-md-8">
-              <h3>Yan Saputra</h3>
-              <p><i class="fa fa-map-marker mr-2 warna"></i>Planet mars</p>  
+              <h3><?= $nama ?></h3>
+              <p><i class="fa fa-map-marker mr-2 warna"></i><?= $alamat ?></p>  
             </div>
           </div>
         </div>

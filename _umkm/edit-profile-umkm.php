@@ -1,3 +1,7 @@
+<?php
+//session_start();
+include "../backend/umkm/tampilProfil.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +75,9 @@
               <h1>Edit Profile</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../backend/umkm/tampilProfil.php" method="post">
+                  
+                  <input type="hidden" name="id" class="form-control" id="id" value="<?= $id ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -82,39 +88,39 @@
                       <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
-
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
 
                   <div class="form-group">
                     <label for="nama">Nama UMKM</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value=" ">
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value=" " readonly>
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value=" ">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?>">
                   </div>
                   <div class="form-group">
                     <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value=" ">
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Deskripsi</label><br>
-                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="UMKM"></textarea>
+                    <input name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="UMKM" value="<?= $penanggung_jawab ?>">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>
                   </div>
-
+                </form>
+                <form action="../backend/umkm/tampilProfil.php" method="post">
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-2">Ganti Password</h3>
                   </div>
@@ -132,7 +138,7 @@
                     <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Password</button>
+                    <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">Perbarui Password</button>
                   </div>
                 </form>
               </div>
