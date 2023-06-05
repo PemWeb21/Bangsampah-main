@@ -4,12 +4,11 @@ session_start();
 include __DIR__ . '../../conn.php';
 //$conn = $_SESSION['conn'];
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$id = $_SESSION['id_pelanggan'];
   if (isset($_POST['submit'])) {
     // Ambil data dari form
     $nama = $_POST['nama'];
-    $newusername = $_POST['uname'];
+    $username = $_POST['uname'];
     $email = $_POST['email'];
     $no_hp = $_POST['notelp'];
     $alamat = $_POST['alamat-masy'];
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Alamat: " . $alamat . "<br>";
 
     // Lakukan operasi update data di sini
-    $query = "UPDATE pelanggan SET nama = '$nama', email = '$email', no_hp = '$no_hp', alamat = '$alamat', username = '$newusername' WHERE username = '$username'";
+    $query = "UPDATE pelanggan SET nama = '$nama', email = '$email', no_hp = '$no_hp', alamat = '$alamat', username = '$username' WHERE id_pelanggan = '$id'";
 
     // Eksekusi query
     $result = mysqli_query($conn, $query);
@@ -42,11 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newPassword = $_POST['new-pass'];
     $confirmPassword = $_POST['pass2'];
     //$username = $_POST['uname']; // Ambil username dari session
-    
-    //$username = $_SESSION['username'];
 
     // Validasi password saat ini
-    $query = "SELECT password FROM pelanggan WHERE username = '$username'";
+    $query = "SELECT password FROM pelanggan WHERE id_pelanggan = '$id'";
     $result = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($result);
     $currentPassword = $data['password'];
@@ -64,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Lakukan operasi update password
-    $query = "UPDATE pelanggan SET password = '$newPassword' WHERE username = '$username'";
+    $query = "UPDATE pelanggan SET password = '$newPassword' WHERE id_pelanggan = '$id'";
 
     // Eksekusi query
     $result = mysqli_query($conn, $query);
@@ -80,12 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "Error: " . mysqli_error($conn);
     }
   }
-}
 
 
-$username = $_SESSION['username'];
-
-$query = "SELECT * FROM pelanggan WHERE username = '$username'";
+$query = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 // Eksekusi query
 $result = mysqli_query($conn, $query);
 
@@ -95,6 +89,7 @@ if ($result) {
   $data = mysqli_fetch_assoc($result);
 
   // Masukkan data ke dalam variabel
+  $id = $data['id_pelanggan'];
   $nama = $data['nama'];
   $uname = $data['username'];
   $email = $data['email'];
