@@ -88,6 +88,7 @@ include "../backend/masyarakat/tampilProfil.php";
                 <hr>
                 <div class="akun">
                   <form action="../backend/masyarakat/tampilProfil.php" method="post" enctype="multipart/form-data">
+                     <input type="hidden" name="id" class="form-control" id="id" placeholder="Nama" value="<?= $id ?>">
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="wrapper-kelas rounded logo-center white-bg">
@@ -98,8 +99,6 @@ include "../backend/masyarakat/tampilProfil.php";
                         <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                       </div>
                     </div>
-
-                    <form action="../backend/masyarakat/tampilProfil.php" method="post">
                       
                       <div class="mg-sm-btm mg-sm-top">
                         <h3 id="list-item-1">Informasi Akun</h3>
@@ -149,7 +148,7 @@ include "../backend/masyarakat/tampilProfil.php";
                       <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">perbarui Password</button>
                     </div>
                     </form>
-                  </form>
+      
                 </div>
               </div>
             </div>
