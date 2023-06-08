@@ -112,8 +112,8 @@ include "../backend/umkm/tampilProfil.php";
                     <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
                   </div>
                   <div class="form-group">
-                    <label for="uname">Deskripsi</label><br>
-                    <input name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="UMKM" value="<?= $penanggung_jawab ?>">
+                    <label for="uname">Penangung Jawab</label><br>
+                    <input name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="penanggung jawab" value="<?= $penanggung_jawab ?>">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>

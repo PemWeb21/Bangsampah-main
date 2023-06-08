@@ -1,22 +1,14 @@
 <?php
-  session_start();
-  include "../backend/umkmBefore.php";
-  $jumlah_per_halaman = 10;
-  $table_name = 'umkm';
-  $offset = 0; 
-  $search = isset($_GET['search']) ? $_GET['search'] : '';
-  if (!empty($search)) {
-    $umkm = search($table_name, $search);
-    $total_data = count($umkm);
-    $total_halaman = ceil($total_data / $jumlah_per_halaman);
-    $halaman_saat_ini = 1;
-    $umkm = array_slice($umkm, $offset, $jumlah_per_halaman);
-} else {
-    $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
-    $total_halaman = $paginationData['total_halaman'];
-    $halaman_saat_ini = $paginationData['halaman_saat_ini'];
-    $umkm = $paginationData['data_tabel'];
-}
+session_start();
+include "../backend/umkmBefore.php";
+$table_name = 'umkm';
+$data = getSpesifikPage($table_name);
+
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$umkm = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +104,6 @@
               <a href="tambah-umkm.php"><i class="fas fa-plus-circle fa-3x warna"></i></a>
             </div>
           </div>
-          <form action=" ">
             <table class="table mg-btm mg-sm-top table-edit ukuran-font">
               <!-- <caption>List of users</caption> -->
               <thead class="thead-edit text-center">
@@ -143,8 +134,8 @@
                     <td><?= $row['alamat']; ?></td>
                     <td><?= $row['penanggung_jawab']; ?></td>
                     <td class="text-center">
-                      <a href="edit-data-umkm.php" class="btn btn-edit"><i class="fas fa-edit fa-sm"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash fa-sm"></i></a>
-                    </td>
+                    <a href="edit-data-umkm.php?id_umkm=<?= isset($row['id_umkm']) ? $row['id_umkm'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                  </td>
                   </tr>
                 <?php
                   $i++;
@@ -152,7 +143,6 @@
                 ?>
               </tbody>
             </table>
-          </form>
           <nav aria-label="">
             <ul class="pagination justify-content-end">
               <?php if ($halaman_saat_ini > 1) : ?>

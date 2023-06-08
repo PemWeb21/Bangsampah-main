@@ -76,7 +76,7 @@
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Tambah Akun</h1>
+              <h1>Tambah Akun Masyarakat</h1>
               <hr>
               <div class="akun">
                 <form action="../backend/admin/tambah_masyarakat.php" method="post" enctype="multipart/form-data" autocomplete="off">

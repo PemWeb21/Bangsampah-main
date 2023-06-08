@@ -1,22 +1,14 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
-$jumlah_per_halaman = 10;
 $table_name = 'event';
-$offset = 0;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-if (!empty($search)) {
-  $event = search($table_name, $search);
-  $total_data = count($event);
-  $total_halaman = ceil($total_data / $jumlah_per_halaman);
-  $halaman_saat_ini = 1;
-  $event = array_slice($event, $offset, $jumlah_per_halaman);
-} else {
-  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
-  $total_halaman = $paginationData['total_halaman'];
-  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
-  $event = $paginationData['data_tabel'];
-}
+$data = getSpesifikPage($table_name);
+
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$event = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

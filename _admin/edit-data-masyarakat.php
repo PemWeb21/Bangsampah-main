@@ -1,7 +1,21 @@
 <?php
-//session_start();
-include "../backend/masyarakat/tampilProfil.php";
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$id_pelanggan = $_GET['id_pelanggan'];
 
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = $id_pelanggan";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $masyarakat = $result[0];
+ 
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "masyarakat tidak ditemukan.";
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +25,7 @@ include "../backend/masyarakat/tampilProfil.php";
   <link rel="icon" type="image/png" href="../img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Profil | BANG SAMPAH</title>
+  <title>Edit Data Masyarakat | BANG SAMPAH</title>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -80,10 +94,10 @@ include "../backend/masyarakat/tampilProfil.php";
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Edit Akun</h1>
+              <h1>Edit Akun Masyarakat</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/masyarakat/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="../backend/admin/edit-data-masyarakat.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -100,39 +114,33 @@ include "../backend/masyarakat/tampilProfil.php";
                   </div>
                   <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $masyarakat['nama'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $masyarakat['username'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $masyarakat['email'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $masyarakat['no_hp'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $masyarakat['alamat'] ?>">
                   </div>
-                </form>
-                <form action="../backend/masyarakat/tampilProfil.php" method="post">
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-2">Password</h3>
                   </div>
                   <div class="form-group">
                     <label for="uname">Masukan Password</label>
-                    <input type="password" name="new-pass" class="form-control" id="new-pass" placeholder="Password" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Konfirmasi Password</label>
-                    <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required>
+                    <input type="text" name="pass" class="form-control" id="pass" placeholder="Password" required value="<?= $masyarakat['password'] ?>">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
-                    <button type="submit" name="submitpass" id="submit" class="btn btn-edit wid">Perbarui Akun</button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Akun</button>
                   </div>
                 </form>
               </div>

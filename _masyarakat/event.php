@@ -1,8 +1,14 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
-$sql = "SELECT * FROM event";
-$event = query($sql);
+$table_name = 'event';
+$data = getSpesifikPage($table_name);
+
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$event = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,12 +65,11 @@ $event = query($sql);
   <!-- JUMBOTRON -->
   <div class="jumbotron jumbotron-fluid" style="background: url('../img/1.png'); background-repeat: no-repeat;">
     <div class="container">
-      <h1 class="display-4 text-shadow">Dunia darurat sampah <span>plastik.</span><br>Ikuti berbagai macam event
-        yang<span> seru!</span></h1>
+      <h1 class="display-4 text-shadow">Dunia darurat sampah <span>plastik.</span><br>Ikuti berbagai macam event yang<span> seru!</span></h1>
       <div class="row justify-content-center">
-        <form class="form-inline input-group cari my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Cari event" aria-label="Search">
-          <button class="btn btn-edit my-2 my-sm-0" type="submit">Cari</button>
+        <form class="form-inline input-group cari my-2 my-lg-0" autocomplete="off" method="GET">
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Cari event" aria-label="Search">
+          <button class="btn btn-edit my-2 my-sm-0" type="submit" name="submit">Cari</button>
         </form>
       </div>
     </div>
@@ -110,7 +115,7 @@ $event = query($sql);
                     <a class="nav-link warna" href="share.php"><i class="fas fa-share-alt warna mr-3"></i></a>
                   </div>
                   <div class="pr-15">
-                    <a href="rincian-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>"  class="btn btn-edit">Selengkapnya</a>
+                    <a href="rincian-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit">Selengkapnya</a>
                   </div>
                 </div>
               </div>

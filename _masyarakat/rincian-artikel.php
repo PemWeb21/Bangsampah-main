@@ -1,3 +1,34 @@
+<?php
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$kd_artikel = $_GET['kd_artikel'];
+
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM artikel WHERE kd_artikel = $kd_artikel";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $artikel = $result[0];
+  $id_umkm = $artikel['id_umkm'];
+
+  // Query ke tabel umkm untuk mendapatkan nama UMKM berdasarkan ID UMKM
+  $sql_umkm = "SELECT nama FROM umkm WHERE id_umkm = $id_umkm";
+  $result_umkm = query($sql_umkm);
+
+  // Memastikan UMKM ditemukan
+  if (!empty($result_umkm)) {
+    $nama_umkm = $result_umkm[0]['nama'];
+  } else {
+    // Jika UMKM tidak ditemukan, Anda dapat menampilkan pesan kesalahan atau menggunakan nilai default
+    $nama_umkm = "Nama UMKM tidak ditemukan";
+  }
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "Event tidak ditemukan.";
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,10 +112,10 @@
           <div class="foto-umkm mg-btm">
             <img src="../img/kuda lumping.png" class="img-fluid" alt="artikel">
           </div>
-          <span class="warna"><i class="fab fa-creative-commons mr-1"></i>NO PLASTIC</span>
-          <h1>Tips & Trik Mengolah Sampah Plastik</h1>
+          <span class="warna"><i class="fab fa-creative-commons mr-1"></i><?= $nama_umkm ?></span>
+          <h1><?= $artikel['judul'] ?></h1>
           <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium suscipit nemo beatae omnis, repudiandae doloremque, laborum ducimus eum veritatis vero placeat accusantium quia numquam eligendi aperiam harum obcaecati atque eius, mollitia sint id. Voluptatum alias distinctio dicta, iure nam reprehenderit rerum itaque expedita incidunt repellat voluptas ullam quasi odit molestiae illum laborum esse delectus architecto. Nemo, tenetur, soluta! Veritatis nesciunt aperiam inventore unde dolores exercitationem alias et consequuntur autem voluptas, officia sed, beatae dicta assumenda, excepturi cumque, odio distinctio nisi. Dicta dolore nemo culpa eveniet tempora officiis voluptatum nobis quasi, quam error quis id odit animi sequi, similique enim rerum! Aspernatur nemo vel suscipit sit ut et amet tempore molestias eaque sequi quae rerum fuga deleniti debitis, nobis minima recusandae laborum tempora cumque distinctio corporis consequatur doloribus temporibus harum provident? Quaerat earum, dignissimos saepe dolor, laborum, tempore asperiores est tempora deserunt qui placeat sequi non culpa optio error cumque pariatur fuga excepturi commodi laboriosam? Labore accusamus, sequi minus, omnis dolore odit sit ipsa quos quibusdam iure tenetur eos quas delectus vitae necessitatibus. Architecto sunt explicabo, vitae laborum, eos laboriosam natus consequuntur accusamus atque odit magnam, ratione molestias veniam ab commodi eaque dignissimos expedita autem. In, dicta dolore est laudantium assumenda.</p> 
+          <p><?= $artikel['isi'] ?></p> 
         </div>
         </div>
         <div class="col-lg-4">

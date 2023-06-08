@@ -121,7 +121,7 @@
                   <div class="col">
                     <div class="register">
                       <div class="masuk">
-                        <form action="backend/login.php" method="post">
+                        <form action="backend/login.php" method="post" autocomplete="off">
                           <input type="text" name="uname" class="form-control" id="uname" placeholder="Username"><br>
                           <input type="password" name="pass" class="form-control" id="pass" placeholder="Password"
                             required><br>

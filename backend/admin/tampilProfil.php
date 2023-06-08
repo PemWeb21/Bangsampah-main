@@ -4,7 +4,7 @@ session_start();
 include __DIR__ . '../../conn.php';
 //$conn = $_SESSION['conn'];
 
-$id = $_SESSION['id_admin'];
+  $id = $_SESSION['id_admin'];
   if (isset($_POST['submit'])) {
     // Ambil data dari form
     $username = $_POST['uname'];
