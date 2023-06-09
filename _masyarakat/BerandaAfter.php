@@ -30,7 +30,7 @@
             <a class="nav-link" id="penanda" href="BerandaAfter.php">Beranda<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="umkm.php">Umkm</a>
+            <a class="nav-link" href="umkm.php">UMKM</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="event.php">Event</a>
@@ -293,8 +293,8 @@
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-users"></i>
             <!-- <i class="fact-icon fa fa-rocket"></i> -->
-            <h3 class="timer" id="code" data-to="100" data-speed="1500">100</h3>
-            <h5 class="fact-title">Komunitas</h5>
+            <h3 class="timer" id="code" data-to="100" data-speed="1500">12</h3>
+            <h5 class="fact-title">Event</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-house-user"></i>

@@ -313,8 +313,8 @@
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-users"></i>
             <!-- <i class="fact-icon fa fa-rocket"></i> -->
-            <h3 class="timer" id="code" data-to="100" data-speed="1500">100</h3>
-            <h5 class="fact-title">Komunitas</h5>
+            <h3 class="timer" id="code" data-to="100" data-speed="1500">12</h3>
+            <h5 class="fact-title">Event</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-house-user"></i>

@@ -46,7 +46,7 @@
     </nav>
 
     <!-- JUMBOTRON -->
-    <div class="jumbotron jumbotron-fluid" style="background: url('img/jumbotron4.png'); background-repeat: no-repeat;">
+    <div class="jumbotron jumbotron-fluid" style="background: url('img/4.png'); background-repeat: no-repeat;">
         <div class="container">
             <h1 class="display-4">Dunia darurat sampah <span>plastik.</span><br>Yuk edukasi diri masalah<span>
                     plastik!</span></h1>
