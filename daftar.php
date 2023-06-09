@@ -86,7 +86,7 @@
                 <div class="row">
                   <div class="col">
                     <div class="register">
-                      <form action="backend/daftar.php" method="post" enctype="multipart/form-data">
+                      <form action="backend/daftar.php" method="post" enctype="multipart/form-data" autocomplete="off">
                         <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama"><br>
                         <input type="text" name="uname" class="form-control" id="uname" placeholder="Username"><br>
                         <input type="email" name="email" class="form-control" id="email" placeholder="Email"><br>

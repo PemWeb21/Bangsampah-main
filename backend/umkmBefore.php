@@ -70,3 +70,32 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman) {
     // Mengembalikan data paginasi
     return $paginationData;
   }
+  function getSpesifikPage($table_name) {
+    $jumlah_per_halaman = 10;
+    $offset = 0;
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+    if (!empty($search)) {
+        $data = search($table_name, $search);
+        $total_data = count($data);
+        $total_halaman = ceil($total_data / $jumlah_per_halaman);
+        $halaman_saat_ini = 1;
+        $data = array_slice($data, $offset, $jumlah_per_halaman);
+    } else {
+        $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
+        $total_halaman = $paginationData['total_halaman'];
+        $halaman_saat_ini = $paginationData['halaman_saat_ini'];
+        $data = $paginationData['data_tabel'];
+    }
+
+    // Tampilkan atau lakukan operasi lain dengan data yang diperoleh
+
+    // Contoh: Mengembalikan data dalam bentuk array
+    return [
+        'total_halaman' => $total_halaman,
+        'jumlah_per_halaman' => $jumlah_per_halaman,
+        'halaman_saat_ini' => $halaman_saat_ini,
+        'data' => $data
+    ];
+}
+  ?>

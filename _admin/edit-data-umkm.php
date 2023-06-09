@@ -1,7 +1,21 @@
 <?php
-//session_start();
-include "../backend/umkm/tampilProfil.php";
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$id_umkm = $_GET['id_umkm'];
 
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM umkm WHERE id_umkm = $id_umkm";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $umkm = $result[0];
+ 
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "Umkm tidak ditemukan.";
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +97,7 @@ include "../backend/umkm/tampilProfil.php";
               <h1>Edit UMKM</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/umkm/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="../backend/admin/edit-data-umkm.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -100,31 +114,31 @@ include "../backend/umkm/tampilProfil.php";
                   </div>
                   <div class="form-group">
                     <label for="nama">Nama UMKM</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $umkm['nama'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $umkm['username'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?>">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $umkm['email'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $umkm['no_hp'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $umkm['alamat'] ?>">
+                  </div>
+                  <div class="form-group">
+                    <label for="uname">Penangung Jawab</label>
+                    <input type="text" name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="penanggung jawab" required value="<?= $umkm['penanggung_jawab'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Masukan Password</label>
-                    <input type="password" name="pass" class="form-control" id="new-pass" placeholder="Password" required value="<?= $password ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Konfirmasi Password</label>
-                    <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Password" required value="<?= $password ?>">
+                    <input type="text" name="pass" class="form-control" id="pass" placeholder="Password" required value="<?= $umkm['password'] ?>">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui UMKM</button>

@@ -1,22 +1,14 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
-$jumlah_per_halaman = 10;
 $table_name = 'pelanggan';
-$offset = 0;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-if (!empty($search)) {
-  $masyarakat = search($table_name, $search);
-  $total_data = count($masyarakat);
-  $total_halaman = ceil($total_data / $jumlah_per_halaman);
-  $halaman_saat_ini = 1;
-  $masyarakat = array_slice($masyarakat, $offset, $jumlah_per_halaman);
-} else {
-  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
-  $total_halaman = $paginationData['total_halaman'];
-  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
-  $masyarakat = $paginationData['data_tabel'];
-}
+$data = getSpesifikPage($table_name);
+
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$masyarakat = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +91,7 @@ if (!empty($search)) {
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form class="form-inline input-group" autocomplete="off">
+              <form action=""class="form-inline input-group" method = "get" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
@@ -109,7 +101,7 @@ if (!empty($search)) {
               </form>
             </div>
             <div class="col-lg-8 text-right">
-              <a href="tambah-Masyarakat.php"><i class="fas fa-plus-circle fa-3x warna"></i></a> <!-- ini belum ada page tambah data -->
+              <a href="tambah-Masyarakat.php"><i class="fas fa-plus-circle fa-3x warna"></i></a> 
             </div>
           </div>
           <table class="table mg-btm mg-sm-top table-edit ukuran-font">
@@ -122,7 +114,6 @@ if (!empty($search)) {
                 <th scope="col">Alamat</th>
                 <th scope="col">No Telepon</th>
                 <th scope="col">Username</th>
-                <th scope="col">Password</th>
                 <th scope="col">Email</th>
                 <th scope="col">Aksi</th>
               </tr>
@@ -139,10 +130,9 @@ if (!empty($search)) {
                   <td><?= $row['alamat']; ?></td>
                   <td><?= $row['no_hp']; ?></td>
                   <td><?= $row['username']; ?></td>
-                  <td><?= $row['password']; ?></td>
                   <td><?= $row['email']; ?></td>
                   <td class="text-center">
-                    <a href="edit-data-masyarakat.php" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-data-masyarakat.php?id_pelanggan=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php
@@ -173,7 +163,7 @@ if (!empty($search)) {
         </div>
       </div>
     </div>
-    </d?iv>
+    </div>
   </section>
 
 

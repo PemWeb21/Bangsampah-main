@@ -104,6 +104,10 @@
                     <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required>
                   </div>
                   <div class="form-group">
+                    <label for="uname">Penangung Jawab</label>
+                    <input type="text" name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="penanggung jawab" required>
+                  </div>
+                  <div class="form-group">
                     <label for="uname">Masukan Password</label>
                     <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required>
                   </div>

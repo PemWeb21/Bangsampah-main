@@ -89,9 +89,10 @@
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">Penukar</th>
-                  <th scope="col">Jenis</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total Poin</th>
+                  <th scope="col">UMKM tujuan</th>
+                  <th scope="col">Jumlah Sampah</th>
+                  <th scope="col">Total Point</th>
+                  <th scope="col">Keterangan</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -99,21 +100,12 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>Yan Saputra</td>
+                  <td>Yan Saputra</td>
                   <td>PET atau PETE (polyethylene terephthalate)</td>
                   <td>10</td>
                   <td>100</td>
                   <td class="text-center">
-                    <a href="" class="btn btn-edit"><i class="fas fa-check"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-times"></i></a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Dhira Wahyu Febrian</td>
-                  <td>PET atau PETE (polyethylene terephthalate)</td>
-                  <td>10</td>
-                  <td>100</td>
-                  <td class="text-center">
-                    <a href="" class="btn btn-edit"><i class="fas fa-check"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-times"></i></a>
+                    <a href="" class="btn btn-edit"><i class="fas fa-check"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-times"></i></a>
                   </td>
                 </tr>
               </tbody>
