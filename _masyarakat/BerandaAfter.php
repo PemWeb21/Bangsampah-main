@@ -257,8 +257,13 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-newspaper"></i>
             <!-- <i class="fact-icon fa fa-rocket"></i> -->
+<<<<<<< HEAD
+            <h3 class="timer" id="code" data-to="100" data-speed="1500">12</h3>
+            <h5 class="fact-title">Event</h5>
+=======
             <h3 class="timer" id="code" data-to="100" data-speed="1500"><?= $jumlahArtikel ?></h3>
             <h5 class="fact-title">Artikel</h5>
+>>>>>>> cc79378071bb5634e8ec6602433790e7f0eb2af9
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-house-user"></i>
