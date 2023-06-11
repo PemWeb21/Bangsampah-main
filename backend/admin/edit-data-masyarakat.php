@@ -4,9 +4,10 @@ session_start();
 include __DIR__ . '../../conn.php';
 //$conn = $_SESSION['conn'];
 
-$id = $_SESSION['id_pelanggan'];
+//$id = $_SESSION['id_pelanggan'];
   if (isset($_POST['submit'])) {
     // Ambil data dari form
+    $id = $_POST['id_pelanggan'];
     $nama = $_POST['nama'];
     $username = $_POST['uname'];
     $email = $_POST['email'];
@@ -34,37 +35,12 @@ $id = $_SESSION['id_pelanggan'];
     // Periksa apakah query berhasil dieksekusi
     if ($result) {
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
-      echo "Data berhasil diperbarui";
       header('Location: ../../_admin/data-masyarakat.php');
+      echo "Data berhasil diperbarui";
       exit;
     } else {
       // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
       echo "Error: " . mysqli_error($conn);
     }
   }
-
-
-$query = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
-// Eksekusi query
-$result = mysqli_query($conn, $query);
-
-  // Periksa apakah query berhasil dieksekusi
-  if ($result) {
-    // Ambil data dari hasil query
-    $data = mysqli_fetch_assoc($result);
-
-  // Masukkan data ke dalam variabel
-  $id = $data['id_pelanggan'];
-  $nama = $data['nama'];
-  $uname = $data['username'];
-  $email = $data['email'];
-  $no_hp = $data['no_hp'];
-  $alamat = $data['alamat'];
-  $gambarDefault = '../../img/profpic.jpg';
-  //$gambar = $data['gambar'];
-} else {
-  // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
-  echo "Error: " . mysqli_error($conn);
-}
-
 ?>

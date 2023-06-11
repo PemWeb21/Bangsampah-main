@@ -111,7 +111,6 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                 <th scope="col">No.</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Tanggal</th>
-                <th scope="col">Waktu</th>
                 <th scope="col">Gambar</th>
                 <th scope="col">Deskripsi</th>
                 <th scope="col">Aksi</th>
@@ -126,11 +125,10 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                   <th scope="row"><?= $i; ?></th>
                   <td><?= $row['nama']; ?></td>
                   <td><?= $row['tanggal']; ?></td>
-                  <td>16.00/blm ada atribut</td>
                   <td><img src="../img/profpic.jpg" width="50px" alt="event"></td>
                   <td><?= $row['deskripsi']; ?></td>
                   <td class="text-center">
-                    <a href="edit-event.php" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php

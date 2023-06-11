@@ -3,11 +3,8 @@ session_start();
 include "../backend/umkmBefore.php";
 $table_name = 'event';
 $data = getSpesifikPage($table_name);
-
-$total_halaman = $data['total_halaman'];
-$halaman_saat_ini = $data['halaman_saat_ini'];
 $event = $data['data'];
-$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 
 ?>
 <!DOCTYPE html>

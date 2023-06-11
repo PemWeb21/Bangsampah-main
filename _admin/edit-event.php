@@ -1,64 +1,90 @@
 <?php
-//session_start();
-include "../backend/admin/tampilProfil.php";
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$kd_event = $_GET['kd_event'];
 
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM event WHERE kd_event = $kd_event";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $event = $result[0];
+  $id_umkm = $event['id_umkm'];
+  $umkmSql = "SELECT nama FROM umkm WHERE id_umkm = $id_umkm";
+  $umkmResult = query($umkmSql);
+
+  // Memastikan UMKM ditemukan
+  if (!empty($umkmResult)) {
+    $umkm = $umkmResult[0];
+    $nama_umkm = $umkm['nama'];
+  } else {
+    // Jika UMKM tidak ditemukan, Anda dapat menentukan nilai default atau menampilkan pesan kesalahan
+    $nama_umkm = "UMKM tidak ditemukan";
+  }
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "Umkm tidak ditemukan.";
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Buat Event | BANG SAMPAH</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+  <title>Edit Event | BANG SAMPAH</title>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
-
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-
-  </head>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
 
 
-  <body> 
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-   
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+  <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
 
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
     <a class="navbar-brand"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="edit-profile-admin.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="admin-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="edit-profile-admin.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="admin-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+          </div>
+        </li>
+      </ul>
+    </div>
     <!-- </div> -->
   </nav>
 
   <!-- DATA KOMUNITAS -->
   <section class="edit-profile" id="edit-profile">
-  <div class="row mg-top mr-ml-plus">
+    <div class="row mg-top mr-ml-plus">
       <div class="col-lg-3 color pr pl-minus">
         <div class="card shadow btn-edit">
           <ul class="nav flex-column pd-18">
@@ -93,10 +119,11 @@ include "../backend/admin/tampilProfil.php";
         <div class="card pd-20">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="account" role="tabpanel">
-              <h1>Tambah Event</h1>
+              <h1>Edit Event</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                <form action="../backend/admin/edit-data-event.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                  <input type="hidden" name="kd_event" class="form-control" id="kd_event" placeholder="Nama" value="<?= $event['kd_event'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -108,21 +135,20 @@ include "../backend/admin/tampilProfil.php";
                     </div>
                   </div>
                   <div class="form-group mg-sm-top">
+                    <label for="nama-umkm">Nama UMKM</label>
+                    <input type="text" name="nama-umkm" class="form-control" id="nama-umkm" placeholder="Nama UMKM" value="<?= $nama_umkm ?>" readonly>
+                  </div>
+                  <div class="form-group mg-sm-top">
                     <label for="judul-artikel">Nama Event</label>
-                      <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Event">
+                    <input type="text" name="judul-event" class="form-control" id="judul-event" placeholder="judul-event" value="<?= $event['nama'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Tanggal</label>
-                      <input type="date" name="tanggal-event" class="form-control" id="tanggal-event" placeholder="tanggal-event" value="">
+                    <input type="date" name="tanggal-event" class="form-control" id="tanggal-event" placeholder="tanggal-event" value="<?= $event['tanggal'] ?>">
                   </div>
-                  <div class="form-group">
-                    <label for="email">Waktu</label>
-                      <input type="time" name="waktu-event" class="form-control" id="waktu-event" placeholder="waktu-event" value="">
-                  </div>
-                 
-                   <div class="form-group mg-sm-top">
+                  <div class="form-group mg-sm-top">
                     <label for="isi-artikel">Deskripsi Event</label>
-                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini ..."></textarea>
+                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini"><?= $event['deskripsi'] ?></textarea>
                   </div>
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Post</button>
                 </form>
@@ -134,14 +160,15 @@ include "../backend/admin/tampilProfil.php";
     </div>
     </div>
   </section>
-  
-    <script>
-      $('#summernote').summernote({
-        placeholder: 'Isi Event...',
-        tabsize: 2,
-        height: 100
-      });
-    </script>
-<script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-  </body>
+
+  <script>
+    $('#summernote').summernote({
+      placeholder: 'Isi Event...',
+      tabsize: 2,
+      height: 100
+    });
+  </script>
+  <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

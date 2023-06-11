@@ -10,7 +10,6 @@ $result = query($sql);
 // Memastikan event ditemukan
 if (!empty($result)) {
   $masyarakat = $result[0];
- 
 } else {
   // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
   echo "masyarakat tidak ditemukan.";
@@ -33,7 +32,7 @@ if (!empty($result)) {
 </head>
 
 <body>
-  
+
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
@@ -98,6 +97,7 @@ if (!empty($result)) {
               <hr>
               <div class="akun">
                 <form action="../backend/admin/edit-data-masyarakat.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                  <input type="hidden" name="id_pelanggan" class="form-control" id="id_pelanggan" placeholder="Nama" value="<?= $masyarakat['id_pelanggan'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">

@@ -1,3 +1,21 @@
+<?php
+include "../backend/umkmBefore.php";
+// Mendapatkan ID event dari parameter URL
+$kd_event = $_GET['kd_event'];
+
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT * FROM event WHERE kd_event = $kd_event";
+$result = query($sql);
+
+// Memastikan event ditemukan
+if (!empty($result)) {
+  $event = $result[0];
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "Umkm tidak ditemukan.";
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -79,7 +97,8 @@
               <h1>Edit Event</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../backend/admin/edit-data-event.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <input type="hidden" name="kd_event" class="form-control" id="kd_event" placeholder="Nama" value="<?= $event['kd_event'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -92,20 +111,15 @@
                   </div>
                   <div class="form-group mg-sm-top">
                     <label for="judul-artikel">Nama Event</label>
-                      <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Event">
+                      <input type="text" name="judul-event" class="form-control" id="judul-event" placeholder="judul-event" value="<?= $event['nama'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Tanggal</label>
-                      <input type="date" name="tanggal-event" class="form-control" id="tanggal-event" placeholder="tanggal-event" value="">
+                      <input type="date" name="tanggal-event" class="form-control" id="tanggal-event" placeholder="tanggal-event" value="<?= $event['tanggal'] ?>">
                   </div>
-                  <div class="form-group">
-                    <label for="email">Waktu</label>
-                      <input type="time" name="waktu-event" class="form-control" id="waktu-event" placeholder="waktu-event" value="">
-                  </div>
-                 
                    <div class="form-group mg-sm-top">
                     <label for="isi-artikel">Deskripsi Event</label>
-                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini ..."></textarea>
+                    <textarea name="deskripsi-komunitas" class="form-control" id="deskripsi-komunitas" cols="80" rows="5" placeholder="Event ini ..."><?= $event['deskripsi'] ?></textarea>
                   </div>
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Event</button>
                 </form>
