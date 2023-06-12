@@ -91,7 +91,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form action=""class="form-inline input-group" method = "get" autocomplete="off">
+              <form action="" class="form-inline input-group" method="get" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
@@ -101,7 +101,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               </form>
             </div>
             <div class="col-lg-8 text-right">
-              <a href="tambah-Masyarakat.php"><i class="fas fa-plus-circle fa-3x warna"></i></a> 
+              <a href="tambah-Masyarakat.php"><i class="fas fa-plus-circle fa-3x warna"></i></a>
             </div>
           </div>
           <table class="table mg-btm mg-sm-top table-edit ukuran-font">
@@ -126,7 +126,10 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                 <tr>
                   <th scope="row"><?= $i ?></th>
                   <td><?= $row['nama']; ?></td>
-                  <td><img src="<?= $row['gambar']; ?>" width="50px" alt="img-profile"></td>
+                  <?php
+                    $gambar = $row['gambar'] ? '../img/masyarakat/' . $row['gambar'] : '../img/profpic.jpg';
+                  ?>
+                  <td><img src="<?= $gambar ?>" width="50px" alt="img-profile"></td>
                   <td><?= $row['alamat']; ?></td>
                   <td><?= $row['no_hp']; ?></td>
                   <td><?= $row['username']; ?></td>

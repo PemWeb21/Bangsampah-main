@@ -2,6 +2,8 @@
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
   session_start();
   include __DIR__ . '../../conn.php';
+  include '../umkmBefore.php';
+
   //$conn = $_SESSION['conn'];
   //$id = $_SESSION['id_umkm'];
 
@@ -11,13 +13,22 @@
     $nama = $_POST['judul-event'];
     $tanggal = $_POST['tanggal-event'];
     $deskripsi = $_POST['deskripsi-komunitas'];
+    $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'event';
+      $gambar = upload($folder);
+    }
     if (!empty($_SESSION['id_umkm'])) {
       $id_umkm = $_SESSION['id_umkm'];
   }
     // Lakukan operasi update data di sini
     $query = "UPDATE event SET nama = '$nama', 
                               tanggal = '$tanggal', 
-                              deskripsi = '$deskripsi'
+                              deskripsi = '$deskripsi',
+                              gambar = '$gambar'
                               WHERE kd_event = '$kd_event'";
 
     // Eksekusi query

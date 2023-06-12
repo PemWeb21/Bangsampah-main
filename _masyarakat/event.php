@@ -105,7 +105,7 @@ $event = $data['data'];
               <div class="card-body">
                 <p class="komunitas"><?= $nama_umkm ?></p>
                 <h4 class="nama-event"><?= $row['nama']; ?></h4>
-                <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['deskripsi']), 0, 14)); ?></p>
+                <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['deskripsi']), 0, 11)); ?></p>
                 <hr>
                 <div class="row">
                   <div class="mr-auto text-left pl-minus">

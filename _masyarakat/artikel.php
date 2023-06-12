@@ -106,7 +106,7 @@ $artikel = $data['data'];
               <div class="card-body">
                 <p class="komunitas"><?= $nama_umkm ?></p>
                 <h4 class="judul-artikel"><?= $row['judul']; ?></h4>
-                <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['isi']), 0, 14)); ?></p>
+                <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['isi']), 0, 12)); ?></p>
                 <hr>
                 <div class="row">
                   <div class="mr-auto text-left pl-minus">

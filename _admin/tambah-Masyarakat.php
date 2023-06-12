@@ -87,7 +87,7 @@
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" title="Change Avatar" name = "gambar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
 

@@ -124,14 +124,18 @@ if (!empty($result)) {
               <div class="akun">
                 <form action="../backend/admin/edit-data-event.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <input type="hidden" name="kd_event" class="form-control" id="kd_event" placeholder="Nama" value="<?= $event['kd_event'] ?>">
+                  <input type="hidden" name="gambarDefault" class="form-control" id="gambarDefault" value="<?= $event['gambar'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
+                    <?php
+                      $gambar = $event['gambar'] ? '../img/event/' . $event['gambar'] : '../img/profpic.jpg';
+                      ?>
                       <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                        <img src="<?= $gambar?>" class="img-fluid" alt="">
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
                   <div class="form-group mg-sm-top">

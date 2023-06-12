@@ -125,7 +125,10 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                   <th scope="row"><?= $i; ?></th>
                   <td><?= $row['nama']; ?></td>
                   <td><?= $row['tanggal']; ?></td>
-                  <td><img src="../img/profpic.jpg" width="50px" alt="event"></td>
+                  <?php
+                    $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
+                  ?>
+                  <td><img src="<?= $gambar ?>" width="50px" alt="event"></td>
                   <td><?= $row['deskripsi']; ?></td>
                   <td class="text-center">
                     <a href="edit-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>

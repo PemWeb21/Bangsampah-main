@@ -1,7 +1,8 @@
 <?php
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
-session_start();
+//session_start();
 include __DIR__ . '../../conn.php';
+include '../umkmBefore.php';
 //$conn = $_SESSION['conn'];
 
 //$id = $_SESSION['id_pelanggan'];
@@ -14,7 +15,14 @@ include __DIR__ . '../../conn.php';
     $no_hp = $_POST['notelp'];
     $alamat = $_POST['alamat-masy'];
     $password = $_POST['pass'];
-     // Ambil data gambar
+    $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'masyarakat';
+      $gambar = upload($folder);
+    }
   //$gambar = $_FILES['gambar'];
  // $gambarTmpPath = $gambar['tmp_name'];
 
@@ -26,7 +34,8 @@ include __DIR__ . '../../conn.php';
                                   no_hp = '$no_hp', 
                                   alamat = '$alamat', 
                                   username = '$username',
-                                  password = '$password'
+                                  password = '$password',
+                                  gambar = '$gambar'
                                   WHERE id_pelanggan = '$id'";
 
       // Eksekusi query

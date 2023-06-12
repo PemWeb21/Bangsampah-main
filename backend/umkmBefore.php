@@ -98,4 +98,28 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman) {
         'data' => $data
     ];
 }
+
+  function upload($folder){
+    $namafile = $_FILES['gambar']['name'];
+    $ukuranfile = $_FILES['gambar']['size'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    if($ukuranfile > 4000000){
+        echo "<script>
+                  alert('ukuran gambar terlalu besar!');
+              </script>";
+        return false;
+    }
+    $extensiGambar = explode('.', $namafile);
+    $extensiGambar = strtolower(end($extensiGambar));
+
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $extensiGambar;
+
+    move_uploaded_file($tmpName, '../../img/'.$folder.'/'. $namaFileBaru);
+
+    return $namaFileBaru;
+
+  }
   ?>

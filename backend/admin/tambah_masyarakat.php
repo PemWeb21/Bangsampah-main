@@ -1,6 +1,6 @@
 <?php
 include "../conn.php"; // Koneksi ke database
-
+include "../umkmBefore.php";
 if(isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $username = $_POST['uname'];
@@ -9,7 +9,10 @@ if(isset($_POST['submit'])) {
     $alamat = $_POST['alamat-masy'];
     $password = $_POST['pass'];
     $konfirmasiPassword = $_POST['pass2'];
-
+    
+    //upload gambar
+    $folder = 'masyarakat';
+    $gambar = upload($folder);
     // Validasi password
     if($password !== $konfirmasiPassword) {
         echo "Konfirmasi password tidak sesuai";
@@ -20,8 +23,8 @@ if(isset($_POST['submit'])) {
     
 
     // Query untuk menambahkan data masyarakat ke database
-    $query = "INSERT INTO pelanggan (nama, username, email, no_hp, alamat, password) 
-              VALUES ('$nama', '$username', '$email', '$nomorTelepon', '$alamat', '$password')";
+    $query = "INSERT INTO pelanggan (nama, username, email, no_hp, alamat, password, gambar) 
+              VALUES ('$nama', '$username', '$email', '$nomorTelepon', '$alamat', '$password', '$gambar')";
     
     if(mysqli_query($conn, $query)) {
         header("Location: ../../_admin/tambah-Masyarakat.php");
