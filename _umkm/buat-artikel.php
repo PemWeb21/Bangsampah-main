@@ -79,7 +79,7 @@
               <h1>Tambah Artikel</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../backend/admin/tambah-artikel.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -87,26 +87,16 @@
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
                   <div class="form-group mg-sm-top">
                     <label for="judul-artikel">Judul Artikel</label>
-                      <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Artikel">
+                    <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="Masukkan Judul Artikel" value="" >
                   </div>
-                 
-                    <label for="isi-artikel">Isi artikel</label>
-                    <div id="summernote"></div>
-                 
-                  <div class="form-group">
-                    <label for="email">Author</label>
-                    <select name="Umkm" id="Umkm" class="form-control">
-                      <option value="Umkm">Pilih Umkm</option>
-                      <option value="Exo-L Peduli">Exo-L Peduli</option>
-                      <option value="Tastura">Earth Hour</option>
-                      <option value="Yuk Ngaji">Yuk Ngaji</option>
-              
-                    </select>
+                  <div class="form-group mg-sm-top">
+                    <label for="isi-artikel">Isi Artikel</label>
+                    <textarea name="isi_artikel" class="form-control" id="isi_artikel" cols="80" rows="5" placeholder="Masukkan Deskripsi Artikel"></textarea>
                   </div>
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Post</button>
                 </form>

@@ -23,7 +23,7 @@
     }
     if (!empty($_SESSION['id_umkm'])) {
       $id_umkm = $_SESSION['id_umkm'];
-  }
+    }
     // Lakukan operasi update data di sini
     $query = "UPDATE event SET nama = '$nama', 
                               tanggal = '$tanggal', 
@@ -38,9 +38,9 @@
     if ($result) {
       if (!empty($_SESSION['id_umkm'])) {
         header("Location: ../../_umkm/data-event.php");
-    } else {
-      header('Location: ../../_admin/data-event.php');
-    }
+      } else {
+        header('Location: ../../_admin/data-event.php');
+      }
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
       exit;
     } else {

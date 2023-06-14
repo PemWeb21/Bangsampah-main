@@ -123,10 +123,13 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                 <tr>
                   <th scope="row"><?= $i ?></th>
                   <td><?= $row['judul']; ?></td>
-                  <td><img src=" " alt="<?= $row['judul']; ?>"></td>
+                  <?php
+                    $gambar = $row['gambar'] ? '../img/artikel/' . $row['gambar'] : '../img/profpic.jpg';
+                  ?>
+                  <td><img src="<?= $gambar ?>" width="50px" alt=""></td>
                   <td><?= $row['isi']; ?></td>
                   <td class="text-center">
-                    <a href="edit-artikel.php" class="btn btn-edit"><i class="fas fa-edit"></i></a><a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-artikel.php?kd_artikel=<?= isset($row['kd_artikel']) ? $row['kd_artikel'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a><a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php

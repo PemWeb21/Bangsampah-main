@@ -1,7 +1,9 @@
 <?php
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
-  session_start();
+  //session_start();
   include __DIR__ . '../../conn.php';
+  //include '../umkmBefore.php';
+
   //$conn = $_SESSION['conn'];
   $id = $_SESSION['id_umkm'];
 
@@ -14,9 +16,22 @@
     $no_hp = $_POST['notelp'];
     $alamat = $_POST['alamat-masy'];
     $penanggung_jawab = $_POST['penanggung_jawab'];
+    /*$gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'umkm';
+      $gambar = upload($folder);
+    }*/
 
     // Lakukan operasi update data di sini
-    $query = "UPDATE umkm SET nama = '$nama', email = '$email', no_hp = '$no_hp', alamat = '$alamat', username = '$username',penanggung_jawab = '$penanggung_jawab' WHERE id_umkm = '$id'";
+    $query = "UPDATE umkm SET nama = '$nama', 
+                     email = '$email', 
+                     no_hp = '$no_hp', 
+                     alamat = '$alamat', 
+                     username = '$username',
+                     penanggung_jawab = '$penanggung_jawab' WHERE id_umkm = '$id'";
 
     // Eksekusi query
     $result = mysqli_query($conn, $query);
@@ -95,6 +110,7 @@
     $no_hp = $data['no_hp'];
     $alamat = $data['alamat'];
     $penanggung_jawab = $data['penanggung_jawab'];
+    //$gambar = $data['gambar'];
   } else {
     // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
     echo "Error: " . mysqli_error($conn);

@@ -104,7 +104,7 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman) {
     $ukuranfile = $_FILES['gambar']['size'];
     $tmpName = $_FILES['gambar']['tmp_name'];
 
-    if($ukuranfile > 4000000){
+    if($ukuranfile > 40000000){
         echo "<script>
                   alert('ukuran gambar terlalu besar!');
               </script>";

@@ -1,6 +1,16 @@
 <?php
-//session_start();
-include "../backend/admin/tampilProfil.php";
+session_start();
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_admin'];
+$sql = "SELECT * FROM admin WHERE id_admin = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $admin = $result[0];
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "data admin tidak ditemukan.";
+  exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -34,7 +44,12 @@ include "../backend/admin/tampilProfil.php";
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+          $gambar = $admin['gambar'] ? '../img/admin/' . $admin['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-admin.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
             <div class="dropdown-divider"></div>
@@ -88,14 +103,16 @@ include "../backend/admin/tampilProfil.php";
               <hr>
               <div class="akun">
                 <form action="../backend/admin/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                  <input type="hidden" name="id_admin" class="form-control" id="id_admin" placeholder="Nama" value="<?= $admin['id_admin'] ?>">
+                  <input type="hidden" name="gambarDefault" class="form-control" id="gambarDefault" value="<?= $admin['gambar'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                        <img src="<?= $gambar ?>" class="img-fluid" alt="">
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
 
@@ -103,19 +120,19 @@ include "../backend/admin/tampilProfil.php";
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
 
-                  <div class="form-group" >
+                  <div class="form-group">
                     <label for="nama">username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $admin['username'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $admin['email'] ?> ">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>
                   </div>
                 </form>
-                  <form action="../backend/admin/tampilProfil.php" method="post" enctype="multipart/form-data">
+                <form action="../backend/admin/tampilProfil.php" method="post" enctype="multipart/form-data">
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-2">Ganti Password</h3>
                   </div>

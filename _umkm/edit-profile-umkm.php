@@ -75,16 +75,17 @@ include "../backend/umkm/tampilProfil.php";
               <h1>Edit Profile</h1>
               <hr>
               <div class="akun">
-                <form action="../backend/umkm/tampilProfil.php" method="post" autocomplete="off">
+                <form action="../backend/umkm/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <input type="hidden" name="id" class="form-control" id="id" value="<?= $id ?>">
+
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                        <img src="" class="img-fluid" alt="">
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
                   <div class="mg-sm-btm mg-sm-top">

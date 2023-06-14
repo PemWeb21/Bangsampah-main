@@ -2,15 +2,37 @@
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
 session_start();
 include __DIR__ . '../../conn.php';
+include '../umkmBefore.php';
+
 //$conn = $_SESSION['conn'];
 
   $id = $_SESSION['id_admin'];
-  if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     // Ambil data dari form
     $username = $_POST['uname'];
     $email = $_POST['email'];
+
+    $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'admin';
+      $gambar = upload($folder);
+    }
+
+   /* $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'admin';
+      $gambar = upload($folder);
+    }*/
     // Lakukan operasi update data di sini
-    $query = "UPDATE admin SET username = '$username', email = '$email' WHERE id_admin = '$id'";
+    //var_dump($_POST);die;
+    $query = "UPDATE admin SET username = '$username', email = '$email', gambar = '$gambar' WHERE id_admin = '$id'";
+   // var_dump($query);die;
 
       // Eksekusi query
       $result = mysqli_query($conn, $query);
@@ -19,7 +41,7 @@ include __DIR__ . '../../conn.php';
     if ($result) {
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
       echo "Data berhasil diperbarui";
-      header('Location: ../../_admin/edit-profile-admin.php');
+      header('Location: ../../_admin/admin-dashboard.php');
       exit;
     } else {
       // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
@@ -72,12 +94,12 @@ include __DIR__ . '../../conn.php';
   }
 
 
-$query = "SELECT * FROM admin WHERE id_admin = '$id'";
+//$query = "SELECT * FROM admin WHERE id_admin = '$id'";
 // Eksekusi query
-$result = mysqli_query($conn, $query);
+//$result = mysqli_query($conn, $query);
 
   // Periksa apakah query berhasil dieksekusi
-  if ($result) {
+  /*if ($result) {
     // Ambil data dari hasil query
     $data = mysqli_fetch_assoc($result);
 
@@ -85,10 +107,11 @@ $result = mysqli_query($conn, $query);
   $id = $data['id_admin'];
   $uname = $data['username'];
   $email = $data['email'];
+ // $gambar = $data['gambar'];
 
 } else {
   // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
   echo "Error: " . mysqli_error($conn);
-}
+}*/
 
 ?>

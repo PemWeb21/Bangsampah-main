@@ -1,3 +1,21 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_admin'];
+$sql = "SELECT * FROM admin WHERE id_admin = '$id'";
+$result1 = query($sql);
+if (!empty($result1)) {
+  $admin = $result1[0];
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "data admin tidak ditemukan.";
+  exit;
+}
+// Mendapatkan ID event dari parameter URL
+// Lakukan query ke database untuk mendapatkan event berdasarkan ID
+$sql = "SELECT id_umkm, nama FROM umkm";
+$result = query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +24,7 @@
   <link rel="icon" type="image/png" href="../img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Buat Artikel | BANG SAMPAH</title>
+  <title>Tambah Artikel | BANG SAMPAH</title>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -38,7 +56,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+        <?php
+            $gambar = $admin['gambar'] ? '../img/admin/' . $admin['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?= $gambar?>" class="img-circle" width="25px" alt="img-profile"></a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-admin.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
             <div class="dropdown-divider"></div>
@@ -93,7 +114,7 @@
               <h1>Tambah Artikel</h1>
               <hr>
               <div class="akun">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../backend/admin/tambah-artikel.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
@@ -101,25 +122,29 @@
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
                   <div class="form-group mg-sm-top">
-                    <label for="judul-artikel">Judul Artikel</label>
-                    <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Artikel">
-                  </div>
-
-                  <label for="isi-artikel">Isi artikel</label>
-                  <div id="summernote"></div>
-
-                  <div class="form-group">
-                    <label for="email">Author</label>
-                    <select name="Umkm" id="Umkm" class="form-control">
-                      <option value="Umkm">Pilih Umkm</option>
-                      <option value="Exo-L Peduli">Exo-L Peduli</option>
-                      <option value="Tastura">Earth Hour</option>
-                      <option value="Yuk Ngaji">Yuk Ngaji</option>
+                    <label for="umkm">Pilih UMKM</label>
+                    <select name="nama-umkm" class="form-control" id="umkm" required>
+                      <option value="">Pilih UMKM</option>
+                      <?php
+                      foreach ($result as $umkm) {
+                        $umkm_id = $umkm['id_umkm'];
+                        $nama_umkm = $umkm['nama'];
+                        echo "<option value=\"$umkm_id\">$nama_umkm</option>";
+                      }
+                      ?>
                     </select>
+                  </div>
+                  <div class="form-group mg-sm-top">
+                    <label for="judul-artikel">Judul Artikel</label>
+                    <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="Masukkan Judul Artikel" value="" >
+                  </div>
+                  <div class="form-group mg-sm-top">
+                    <label for="isi-artikel">Isi Artikel</label>
+                    <textarea name="isi_artikel" class="form-control" id="isi_artikel" cols="80" rows="5" placeholder="Masukkan Deskripsi Artikel"></textarea>
                   </div>
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Post</button>
                 </form>

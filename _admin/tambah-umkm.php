@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  
+
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <!-- <div class="container"> -->
@@ -79,7 +79,16 @@
               <hr>
               <div class="akun">
                 <form action="../backend/admin/tambah_umkm.php" method="post" enctype="multipart/form-data" autocomplete="off">
-               
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="wrapper-kelas rounded logo-center white-bg">
+                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                      </div>
+                    </div>
+                    <div class="col-lg4">
+                      <input type="file" title="Change Avatar" name="gambar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                    </div>
+                  </div>
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>

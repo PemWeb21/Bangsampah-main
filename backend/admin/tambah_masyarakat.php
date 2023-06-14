@@ -9,11 +9,13 @@ if(isset($_POST['submit'])) {
     $alamat = $_POST['alamat-masy'];
     $password = $_POST['pass'];
     $konfirmasiPassword = $_POST['pass2'];
-    
-    //upload gambar
-    $folder = 'masyarakat';
-    $gambar = upload($folder);
-    // Validasi password
+
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = null;
+    } else {
+        $folder = 'masyarakat';
+        $gambar = upload($folder);
+    }
     if($password !== $konfirmasiPassword) {
         echo "Konfirmasi password tidak sesuai";
         exit();
@@ -27,7 +29,7 @@ if(isset($_POST['submit'])) {
               VALUES ('$nama', '$username', '$email', '$nomorTelepon', '$alamat', '$password', '$gambar')";
     
     if(mysqli_query($conn, $query)) {
-        header("Location: ../../_admin/tambah-Masyarakat.php");
+        header("Location: ../../_admin/data-masyarakat.php");
         exit();
     } else {
         echo "Gagal menambahkan data masyarakat: " . mysqli_error($conn);

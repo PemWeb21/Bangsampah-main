@@ -2,6 +2,8 @@
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
   session_start();
   include __DIR__ . '../../conn.php';
+  include '../umkmBefore.php';
+
   //$conn = $_SESSION['conn'];
   //$id = $_SESSION['id_umkm'];
 
@@ -15,6 +17,14 @@
     $alamat = $_POST['alamat-masy'];
     $penanggung_jawab = $_POST['penanggung_jawab'];
     $password = $_POST['pass'];
+    $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'umkm';
+      $gambar = upload($folder);
+    }
 
     // Lakukan operasi update data di sini
     $query = "UPDATE umkm SET nama = '$nama', 
@@ -23,6 +33,7 @@
                               alamat = '$alamat', 
                               username = '$username',
                               password = '$password',
+                              gambar = '$gambar',
                               penanggung_jawab = '$penanggung_jawab' WHERE id_umkm = '$id'";
 
     // Eksekusi query

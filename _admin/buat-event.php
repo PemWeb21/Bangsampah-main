@@ -13,7 +13,7 @@ $result = query($sql);
   <link rel="icon" type="image/png" href="../img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Buat Event | BANG SAMPAH</title>
+  <title>Tambah Event | BANG SAMPAH</title>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -107,7 +107,7 @@ $result = query($sql);
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
                   <div class="form-group mg-sm-top">

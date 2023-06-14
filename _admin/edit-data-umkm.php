@@ -98,14 +98,18 @@ if (!empty($result)) {
               <div class="akun">
                 <form action="../backend/admin/edit-data-umkm.php" method="post" enctype="multipart/form-data" autocomplete="off">
                   <input type="hidden" name="id_umkm" class="form-control" id="id_umkm" placeholder="Nama" value="<?= $umkm['id_umkm'] ?>">
+                  <input type="hidden" name="gambarDefault" class="form-control" id="gambarDefault" value="<?= $umkm['gambar'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
+                      <?php
+                      $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
+                      ?>
                       <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
+                        <img src="<?= $gambar?>" class="img-fluid" alt="">
                       </div>
                     </div>
                     <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                      <input type="file" name= "gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                     </div>
                   </div>
 

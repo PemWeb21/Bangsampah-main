@@ -37,24 +37,18 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
         if (mysqli_num_rows($admin_result) === 1) {
             // Jika login sebagai admin
             $row = mysqli_fetch_assoc($admin_result);
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['email'] = $row['email'];
             $_SESSION['id_admin'] = $row['id_admin'];
             header("Location: ../_admin/admin-dashboard.php");
             exit();
         } elseif (mysqli_num_rows($umkm_result) === 1) {
             // Jika login sebagai UMKM
             $row = mysqli_fetch_assoc($umkm_result);
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['email'] = $row['email'];
             $_SESSION['id_umkm'] = $row['id_umkm'];
             header("Location: ../_umkm/umkm-dashboard.php");
             exit();
         } elseif (mysqli_num_rows($pelanggan_result) === 1) {
             // Jika login sebagai pelanggan
             $row = mysqli_fetch_assoc($pelanggan_result);
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['email'] = $row['email'];
             $_SESSION['id_pelanggan'] = $row['id_pelanggan'];
             header("Location: ../_masyarakat/BerandaAfter.php");
             exit();
