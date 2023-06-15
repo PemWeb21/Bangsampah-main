@@ -1,8 +1,17 @@
 <?php
+session_start();
 include "../backend/umkmBefore.php";
+$id = $_SESSION['id_umkm'];
+$sql = "SELECT * FROM umkm WHERE id_umkm = '$id'";
+$result1 = query($sql);
+if (!empty($result1)) {
+  $umkm = $result1[0];
+} else {
+  echo "data admin tidak ditemukan.";
+  exit;
+}
 // Mendapatkan ID event dari parameter URL
 $kd_artikel = $_GET['kd_artikel'];
-
 // Lakukan query ke database untuk mendapatkan event berdasarkan ID
 $sql = "SELECT * FROM artikel WHERE kd_artikel = $kd_artikel";
 $result = query($sql);
@@ -53,13 +62,18 @@ if (!empty($result)) {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+            $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-umkm.php"><i class="fas fa-user-edit mr-3"></i>Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="umkm-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>
@@ -104,7 +118,7 @@ if (!empty($result)) {
                   <div class="row">
                     <div class="col-lg-4">
                       <?php
-                        $gambar = $artikel['gambar'] ? '../img/artikel/' . $artikel['gambar'] : '../img/profpic.jpg';
+                      $gambar = $artikel['gambar'] ? '../img/artikel/' . $artikel['gambar'] : '../img/profpic.jpg';
                       ?>
                       <div class="wrapper-kelas rounded logo-center white-bg">
                         <img src="<?= $gambar ?>" class="img-fluid" alt="">

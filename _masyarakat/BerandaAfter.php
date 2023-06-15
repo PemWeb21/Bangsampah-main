@@ -2,6 +2,16 @@
 session_start();
 include "../backend/umkmBefore.php";
 include "../backend/dashboard.php";
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
+} else {
+  echo "data masyarakat tidak ditemukan.";
+  exit;
+}
+
 $limit = 3; // Jumlah data yang ingin ditampilkan
 $table1_name = 'event';
 $data1 = getSpesifikPage($table1_name);
@@ -56,7 +66,12 @@ $artikels = array_slice($artikel, 0, $limit);
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+            <?php
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            ?>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
@@ -64,7 +79,7 @@ $artikels = array_slice($artikel, 0, $limit);
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+              <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
             </div>
           </li>
         </ul>
@@ -116,7 +131,7 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="container">
             <div class="carousel-caption text-right">
               <h1 class="display-4"><?= $randomEvent['nama']; ?></h1>
-              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i>#Pantai Senggigi. <br><?= $randomEvent['tanggal']; ?></h4>
+              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i><?= $randomEvent['lokasi'] ?> <br><?= $randomEvent['tanggal']; ?></h4>
               <p><a class="btn btn-lg btn-edit" href="event.php" role="button">Ikut Event</a></p>
             </div>
           </div>
@@ -152,7 +167,10 @@ $artikels = array_slice($artikel, 0, $limit);
             <!-- col-sm-offset-1 -->
             <div class="col-lg-4">
               <div class="card">
-                <img src="../img/event1.png" class="card-img-top" alt="event">
+                <?php
+                $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
+                ?>
+                <img src="<?= $gambar ?>" class="card-img-top" alt="event">
                 <div class="tanggal btn-edit"><?= $row['tanggal']; ?></div>
                 <div class="card-body">
                   <p class="komunitas"><?= $nama_umkm ?></p>
@@ -217,11 +235,14 @@ $artikels = array_slice($artikel, 0, $limit);
             <!-- col-sm-offset-1 -->
             <div class="col-lg-4">
               <div class="card">
-                <img src="../img/artikel3.png" class="card-img-top" alt="artikel">
+                <?php
+                  $gambar = $row['gambar'] ? '../img/artikel/' . $row['gambar'] : '../img/profpic.jpg';
+                ?>
+                <img src="<?= $gambar?>" class="card-img-top" alt="artikel">
                 <div class="card-body">
                   <p class="komunitas"><?= $nama_umkm ?></p>
                   <h4 class="judul-artikel"><?= $row['judul']; ?></h4>
-                  <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['isi']), 0, 10)); ?></p>
+                  <p class="card-text"><?= implode(' ', array_slice(explode(' ', $row['isi']), 0, 12)); ?></p>
                   <hr>
                   <div class="row">
                     <div class="mr-auto text-left pl-minus">

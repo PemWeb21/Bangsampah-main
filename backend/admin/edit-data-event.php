@@ -5,13 +5,14 @@
   include '../umkmBefore.php';
 
   //$conn = $_SESSION['conn'];
-  //$id = $_SESSION['id_umkm'];
+  $id = $_SESSION['id_umkm'];
 
   if (isset($_POST['submit'])) {
     // Ambil data dari form
     $kd_event = $_POST['kd_event'];
     $nama = $_POST['judul-event'];
     $tanggal = $_POST['tanggal-event'];
+    $lokasi = $_POST['lokasi-event'];
     $deskripsi = $_POST['deskripsi-komunitas'];
     $gambarDefault = $_POST['gambarDefault'];
 
@@ -27,6 +28,7 @@
     // Lakukan operasi update data di sini
     $query = "UPDATE event SET nama = '$nama', 
                               tanggal = '$tanggal', 
+                              lokasi = '$lokasi',
                               deskripsi = '$deskripsi',
                               gambar = '$gambar'
                               WHERE kd_event = '$kd_event'";
@@ -38,8 +40,11 @@
     if ($result) {
       if (!empty($_SESSION['id_umkm'])) {
         header("Location: ../../_umkm/data-event.php");
-      } else {
+        exit;
+      } 
+      else {
         header('Location: ../../_admin/data-event.php');
+        exit;
       }
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
       exit;

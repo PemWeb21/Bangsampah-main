@@ -7,7 +7,6 @@ $result = query($sql);
 if (!empty($result)) {
   $admin = $result[0];
 } else {
-  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
   echo "data admin tidak ditemukan.";
   exit;
 }
@@ -55,7 +54,7 @@ if (!empty($result)) {
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="admin-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>

@@ -1,9 +1,17 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
+$id = $_SESSION['id_admin'];
+$sql = "SELECT * FROM admin WHERE id_admin = '$id'";
+$result1 = query($sql);
+if (!empty($result1)) {
+  $admin = $result1[0];
+} else {
+  echo "data admin tidak ditemukan.";
+  exit;
+}
 $table_name = 'pelanggan';
 $data = getSpesifikPage($table_name);
-
 $total_halaman = $data['total_halaman'];
 $halaman_saat_ini = $data['halaman_saat_ini'];
 $masyarakat = $data['data'];
@@ -38,13 +46,18 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+          $gambar = $admin['gambar'] ? '../img/admin/' . $admin['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-admin.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="admin-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>
@@ -127,7 +140,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                   <th scope="row"><?= $i ?></th>
                   <td><?= $row['nama']; ?></td>
                   <?php
-                    $gambar = $row['gambar'] ? '../img/masyarakat/' . $row['gambar'] : '../img/profpic.jpg';
+                  $gambar = $row['gambar'] ? '../img/masyarakat/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
                   <td><img src="<?= $gambar ?>" width="50px" alt="img-profile"></td>
                   <td><?= $row['alamat']; ?></td>
@@ -135,7 +148,8 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                   <td><?= $row['username']; ?></td>
                   <td><?= $row['email']; ?></td>
                   <td class="text-center">
-                    <a href="edit-data-masyarakat.php?id_pelanggan=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-data-masyarakat.php?id_pelanggan=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                    <a href="../backend/delete-data.php?table_name=pelanggan&delete_id=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit" onclick="return confirmDelete()"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php
@@ -169,6 +183,11 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
     </div>
   </section>
 
+  <script>
+    function confirmDelete() {
+      return confirm("Apakah Anda yakin ingin menghapus data ini?");
+    }
+  </script>
 
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 

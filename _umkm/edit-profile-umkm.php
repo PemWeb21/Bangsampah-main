@@ -1,6 +1,17 @@
 <?php
-//session_start();
-include "../backend/umkm/tampilProfil.php";
+session_start();
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_umkm'];
+$sql = "SELECT * FROM umkm WHERE id_umkm = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $umkm = $result[0];
+} else {
+  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+  echo "data admin tidak ditemukan.";
+  exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,13 +40,18 @@ include "../backend/umkm/tampilProfil.php";
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+            $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-umkm.php"><i class="fas fa-user-edit mr-3"></i>Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="umkm-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>
@@ -76,12 +92,12 @@ include "../backend/umkm/tampilProfil.php";
               <hr>
               <div class="akun">
                 <form action="../backend/umkm/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                  <input type="hidden" name="id" class="form-control" id="id" value="<?= $id ?>">
-
+                  <input type="hidden" name="id_umkm" class="form-control" id="id_umkm" placeholder="Nama" value="<?= $umkm['id_umkm'] ?>">
+                  <input type="hidden" name="gambarDefault" class="form-control" id="gambarDefault" value="<?= $admin['gambar'] ?>">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="" class="img-fluid" alt="">
+                        <img src="<?= $gambar ?>" class="img-fluid" alt="">
                       </div>
                     </div>
                     <div class="col-lg4">
@@ -91,30 +107,29 @@ include "../backend/umkm/tampilProfil.php";
                   <div class="mg-sm-btm mg-sm-top">
                     <h3 id="list-item-1">Informasi Akun</h3>
                   </div>
-
                   <div class="form-group">
                     <label for="nama">Nama UMKM</label>
-                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $umkm['nama'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Username</label>
-                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                    <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $umkm['username'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?>">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $umkm['email'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="nama">Nomor Telepon</label>
-                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
+                    <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" value="<?= $umkm['no_hp'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Alamat</label>
-                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
+                    <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" value="<?= $umkm['alamat'] ?>">
                   </div>
                   <div class="form-group">
                     <label for="uname">Penangung Jawab</label><br>
-                    <input name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="penanggung jawab" value="<?= $penanggung_jawab ?>">
+                    <input name="penanggung_jawab" class="form-control" id="penanggung_jawab" placeholder="penanggung jawab" value="<?= $umkm['penanggung_jawab'] ?>">
                   </div>
                   <div class="form-group mg-sm-btm mg-sm-top">
                     <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Profile</button>

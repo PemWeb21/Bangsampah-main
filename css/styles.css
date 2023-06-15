@@ -718,7 +718,8 @@ body {
 
 
 
-.card-img-top {}
+.card-img-top {
+}
 
 .card-img-top img {
 	height: 200 !important;

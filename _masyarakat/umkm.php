@@ -1,23 +1,21 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
-$jumlah_per_halaman = 10;
-
-$table_name = 'umkm';
-$offset = 0;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-if (!empty($search)) {
-  $umkm = search($table_name, $search);
-  $total_data = count($umkm);
-  $total_halaman = ceil($total_data / $jumlah_per_halaman);
-  $halaman_saat_ini = 1;
-  $umkm = array_slice($umkm, $offset, $jumlah_per_halaman);
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
 } else {
-  $paginationData = getPaginationData($table_name, $offset, $jumlah_per_halaman);
-  $total_halaman = $paginationData['total_halaman'];
-  $halaman_saat_ini = $paginationData['halaman_saat_ini'];
-  $umkm = $paginationData['data_tabel'];
+  echo "data masyarakat tidak ditemukan.";
+  exit;
 }
+$table_name = 'umkm';
+$data = getSpesifikPage($table_name);
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$umkm = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +54,12 @@ if (!empty($search)) {
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+            <?php
+              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            ?>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
@@ -64,7 +67,7 @@ if (!empty($search)) {
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+              <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
             </div>
           </li>
         </ul>

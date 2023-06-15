@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
+} else {
+  echo "data masyarakat tidak ditemukan.";
+  exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +30,7 @@
 <!--  AWAL NAV  -->
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>      
+    <a class="navbar-brand"><img src="../img/logo.png" width="55px" alt="logo-pw"></a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -32,7 +46,12 @@
           <a class="nav-link" href="artikel.php">Artikel</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
             <div class="dropdown-divider"></div>
@@ -40,7 +59,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>
@@ -49,8 +68,7 @@
 </nav>
 
 <!-- JUMBOTRON -->
-<div class="jumbotron jumbotron-fluid tinggi bot"
-  style="background: url('../img/logo.png'); width: 100%; background-repeat: no-repeat; object-fit: cover;">
+<div class="jumbotron jumbotron-fluid tinggi bot" style="background: url('../img/logo.png'); width: 100%; background-repeat: no-repeat; object-fit: cover;">
   <div class="container">
 
   </div>
@@ -155,9 +173,9 @@
           <div class="hov">
             <ul>
               <li><a href="about-us.php">Tentang Kami</a></li>
-            <li><a href="umkm.php">UMKM</a></li>
-            <li><a href="event.php">Event</a></li>
-            <li><a href="artikel.php">Artikel</a></li>
+              <li><a href="umkm.php">UMKM</a></li>
+              <li><a href="event.php">Event</a></li>
+              <li><a href="artikel.php">Artikel</a></li>
             </ul>
           </div>
         </div>
@@ -187,12 +205,9 @@
 <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 
 </html>

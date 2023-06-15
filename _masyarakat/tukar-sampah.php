@@ -1,3 +1,17 @@
+<?php
+session_start();
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
+} else {
+  echo "data masyarakat tidak ditemukan.";
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,18 +56,20 @@
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px"
-                alt="img-profile"></a>
+            <?php
+              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            ?>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="edit-profile-masyarakat.php"><i
-                  class="fas fa-user-edit mr-3"></i>Edit Profile</a>
+              <a class="dropdown-item pd-0" href="edit-profile-masyarakat.php"><i class="fas fa-user-edit mr-3"></i>Edit Profile</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+              <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
             </div>
           </li>
         </ul>
@@ -78,10 +94,8 @@
                       <table class="table mg-btm mg-sm-top">
                         <tr>
                           <td>
-                            <img src="../img/plastik/pet.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/pet.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -100,24 +114,21 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">PET atau PETE (polyethylene terephthalate)</h5>
+                              <h5>PET atau PETE (polyethylene terephthalate)</h5>
                               <p>Botol air mineral, jus, softdrink, dan bumbu dapur.</p>
 
-                              <input type="number" id="quantity1" name="quantity1" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity1" name="quantity1" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <img src="../img/plastik/hdpe.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal2" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal2" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/hdpe.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal2" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal2" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">HDPE (high density polyethylene)</h5>
+                                    <h5>HDPE (high density polyethylene)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -132,24 +143,21 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">HDPE (high density polyethylene)</h5>
+                              <h5>HDPE (high density polyethylene)</h5>
                               <p>Botol susu, kosmetik, shampo, tas kresek.</p>
-                              <input type="number" id="quantity2" name="quantity2" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity2" name="quantity2" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
 
                         <tr>
                           <td>
-                            <img src="../img/plastik/pvc.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal3" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal3" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/pvc.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal3" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal3" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">V atau PVC (polyvinyl chloride)</h5>
+                                    <h5>V atau PVC (polyvinyl chloride)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -164,24 +172,21 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">V atau PVC (polyvinyl chloride)</h5>
+                              <h5>V atau PVC (polyvinyl chloride)</h5>
                               <p>Kotak makanan plastik, mainan, shower curtain, pipa, lantai vinyl.</p>
-                              <input type="number" id="quantity3" name="quantity3" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity3" name="quantity3" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
 
                         <tr>
                           <td>
-                            <img src="../img/plastik/ldpe.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal4" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal4" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/ldpe.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal4" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal4" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">LDPE (low density polyethylene)</h5>
+                                    <h5>LDPE (low density polyethylene)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -196,10 +201,9 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">LDPE (low density polyethylene)</h5>
+                              <h5>LDPE (low density polyethylene)</h5>
                               <p>Bungkus makanan, bungkus roti, dry cleaning bag.</p>
-                              <input type="number" id="quantity4" name="quantity4" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity4" name="quantity4" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
@@ -207,14 +211,12 @@
 
                         <tr>
                           <td>
-                            <img src="../img/plastik/pp.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal5" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal5" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/pp.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal5" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal5" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">PP (polypropylene)</h5>
+                                    <h5>PP (polypropylene)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -229,24 +231,21 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">PP (polypropylene)</h5>
+                              <h5>PP (polypropylene)</h5>
                               <p>Botol bayi, botol obat, sedotan, tempat margarin.</p>
-                              <input type="number" id="quantity5" name="quantity5" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity5" name="quantity5" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
 
                         <tr>
                           <td>
-                            <img src="../img/plastik/ps.png" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal6" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal6" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/ps.png" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal6" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal6" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">PS (polystyrene)</h5>
+                                    <h5>PS (polystyrene)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -261,24 +260,21 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">PS (polystyrene)</h5>
+                              <h5>PS (polystyrene)</h5>
                               <p>Cup minuman, styrofoam, cooler.</p>
-                              <input type="number" id="quantity6" name="quantity6" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity6" name="quantity6" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
 
                         <tr>
                           <td>
-                            <img src="../img/plastik/other.jpeg" class="img-thumbnail" data-toggle="modal"
-                              data-target="#contoh-modal7" width="180px" alt="jenis-sampah">
-                            <div class="pl-20 modal fade" id="contoh-modal7" role="dialog" arialabelledby="modalLabel"
-                              aria-hidden="true">
+                            <img src="../img/plastik/other.jpeg" class="img-thumbnail" data-toggle="modal" data-target="#contoh-modal7" width="180px" alt="jenis-sampah">
+                            <div class="pl-20 modal fade" id="contoh-modal7" role="dialog" arialabelledby="modalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 style="">Other (biasanya polycarbonate)</h5>
+                                    <h5>Other (biasanya polycarbonate)</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
@@ -293,10 +289,9 @@
 
                           <td>
                             <div class="pl-20">
-                              <h5 style="">Other (biasanya polycarbonate)</h5>
+                              <h5>Other (biasanya polycarbonate)</h5>
                               <p>Tumbly botol minuman, tas oven, packaging.</p>
-                              <input type="number" id="quantity7" name="quantity7" min="0" max="100"
-                                class="form-control wid-20 result" step="1" value="0" onchange="sum()">
+                              <input type="number" id="quantity7" name="quantity7" min="0" max="100" class="form-control wid-20 result" step="1" value="0" onchange="sum()">
                             </div>
                           </td>
                         </tr>
@@ -346,8 +341,7 @@
                           </div>
                         </div>
                         <!-- </form>  -->
-                        <input type="button" name="submit" id="submit" class="btn btn-edit wid " value="Tukar"
-                          onclick="ok()">
+                        <input type="button" name="submit" id="submit" class="btn btn-edit wid " value="Tukar" onclick="ok()">
                       </div>
                     </div>
                     <!-- <div class="row pad-tambah">
@@ -366,7 +360,7 @@
   <script>
     document.getElementById('output').style.visibility = 'hidden';
 
-    var poin1 = document.getElementById('quantity1').addEventListener('input', function (e) {
+    var poin1 = document.getElementById('quantity1').addEventListener('input', function(e) {
       document.getElementById('output').style.visibility = 'visible';
 
       let quantity = e.target.value;
@@ -374,7 +368,7 @@
       document.getElementById('poin1Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis PET mendapat " + quantity + " poin";
     });
 
-    var poin2 = document.getElementById('quantity2').addEventListener('input', function (e) {
+    var poin2 = document.getElementById('quantity2').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -383,7 +377,7 @@
       document.getElementById('poin2Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis HDPE mendapat " + quantity * 0.5 + " poin";
     });
 
-    var poin3 = document.getElementById('quantity3').addEventListener('input', function (e) {
+    var poin3 = document.getElementById('quantity3').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -392,7 +386,7 @@
       document.getElementById('poin3Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis PVC mendapat " + quantity * 2 + " poin";
     });
 
-    var poin4 = document.getElementById('quantity4').addEventListener('input', function (e) {
+    var poin4 = document.getElementById('quantity4').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -401,7 +395,7 @@
       document.getElementById('poin4Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis LDPE mendapat " + quantity * 0.5 + " poin";
     });
 
-    var poin5 = document.getElementById('quantity5').addEventListener('input', function (e) {
+    var poin5 = document.getElementById('quantity5').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -410,7 +404,7 @@
       document.getElementById('poin5Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis PP mendapat " + quantity + " poin";
     });
 
-    var poin6 = document.getElementById('quantity6').addEventListener('input', function (e) {
+    var poin6 = document.getElementById('quantity6').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -419,7 +413,7 @@
       document.getElementById('poin6Output').innerHTML = "Menukar " + `${quantity}` + " sampah jenis PS mendapat " + quantity * 0.5 + " poin";
     });
 
-    var poin6 = document.getElementById('quantity7').addEventListener('input', function (e) {
+    var poin6 = document.getElementById('quantity7').addEventListener('input', function(e) {
 
       document.getElementById('output').style.visibility = 'visible';
 
@@ -463,60 +457,54 @@
     }
   </script>
 
-<footer>
-  <div class="foot">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <h4>BANG SAMPAH</h4>
-          <p>Website yang memudahkan proses pengolahan sampah plastik di Lombok NTB</p>
-        </div>
-        <div class="col-lg-4 ">
-          <h4>Menu BANG SAMPAH</h4>
-          <div class="hov">
-            <ul>
-              <li><a href="about-us.php">Tentang Kami</a></li>
-            <li><a href="umkm.php">UMKM</a></li>
-            <li><a href="event.php">Event</a></li>
-            <li><a href="artikel.php">Artikel</a></li>
-            </ul>
+  <footer>
+    <div class="foot">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h4>BANG SAMPAH</h4>
+            <p>Website yang memudahkan proses pengolahan sampah plastik di Lombok NTB</p>
+          </div>
+          <div class="col-lg-4 ">
+            <h4>Menu BANG SAMPAH</h4>
+            <div class="hov">
+              <ul>
+                <li><a href="about-us.php">Tentang Kami</a></li>
+                <li><a href="umkm.php">UMKM</a></li>
+                <li><a href="event.php">Event</a></li>
+                <li><a href="artikel.php">Artikel</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <h4>HUBUNGI KAMI</h4>
+            <p>1, Vila Ali, Gunung Sari, Mataram</p>
+            <p>(021) 098 082</p>
+            <p>contact@bangsampah.com</p>
+            <a href="www.facebook.com" class="fa fa-facebook mr-3 fa-3x"></a>
+            <a href="www.twiter.com" class="fa fa-twitter mr-3 fa-3x"></a>
+            <a href="www.instagram.com" class="fa fa-instagram mr-3 fa-3x"></a>
           </div>
         </div>
-        <div class="col-lg-4">
-          <h4>HUBUNGI KAMI</h4>
-          <p>1, Vila Ali, Gunung Sari, Mataram</p>
-          <p>(021) 098 082</p>
-          <p>contact@bangsampah.com</p>
-          <a href="www.facebook.com" class="fa fa-facebook mr-3 fa-3x"></a>
-          <a href="www.twiter.com" class="fa fa-twitter mr-3 fa-3x"></a>
-          <a href="www.instagram.com" class="fa fa-instagram mr-3 fa-3x"></a>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-lg-6">
-          <p>copyright © 2023 - Bang Sampah. All rights reserved.</p>
-        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <p>copyright © 2023 - Bang Sampah. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-</footer>
+    </div>
+    </div>
+  </footer>
 
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 
-  </html>
+</html>

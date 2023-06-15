@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     if ($result) {
       // Redirect pengguna ke halaman profil setelah berhasil melakukan update
       echo "Data berhasil diperbarui";
-      header('Location: ../../_admin/admin-dashboard.php');
+      header('Location: ../../_admin/edit-profile-admin.php');
       exit;
     } else {
       // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini

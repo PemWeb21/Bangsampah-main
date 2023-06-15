@@ -1,14 +1,22 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
+$id = $_SESSION['id_umkm'];
+$sql = "SELECT * FROM umkm WHERE id_umkm = '$id'";
+$result1 = query($sql);
+if (!empty($result1)) {
+  $umkm = $result1[0];
+} else {
+  echo "data admin tidak ditemukan.";
+  exit;
+}
 $table_name = 'event';
-$data = getSpesifikPage($table_name);
+$jumlah_per_halaman = 10; // Jumlah data per halaman yang diinginkan
+$halaman_saat_ini = isset($_GET['page']) ? $_GET['page'] : 1; // Halaman saat ini dari parameter GET, default 1
 
-$total_halaman = $data['total_halaman'];
-$halaman_saat_ini = $data['halaman_saat_ini'];
-$event = $data['data'];
-$jumlah_per_halaman = $data['jumlah_per_halaman'];
-
+$eventData = getDataByUmkm($id,$table_name, $jumlah_per_halaman, $halaman_saat_ini);
+$total_halaman = $eventData['total_halaman'];
+$event = $eventData['data_tabel'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,13 +43,18 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+          <?php
+            $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
+          ?>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+          </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="edit-profile-umkm.php"><i class="fas fa-user-edit mr-3"></i>edit profil</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="umkm-dashboard.php"><i class="fas fa-cogs mr-3"></i>Kelola</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+            <a class="dropdown-item" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
           </div>
         </li>
       </ul>
@@ -101,7 +114,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                 <th scope="col">Nama</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Gambar</th>
-                <th scope="col">Deskripsi</th>
+                <th scope="col">Lokasi</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -115,12 +128,13 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
                   <td><?= $row['nama']; ?></td>
                   <td><?= $row['tanggal']; ?></td>
                   <?php
-                    $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
+                  $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
                   <td><img src="<?= $gambar ?>" width="50px" alt="event"></td>
-                  <td><?= $row['deskripsi']; ?></td>
+                  <td><?= $row['lokasi']; ?></td>
                   <td class="text-center">
-                    <a href="edit-event-umkm.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a> <a href="" class="btn btn-edit"><i class="fas fa-trash"></i></a>
+                    <a href="edit-event-umkm.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>
+                    <a href="../backend/delete-data.php?table_name=event&delete_id=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit" onclick="return confirmDelete()"><i class="fas fa-trash"></i></a>
                   </td>
                 </tr>
               <?php
@@ -129,7 +143,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               ?>
             </tbody>
           </table>
-         <nav aria-label="">
+          <nav aria-label="">
             <ul class="pagination justify-content-end">
               <?php if ($halaman_saat_ini > 1) : ?>
                 <li class="page-item">
@@ -154,6 +168,11 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
     </div>
   </section>
 
+  <script>
+    function confirmDelete() {
+      return confirm("Apakah Anda yakin ingin menghapus data ini?");
+    }
+  </script>
 
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 

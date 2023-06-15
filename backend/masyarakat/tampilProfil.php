@@ -2,6 +2,8 @@
 // Menginclude file koneksi.php untuk melakukan koneksi ke database
 session_start();
 include __DIR__ . '../../conn.php';
+include '../umkmBefore.php';
+
 //$conn = $_SESSION['conn'];
 
 $id = $_SESSION['id_pelanggan'];
@@ -12,19 +14,23 @@ $id = $_SESSION['id_pelanggan'];
     $email = $_POST['email'];
     $no_hp = $_POST['notelp'];
     $alamat = $_POST['alamat-masy'];
-     // Ambil data gambar
-  $gambar = $_FILES['gambar'];
-  $gambarTmpPath = $gambar['tmp_name'];
 
-  // Baca isi file gambar menjadi blob
-  $gambarBlob = file_get_contents($gambarTmpPath);
+    $gambarDefault = $_POST['gambarDefault'];
+
+    if($_FILES['gambar']['error'] === 4){
+      $gambar = $gambarDefault;
+    }else{
+      $folder = 'masyarakat';
+      $gambar = upload($folder);
+    }
+
     // Lakukan operasi update data di sini
     $query = "UPDATE pelanggan SET nama = '$nama', 
                                   email = '$email', 
                                   no_hp = '$no_hp', 
                                   alamat = '$alamat', 
                                   username = '$username', 
-                                  gambar = '$gambarBlob' 
+                                  gambar = '$gambar' 
                                   WHERE id_pelanggan = '$id'";
 
       // Eksekusi query
@@ -86,28 +92,5 @@ $id = $_SESSION['id_pelanggan'];
     }
   }
 
-
-$query = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
-// Eksekusi query
-$result = mysqli_query($conn, $query);
-
-  // Periksa apakah query berhasil dieksekusi
-  if ($result) {
-    // Ambil data dari hasil query
-    $data = mysqli_fetch_assoc($result);
-
-  // Masukkan data ke dalam variabel
-  $id = $data['id_pelanggan'];
-  $nama = $data['nama'];
-  $uname = $data['username'];
-  $email = $data['email'];
-  $no_hp = $data['no_hp'];
-  $alamat = $data['alamat'];
-  $gambarDefault = '../../img/profpic.jpg';
-  $gambar = $data['gambar'];
-} else {
-  // Query tidak berhasil dieksekusi, lakukan penanganan kesalahan di sini
-  echo "Error: " . mysqli_error($conn);
-}
 
 ?>

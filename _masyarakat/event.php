@@ -1,6 +1,15 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
+} else {
+  echo "data masyarakat tidak ditemukan.";
+  exit;
+}
 $table_name = 'event';
 $data = getSpesifikPage($table_name);
 $event = $data['data'];
@@ -43,7 +52,12 @@ $event = $data['data'];
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+            <?php
+              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            ?>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
@@ -51,7 +65,7 @@ $event = $data['data'];
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+              <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
             </div>
           </li>
         </ul>
@@ -100,7 +114,10 @@ $event = $data['data'];
           <!-- col-sm-offset-1 -->
           <div class="col-lg-4">
             <div class="card">
-              <img src="../img/event1.png" class="card-img-top" alt="latifa">
+            <?php
+              $gambarEvent = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
+            ?>
+              <img src="<?= $gambarEvent?>" class="card-img-top" alt="latifa">
               <div class="tanggal btn-edit"><?= $row['tanggal']; ?></div>
               <div class="card-body">
                 <p class="komunitas"><?= $nama_umkm ?></p>

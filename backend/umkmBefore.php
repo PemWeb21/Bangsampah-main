@@ -1,4 +1,5 @@
 <?php
+
 include "conn.php";
 
 function query($query){
@@ -122,4 +123,33 @@ function getPaginationData($table_name, $offset, $jumlah_per_halaman) {
     return $namaFileBaru;
 
   }
+  function getDataByUmkm($id, $table_name, $jumlah_per_halaman, $halaman_saat_ini) {
+    $conn = $_SESSION['conn'];
+    $id = mysqli_real_escape_string($conn, $id);
+    $offset = ($halaman_saat_ini - 1) * $jumlah_per_halaman;
+
+    // Query untuk menghitung jumlah total data
+    $count_query = "SELECT COUNT(*) AS total FROM $table_name WHERE id_umkm = '$id'";
+    $count_result = mysqli_query($conn, $count_query);
+    $row = mysqli_fetch_assoc($count_result);
+    $total_data = $row['total'];
+
+    // Menghitung jumlah halaman berdasarkan jumlah data dan data per halaman
+    $total_halaman = ceil($total_data / $jumlah_per_halaman);
+
+    // Query untuk mendapatkan data dengan batasan halaman
+    $query = "SELECT * FROM $table_name WHERE id_umkm = '$id' LIMIT $offset, $jumlah_per_halaman";
+    $result = mysqli_query($conn, $query);
+    $data_tabel = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    // Menyiapkan data yang akan dikembalikan
+    $paginationData = array(
+        'total_halaman' => $total_halaman,
+        'halaman_saat_ini' => $halaman_saat_ini,
+        'data_tabel' => $data_tabel
+    );
+
+    // Mengembalikan data paginasi
+    return $paginationData;
+}
   ?>

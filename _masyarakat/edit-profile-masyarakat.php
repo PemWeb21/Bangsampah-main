@@ -1,6 +1,17 @@
 <?php
 //session_start();
-include "../backend/masyarakat/tampilProfil.php";
+session_start();
+//include "../backend/masyarakat/tampilProfil.php";
+include "../backend/umkmBefore.php";
+$id = $_SESSION['id_pelanggan'];
+$sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
+$result = query($sql);
+if (!empty($result)) {
+  $masyarakat = $result[0];
+} else {
+  echo "data masyarakat tidak ditemukan.";
+  exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +53,12 @@ include "../backend/masyarakat/tampilProfil.php";
             <a class="nav-link" href="artikel.php">Artikel</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../img/profpic.jpg" class="img-circle" width="25px" alt="img-profile"></a>
+            <?php
+              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            ?>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item pd-0" href="profile-masyarakat.php"><i class="fas fa-user mr-3"></i>Profile</a>
               <div class="dropdown-divider"></div>
@@ -50,7 +66,7 @@ include "../backend/masyarakat/tampilProfil.php";
               <div class="dropdown-divider"></div>
               <a class="dropdown-item pd-0" href="tukar-poin.php"><i class="fas fa-coins mr-3"></i>Poin</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item pd-0" href="../masuk.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
+              <a class="dropdown-item pd-0" href="../backend/logout.php"><i class="fas fa-sign-out-alt mr-3"></i>Keluar</a>
             </div>
           </li>
         </ul>
@@ -88,16 +104,16 @@ include "../backend/masyarakat/tampilProfil.php";
                 <hr>
                 <div class="akun">
                   <form action="../backend/masyarakat/tampilProfil.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                  <input type="hidden" name="id" class="form-control" id="id" placeholder="id" value="<?= $id ?>">
-
+                  <input type="hidden" name="id_pelanggan" class="form-control" id="id_admin" placeholder="Nama" value="<?= $masyarakat['id_pelanggan'] ?>">
+                  <input type="hidden" name="gambarDefault" class="form-control" id="gambarDefault" value="<?= $masyarakat['gambar'] ?>">
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="wrapper-kelas rounded logo-center white-bg">
-                          <img src="<?= $gambar ? 'data:image/jpeg;base64,' . base64_encode($gambar) : $gambarDefault; ?>" class="img-fluid" alt="">
+                          <img src="<?= $gambar ?>" class="img-fluid" alt="">
                         </div>
                       </div>
                       <div class="col-lg4">
-                        <input type="file" name ="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
+                        <input type="file" name="gambar" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
                       </div>
                     </div>
 
@@ -106,23 +122,23 @@ include "../backend/masyarakat/tampilProfil.php";
                     </div>
                     <div class="form-group">
                       <label for="nama">Nama</label>
-                      <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $nama ?>">
+                      <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama" value="<?= $masyarakat['nama'] ?>">
                     </div>
                     <div class="form-group">
                       <label for="uname">Username</label>
-                      <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $uname ?>">
+                      <input type="text" name="uname" class="form-control" id="uname" placeholder="Username" value="<?= $masyarakat['username'] ?>">
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $email ?> ">
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?= $masyarakat['email'] ?> ">
                     </div>
                     <div class="form-group">
                       <label for="nama">Nomor Telepon</label>
-                      <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $no_hp ?>">
+                      <input type="text" name="notelp" class="form-control" id="pass" placeholder="Nomor Telepon" required value="<?= $masyarakat['no_hp'] ?>">
                     </div>
                     <div class="form-group">
                       <label for="uname">Alamat</label>
-                      <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $alamat ?>">
+                      <input type="text" name="alamat-masy" class="form-control" id="alamat-masy" placeholder="Alamat" required value="<?= $masyarakat['alamat'] ?>">
                     </div>
                     <div class="form-group mg-sm-btm mg-sm-top">
                       <button type="submit" name="submit" id="submit" class="btn btn-edit wid">perbarui Profile</button>
