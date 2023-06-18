@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
+include "../backend/masyarakat/ikuti-event.php";
 $id = $_SESSION['id_pelanggan'];
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 $result = query($sql);
@@ -79,7 +80,7 @@ if (!empty($result)) {
           </li>
           <li class="nav-item dropdown">
             <?php
-              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
             ?>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -149,7 +150,10 @@ if (!empty($result)) {
           <h2>Deskripsi Event</h2>
           <hr>
           <p><?= $event['deskripsi'] ?></p>
-          <a href="#" class="btn btn-edit mg-sm-top mg-btm">Ikut Event</a>
+          <form method="post">
+            <input type="hidden" name="kd_event" value="<?= $event['kd_event'] ?>">
+            <button id="btnIkutEvent" type="submit" class="btn btn-edit mg-sm-top mg-btm">Ikuti Event</button>
+          </form>
         </div>
         <div class="col-lg-4 text-lg-right">
         </div>
@@ -218,7 +222,18 @@ if (!empty($result)) {
     </div>
   </footer>
 
+  <script>
+    document.getElementById("btnIkutEvent").addEventListener("click", function(event) {
+    event.preventDefault(); // Mencegah tindakan default
 
+    this.innerHTML = "Event Diikuti";
+    this.classList.remove("btn-edit");
+    this.classList.add("btn-secondary");
+    this.disabled = true;
+
+    document.querySelector("form").submit(); // Mengirimkan form secara manual
+    });
+  </script>
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
 
   <!-- Optional JavaScript -->

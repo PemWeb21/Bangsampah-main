@@ -1,6 +1,7 @@
 <?php
 session_start();
 //include "../backend/masyarakat/tampilProfil.php";
+include "../backend/dashboard.php";
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_pelanggan'];
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
@@ -113,7 +114,7 @@ if (!empty($result)) {
                 <i class="fas fa-coins mr-2"></i>
               </div>
               <h5><b>JUMLAH POIN</h5></b>
-              <div class="display-4">2020</div>
+              <div class="display-4"><?= $totalPoint?></div>
             </div>
           </div>
         </div>
@@ -124,7 +125,7 @@ if (!empty($result)) {
                 <i class="fas fa-recycle mr-2"></i>
               </div>
               <h5><b>JUMLAH PENUKARAN</h5></b>
-              <div class="display-4">3</div>
+              <div class="display-4"><?=$jumlahPenukaran?></div>
             </div>
           </div>
         </div>
@@ -135,7 +136,7 @@ if (!empty($result)) {
                 <i class="fas fa-certificate mr-2"></i>
               </div>
               <h5><b>EVENT TELAH DIIKUTI</h5></b>
-              <div class="display-4">21</div>
+              <div class="display-4"><?= $jumlah_event?></div>
             </div>
           </div>
         </div>

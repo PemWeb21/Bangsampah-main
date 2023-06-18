@@ -138,14 +138,14 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               foreach ($umkm as $row) {
               ?>
                 <tr>
-                  <th scope="row"><?= $i ?></th>
-                  <td><?= $row['nama']; ?></td>
-                  <td><?= $row['no_hp']; ?></td>
-                  <td><?= $row['username']; ?></td>
-                  <td><?= $row['email']; ?></td>
-                  <td><?= $row['password']; ?></td>
+                  <th scope="row" class="text-center"><?= $i ?></th>
+                  <td class="text-center"><?= $row['nama']; ?></td>
+                  <td class="text-center"><?= $row['no_hp']; ?></td>
+                  <td class="text-center"><?= $row['username']; ?></td>
+                  <td class="text-center"><?= $row['email']; ?></td>
+                  <td class="text-center"><?= $row['password']; ?></td>
                   <td><?= $row['alamat']; ?></td>
-                  <td><?= $row['penanggung_jawab']; ?></td>
+                  <td class="text-center"><?= $row['penanggung_jawab']; ?></td>
                   <td class="text-center">
                     <a href="edit-data-umkm.php?id_umkm=<?= isset($row['id_umkm']) ? $row['id_umkm'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>
                     <a href="../backend/delete-data.php?table_name=umkm&delete_id=<?= isset($row['id_umkm']) ? $row['id_umkm'] : '' ?>" class="btn btn-edit" onclick="return confirmDelete()"><i class="fas fa-trash"></i></a>

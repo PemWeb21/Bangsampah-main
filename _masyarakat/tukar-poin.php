@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "../backend/umkmBefore.php";
+include "../backend/dashboard.php";
+
 $id = $_SESSION['id_pelanggan'];
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 $result = query($sql);
@@ -47,7 +49,7 @@ if (!empty($result)) {
           </li>
           <li class="nav-item dropdown">
             <?php
-              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
             ?>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -94,7 +96,7 @@ if (!empty($result)) {
                   <i class="fas fa-coins mr-2"></i>
                 </div>
                 <h5><b>JUMLAH POIN</h5></b>
-                <div class="display-4">2103</div>
+                <div class="display-4"><?= $totalPoint ?></div>
               </div>
             </div>
           </div>
@@ -125,7 +127,10 @@ if (!empty($result)) {
 
                       <h5 class="card-title"><i class="fas fa-coins mr-2 warna"></i>500 Poin</h5>
                       <p class="card-text font-weight-bold">Pulsa 5000</p>
-                      <a href="#" class="btn btn-edit wid">Tukar</a>
+                      <form action="../backend/masyarakat/menukar-point.php" method="post">
+                        <input type="hidden" name="point1" value="500"> <!-- Nilai poin yang akan dikirimkan -->
+                        <button type="submit" class="btn btn-edit wid">Tukar</button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -136,7 +141,10 @@ if (!empty($result)) {
                     <div class="card-body">
                       <h5 class="card-title"><i class="fas fa-coins mr-2 warna"></i>5000 Poin</h5>
                       <p class="card-text font-weight-bold">Pulsa 50000</p>
-                      <a href="#" class="btn btn-edit wid">Tukar</a>
+                      <form action="../backend/masyarakat/menukar-point.php" method="post">
+                        <input type="hidden" name="point2" value="5000"> <!-- Nilai poin yang akan dikirimkan -->
+                        <button type="submit" class="btn btn-edit wid">Tukar</button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -146,7 +154,10 @@ if (!empty($result)) {
                     <div class="card-body">
                       <h5 class="card-title"><i class="fas fa-coins mr-2 warna"></i>50000 Poin</h5>
                       <p class="card-text font-weight-bold">Pulsa 500000</p>
-                      <a href="#" class="btn btn-edit wid">Tukar</a>
+                      <form action="../backend/masyarakat/menukar-point.php" method="post">
+                        <input type="hidden" name="point3" value="50000"> <!-- Nilai poin yang akan dikirimkan -->
+                        <button type="submit" class="btn btn-edit wid">Tukar</button>
+                      </form>
                     </div>
                   </div>
                 </div>

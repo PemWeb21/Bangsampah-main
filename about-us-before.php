@@ -23,7 +23,7 @@
           <a class="nav-link" href="beranda.php">Beranda<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="umkmBefore.php">Umkm</a>
+          <a class="nav-link" href="umkmBefore.php">UMKM</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="eventBefore.php">Event</a>

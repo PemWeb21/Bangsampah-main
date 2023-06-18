@@ -136,13 +136,13 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               foreach ($event as $row) {
               ?>
                 <tr>
-                  <th scope="row"><?= $i; ?></th>
+                  <th scope="row" class="text-center"><?= $i; ?></th>
                   <td><?= $row['nama']; ?></td>
-                  <td><?= $row['tanggal']; ?></td>
+                  <td class="text-center"><?= $row['tanggal']; ?></td>
                   <?php
                     $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
-                  <td><img src="<?= $gambar ?>" width="50px" alt="event"></td>
+                  <td class="text-center"><img src="<?= $gambar ?>" width="50px" alt="event"></td>
                   <td><?= $row['lokasi']; ?></td>
                   <td class="text-center">
                     <a href="edit-event.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>

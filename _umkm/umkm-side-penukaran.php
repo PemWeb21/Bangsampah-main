@@ -10,6 +10,14 @@ if (!empty($result1)) {
   echo "data admin tidak ditemukan.";
   exit;
 }
+
+$table_name = 'transaksi_penukaran_sampah';
+$data = getSpesifikPage($table_name);
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$penukaran = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +44,7 @@ if (!empty($result1)) {
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <?php
-            $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
+          $gambar = $umkm['gambar'] ? '../img/umkm/' . $umkm['gambar'] : '../img/profpic.jpg';
           ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -84,13 +92,13 @@ if (!empty($result1)) {
           <hr>
           <div class="row">
             <div class="col-lg-4">
-              <form class="form-inline input-group">
+              <form class="form-inline input-group" method="get" autocomplete="off">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupAddon">
                     <i class="fas fa-search"></i>
                   </div>
                 </div>
-                <input type="search" class="form-control" placeholder="cari artikel" aria-label="Search" aria-describedby="btnGroupAddon">
+                <input type="search" name="search" class="form-control" placeholder="cari artikel" aria-label="Search" aria-describedby="btnGroupAddon">
               </form>
             </div>
 
@@ -108,41 +116,58 @@ if (!empty($result1)) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Yan Saputra</td>
-                <td>PET atau PETE (polyethylene terephthalate)</td>
-                <td>10</td>
-                <td>100</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-check"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-times"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Dhira Wahyu Febrian</td>
-                <td>PET atau PETE (polyethylene terephthalate)</td>
-                <td>10</td>
-                <td>100</td>
-                <td class="text-center">
-                  <a href="" class="btn btn-edit"><i class="fas fa-check"></i></a> | <a href="" class="btn btn-edit"><i class="fas fa-times"></i></a>
-                </td>
-              </tr>
+              <?php
+              $i = ($halaman_saat_ini - 1) * $jumlah_per_halaman + 1;
+              foreach ($penukaran as $row) {
+                //passing nama pelanggan
+                $id_pelanggan = $row['id_pelanggan'];
+                $sql_pelanggan = "SELECT nama FROM pelanggan WHERE id_pelanggan = $id_pelanggan";
+                $result_pelanggan = query($sql_pelanggan);
+                $nama_pelanggan = $result_pelanggan[0]['nama'];
+
+                $id_sampah = $row['id_sampah'];
+                $sql_sampah = "SELECT jenis_sampah FROM sampah WHERE id_sampah = $id_sampah";
+                $result_sampah = query($sql_sampah);
+                $nama_sampah = $result_sampah[0]['jenis_sampah'];
+              ?>
+                <tr>
+                  <th scope="row"><?= $i ?></th>
+                  <td><?= $nama_pelanggan ?></td>
+                  <td><?= $nama_sampah ?></td>
+                  <td><?= $row['jumlah_sampah']; ?></td>
+                  <td><?= $row['jumlah_point']; ?></td>
+                  <td class="text-center">
+                    <?php if ($row['status'] == 'diterima' || $row['status'] == 'ditolak') : ?>
+                      <?= $row['status'] ?>
+                    <?php else : ?>
+                      <a href="../backend/umkm/umkmSetStatus.php?action=terima&id_penukaranSampah=<?= $row['id_penukaranSampah']; ?>" class="btn btn-edit"><i class="fas fa-check"></i></a>
+                      <a href="../backend/umkm/umkmSetStatus.php?action=tolak&id_penukaranSampah=<?= $row['id_penukaranSampah']; ?>" class="btn btn-edit"><i class="fas fa-times"></i></a>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              <?php
+                $i++;
+              }
+              ?>
             </tbody>
           </table>
           <nav aria-label="">
             <ul class="pagination justify-content-end">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
+              <?php if ($halaman_saat_ini > 1) : ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $halaman_saat_ini - 1; ?>" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+              <?php endif; ?>
+              <?php for ($i = 1; $i <= $total_halaman; $i++) : ?>
+                <li class="page-item <?= ($i == $halaman_saat_ini) ? 'active' : ''; ?>" aria-current="page">
+                  <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                </li>
+              <?php endfor; ?>
+              <?php if ($halaman_saat_ini < $total_halaman) : ?>
+                <li class="page-item">
+                  <a class="page-link" href="?page=<?= $halaman_saat_ini + 1; ?>">Next</a>
+                </li>
+              <?php endif; ?>
             </ul>
           </nav>
         </div>

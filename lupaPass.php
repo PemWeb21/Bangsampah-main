@@ -1,38 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Lupa Password | BANG SAMPAH</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="sweetalert/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="sweetalert/sweetalert2.min.css">
+  <title>Lupa Password | BANG SAMPAH</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
-  </head>
+  <script src="sweetalert/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="sweetalert/sweetalert2.min.css">
 
-  <body> 
+</head>
 
-    <script>
-
-      function redirectToLogin() {
-        window.location = "masuk.php";
-      }
-
-      function showNotification() {
-        Swal.fire({
-          title: "Pendaftaran Berhasil",
-          text: "Silakan masuk menggunakan akun yang telah didaftarkan.",
-          icon: "success",
-          confirmButtonText: "OK",
-          onClose: redirectToLogin
-        });
-      }
-    </script>
+<body>
 
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -62,7 +46,12 @@
       </div>
     </div>
   </nav>
-
+  <nav aria-label="breadcrumb" class="mg-btm">
+    <div class="container">
+      <div class="">
+      </div>
+    </div>
+  </nav>
   <!-- DATA KOMUNITAS -->
 
   <section class="daftar fdb-block pl-40" id="daftar">
@@ -80,15 +69,14 @@
                 <div class="row">
                   <div class="col">
                     <div class="register">
-                      <form action="backend/daftar.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Email"><br>
-                        
+                      <form action="backend/lupa-password.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" required><br>
                         <input type="password" name="pass" class="form-control" id="pass" placeholder="Password baru" required><br>
                         <input type="password" name="pass2" class="form-control" id="pass2" placeholder="Konfirmasi Password" required><br>
                         <div class="text-center">
-                        <input type="submit" name="submit" id="submit" class="btn btn-edit wid" onclick="showNotification()" placeholder="submit">
+                          <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Submit</button>
                         </div>
-                      </form> 
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -99,6 +87,12 @@
       </div>
     </div>
   </section>
+  <nav aria-label="breadcrumb" class="mg-btm">
+    <div class="container">
+      <div class="">
+      </div>
+    </div>
+  </nav>
 
   <footer>
     <div class="foot">
@@ -113,9 +107,9 @@
             <div class="hov">
               <ul>
                 <li><a href="about-us-before.php">Tentang Kami</a></li>
-              <li><a href="umkmBefore.php">UMKM</a></li>
-              <li><a href="eventBefore.php">Event</a></li>
-              <li><a href="artikelBefore.php">Artikel</a></li>
+                <li><a href="umkmBefore.php">UMKM</a></li>
+                <li><a href="eventBefore.php">Event</a></li>
+                <li><a href="artikelBefore.php">Artikel</a></li>
               </ul>
             </div>
           </div>
@@ -140,12 +134,13 @@
     </div>
   </footer>
 
-<script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
-  
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
-    </html>
+  <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

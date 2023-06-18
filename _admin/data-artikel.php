@@ -135,12 +135,12 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               foreach ($artikel as $row) {
               ?>
                 <tr>
-                  <th scope="row"><?= $i ?></th>
+                  <th scope="row" class="text-center"><?= $i ?></th>
                   <td><?= $row['judul']; ?></td>
                   <?php
                   $gambar = $row['gambar'] ? '../img/artikel/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
-                  <td><img src="<?= $gambar ?>" width="50px" alt=""></td>
+                  <td class="text-center"><img src="<?= $gambar ?>" width="50px" alt=""></td>
                   <td><?= $row['isi']; ?></td>
                   <td class="text-center">
                     <a href="edit-artikel.php?kd_artikel=<?= isset($row['kd_artikel']) ? $row['kd_artikel'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>

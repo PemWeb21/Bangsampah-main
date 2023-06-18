@@ -99,7 +99,10 @@ $artikels = array_slice($artikel, 0, $limit);
                 ?>
                     <div class="col-lg-4">
                         <div class="card">
-                            <img src="img/artikel1.png" class="card-img-top" alt="artikel">
+                            <?php
+                                $gambarArtikel = $row['gambar'] ? 'img/artikel/' . $row['gambar'] : 'img/profpic.jpg';
+                            ?>
+                            <img src="<?= $gambarArtikel?>" class="card-img-top" alt="artikel">
                             <div class="card-body">
                                 <p class="komunitas"><?= $nama_umkm ?></p>
                                 <h4 class="judul-artikel"><?= $row['judul']; ?></h4>

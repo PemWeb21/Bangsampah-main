@@ -272,7 +272,7 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-user"></i>
             <!-- <i class="fact-icon fa fa-user"></i> -->
-            <h3 class="timer" id="websites" data-to="999" data-speed="1000">#</h3>
+            <h3 class="timer" id="websites" data-to="999" data-speed="1000"><?= $jumlahPenukaran?></h3>
             <h5 class="fact-title">Penukar</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">

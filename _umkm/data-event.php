@@ -11,12 +11,12 @@ if (!empty($result1)) {
   exit;
 }
 $table_name = 'event';
-$jumlah_per_halaman = 10; // Jumlah data per halaman yang diinginkan
-$halaman_saat_ini = isset($_GET['page']) ? $_GET['page'] : 1; // Halaman saat ini dari parameter GET, default 1
+$data = getSpesifikPage($table_name);
+$total_halaman = $data['total_halaman'];
+$halaman_saat_ini = $data['halaman_saat_ini'];
+$event = $data['data'];
+$jumlah_per_halaman = $data['jumlah_per_halaman'];
 
-$eventData = getDataByUmkm($id,$table_name, $jumlah_per_halaman, $halaman_saat_ini);
-$total_halaman = $eventData['total_halaman'];
-$event = $eventData['data_tabel'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,13 +124,13 @@ $event = $eventData['data_tabel'];
               foreach ($event as $row) {
               ?>
                 <tr>
-                  <th scope="row"><?= $i; ?></th>
+                  <th scope="row" class="text-center"><?= $i; ?></th>
                   <td><?= $row['nama']; ?></td>
-                  <td><?= $row['tanggal']; ?></td>
+                  <td class="text-center"><?= $row['tanggal']; ?></td>
                   <?php
                   $gambar = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
-                  <td><img src="<?= $gambar ?>" width="50px" alt="event"></td>
+                  <td class="text-center"><img src="<?= $gambar ?>" width="50px" alt="event"></td>
                   <td><?= $row['lokasi']; ?></td>
                   <td class="text-center">
                     <a href="edit-event-umkm.php?kd_event=<?= isset($row['kd_event']) ? $row['kd_event'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>

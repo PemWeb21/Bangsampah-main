@@ -137,16 +137,16 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
               foreach ($masyarakat as $row) {
               ?>
                 <tr>
-                  <th scope="row"><?= $i ?></th>
-                  <td><?= $row['nama']; ?></td>
+                  <th scope="row" class="text-center"><?= $i ?></th>
+                  <td class="text-center"><?= $row['nama']; ?></td>
                   <?php
                   $gambar = $row['gambar'] ? '../img/masyarakat/' . $row['gambar'] : '../img/profpic.jpg';
                   ?>
-                  <td><img src="<?= $gambar ?>" width="50px" alt="img-profile"></td>
+                  <td class="text-center"><img src="<?= $gambar ?>" width="50px" alt="img-profile"></td>
                   <td><?= $row['alamat']; ?></td>
-                  <td><?= $row['no_hp']; ?></td>
-                  <td><?= $row['username']; ?></td>
-                  <td><?= $row['email']; ?></td>
+                  <td class="text-center"><?= $row['no_hp']; ?></td>
+                  <td class="text-center"><?= $row['username']; ?></td>
+                  <td class="text-center"><?= $row['email']; ?></td>
                   <td class="text-center">
                     <a href="edit-data-masyarakat.php?id_pelanggan=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit"><i class="fas fa-edit"></i></a>
                     <a href="../backend/delete-data.php?table_name=pelanggan&delete_id=<?= isset($row['id_pelanggan']) ? $row['id_pelanggan'] : '' ?>" class="btn btn-edit" onclick="return confirmDelete()"><i class="fas fa-trash"></i></a>

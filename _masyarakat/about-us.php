@@ -37,7 +37,7 @@ if (!empty($result)) {
           <a class="nav-link" href="BerandaAfter.php">Beranda<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="umkm.php">Umkm</a>
+          <a class="nav-link" href="umkm.php">UMKM</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="event.php">Event</a>

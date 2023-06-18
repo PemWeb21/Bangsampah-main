@@ -94,7 +94,10 @@ $events = array_slice($event, 0, $limit);
           <!-- col-sm-offset-1 -->
           <div class="col-lg-4">
             <div class="card">
-              <img src="img/event1.png" class="card-img-top" alt="latifa">
+              <?php
+              $gambarEvent = $row['gambar'] ? 'img/event/' . $row['gambar'] : 'img/profpic.jpg';
+              ?>
+              <img src="<?= $gambarEvent?>" class="card-img-top" alt="latifa">
               <div class="tanggal btn-edit"><?= $row['tanggal']; ?></div>
               <div class="card-body">
                 <p class="komunitas"><?= $nama_umkm ?></p>

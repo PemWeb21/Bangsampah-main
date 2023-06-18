@@ -110,7 +110,7 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="container">
             <div class="carousel-caption text-right">
               <h1 class="display-4"><?= $randomEvent['nama']; ?></h1>
-              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i>#Pantai Senggigi. <br><?= $randomEvent['tanggal']; ?></h4>
+              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i><?= $randomEvent['lokasi']?> <br><?= $randomEvent['tanggal']; ?></h4>
               <p><a class="btn btn-lg btn-edit" href="event.php" role="button">Ikut Event</a></p>
             </div>
           </div>
@@ -147,7 +147,10 @@ $artikels = array_slice($artikel, 0, $limit);
             <!-- col-sm-offset-1 -->
             <div class="col-lg-4">
               <div class="card">
-                <img src="img/event1.png" class="card-img-top" alt="event">
+                <?php
+                $gambar = $row['gambar'] ? 'img/event/' . $row['gambar'] : 'img/profpic.jpg';
+                ?>
+                <img src="<?= $gambar ?>" class="card-img-top" alt="event">
                 <div class="card-body">
                   <p class="komunitas"><?= $nama_umkm ?></p>
                   <h4 class="nama-event"><?= $row['nama']; ?></h4>
@@ -215,7 +218,10 @@ $artikels = array_slice($artikel, 0, $limit);
             <!-- col-sm-offset-1 -->
             <div class="col-lg-4">
               <div class="card">
-                <img src="img/artikel3.png" class="card-img-top" alt="artikel">
+                <?php
+                  $gambar = $row['gambar'] ? 'img/artikel/' . $row['gambar'] : 'img/profpic.jpg';
+                ?>
+                <img src="<?= $gambar ?>" class="card-img-top" alt="artikel">
                 <div class="card-body">
                   <p class="komunitas"><?= $nama_umkm ?></p>
                   <h4 class="judul-artikel"><?= $row['judul']; ?></h4>
@@ -250,25 +256,25 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-user"></i>
             <!-- <i class="fact-icon fa fa-user"></i> -->
-            <h3 class="timer" id="websites" data-to="999" data-speed="1000">#</h3>
+            <h3 class="timer" id="websites" data-to="<?= $jumlahPenukaran?>" data-speed="1000"></h3>
             <h5 class="fact-title">Penukar</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-newspaper"></i>
             <!-- <i class="fact-icon fa fa-rocket"></i> -->
-            <h3 class="timer" id="code" data-to="100" data-speed="1500"><?= $jumlahArtikel ?></h3>
+            <h3 class="timer" id="code" data-to="<?= $jumlahArtikel ?>" data-speed="1500"></h3>
             <h5 class="fact-title">Artikel</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-house-user"></i>
             <!-- <i class="fact-icon fa fa-coffee"></i> -->
-            <h3 class="timer" id="coffee" data-to="190" data-speed="2000"><?= $jumlahUMKM ?></h3>
+            <h3 class="timer" id="coffee" data-to="<?= $jumlahUMKM ?>" data-speed="2000"></h3>
             <h5 class="fact-title">UMKM</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-calendar-alt"></i>
             <!-- <i class="fact-icon fa fa-heart"></i> -->
-            <h3 class="timer" id="emails" data-to="9999" data-speed="2500"><?= $jumlahEvent ?></h3>
+            <h3 class="timer" id="emails" data-to="<?= $jumlahEvent ?>" data-speed="2500"></h3>
             <h5 class="fact-title">Event</h5>
           </div>
         </div>

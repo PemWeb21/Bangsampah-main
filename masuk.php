@@ -127,7 +127,7 @@
                             required><br>
                           <input type="checkbox" id="tnc" name="tnc">
                           <label for="tnc">Ingat akun saya</label><br>
-                          <p>Lupa password? <span><a href="atur_pass.php" class="warna">Atur di sini</a></span></p>
+                          <p>Lupa password? <span><a href="lupaPass.php" class="warna">Atur di sini</a></span></p>
                           <div class="text-center">
                             <button class="btn btn-edit wid">Masuk</button>
                           </div>

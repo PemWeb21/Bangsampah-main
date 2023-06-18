@@ -39,7 +39,7 @@ $jumlah_per_halaman = $data['jumlah_per_halaman'];
             <a class="nav-link" href="beranda.php">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="penanda" href="umkmBefore.php">Umkm<span class="sr-only">(current)</span></a>
+            <a class="nav-link" id="penanda" href="umkmBefore.php">UMKM<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="eventBefore.php">Event</a>

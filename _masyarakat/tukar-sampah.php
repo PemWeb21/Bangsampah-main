@@ -10,6 +10,8 @@ if (!empty($result)) {
   echo "data masyarakat tidak ditemukan.";
   exit;
 }
+$sql1 = "SELECT id_umkm, nama FROM umkm";
+$result1 = query($sql1);
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +59,7 @@ if (!empty($result)) {
           </li>
           <li class="nav-item dropdown">
             <?php
-              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
             ?>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -84,7 +86,8 @@ if (!empty($result)) {
     <div class="container">
       <div class="row">
         <div class="col">
-          <form>
+          <form action='../backend/masyarakat/menukar-sampah.php' method="post">
+            <input type="hidden" name="id_pelanggan" class="form-control" id="id_pelanggan" placeholder="Nama" value="<?= $masyarakat['id_pelanggan'] ?>">
             <div class="form-group">
               <div class="card shadow">
                 <div class="row justify-content-center pd-20">
@@ -319,17 +322,22 @@ if (!empty($result)) {
                             </div>
                           </div>
                         </div>
-                        <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-                        <select name="umkm" id="umkm" class="form-control">
-                          <option value="umkm">Pilih UMKM</option>
-                          <option value="RENTAL_PES Peduli">RENTAL_PES Peduli</option>
-                          <option value="Tastura">Tastura</option>
-                          <option value="88QQ">88QQ</option>
-                        </select>
-                        <small class="form-text text-muted">UMKM yang anda pilih akan mem-verifikasi kembali sampah yang
-                          anda tukar.<b></b></small>
-                        <br>
-                        <!-- <button type="submit">Tukar</button> -->
+                        <div class="form-group mg-sm-top">
+                          <select name="nama-umkm" class="form-control" id="umkm" required>
+                            <option value="">Pilih UMKM</option>
+                            <?php
+                            foreach ($result1 as $umkm) {
+                              $umkm_id = $umkm['id_umkm'];
+                              $nama_umkm = $umkm['nama'];
+                              echo "<option value=\"$umkm_id\">$nama_umkm</option>";
+                            }
+                            ?>
+                          </select>
+                          <small class="form-text text-muted">UMKM yang anda pilih akan mem-verifikasi kembali sampah yang
+                            anda tukar.<b></b></small>
+                          <br>
+                        </div>
+            
                         <div id="output2">
                           <div class="card btn-edit">
                             <div class="card-body">
@@ -341,7 +349,7 @@ if (!empty($result)) {
                           </div>
                         </div>
                         <!-- </form>  -->
-                        <input type="button" name="submit" id="submit" class="btn btn-edit wid " value="Tukar" onclick="ok()">
+                        <button type="submit" name="submit" id="submit" class="btn btn-edit wid " onclick="ok()">Tukar</button>
                       </div>
                     </div>
                     <!-- <div class="row pad-tambah">

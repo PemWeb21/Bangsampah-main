@@ -91,7 +91,7 @@ if (!empty($result1)) {
                   <i class="fas fa-calendar-alt mr-2"></i>
                 </div>
                 <h6>Data Event</h6>
-                <div class="display-4"><a href="data-event.php"><?= $jumlahEvent; ?></a></div>
+                <div class="display-4"><a href="data-event.php"><?= $jumlahEvent ?></a></div>
               </div>
             </div>
             <div class="card btn-edit ml-3" style="width: 18rem">
@@ -100,7 +100,7 @@ if (!empty($result1)) {
                   <i class="fas fa-newspaper mr-2"></i>
                 </div>
                 <h6>Data Artikel</h6>
-                <div class="display-4"><a href="data-artikel.php"><?= $jumlahArtikel; ?></a></div>
+                <div class="display-4"><a href="data-artikel.php"><?= $jumlahArtikel ?></a></div>
               </div>
             </div>
             <div class="card btn-edit ml-3" style="width: 18rem">
@@ -109,7 +109,7 @@ if (!empty($result1)) {
                   <i class="fas fa-recycle mr-3"></i>
                 </div>
                 <h6>Data Penukaran</h6>
-                <div class="display-4"><a href="umkm-side-penukaran.php">#</a></div>
+                <div class="display-4"><a href="umkm-side-penukaran.php"><?= $jumlahPenukaran ?></a></div>
               </div>
             </div>
           </div>
