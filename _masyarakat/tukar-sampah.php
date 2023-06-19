@@ -337,7 +337,7 @@ $result1 = query($sql1);
                             anda tukar.<b></b></small>
                           <br>
                         </div>
-            
+
                         <div id="output2">
                           <div class="card btn-edit">
                             <div class="card-body">

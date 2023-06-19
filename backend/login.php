@@ -3,7 +3,7 @@ session_start();
 include "conn.php";
 
 if (isset($_POST['uname']) && isset($_POST['pass'])) {
-
+    
     function validate($data)
     {
         $data = trim($data);
@@ -11,10 +11,10 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
         $data = htmlspecialchars($data);
         return $data;
     }
-
+    
     $uname = validate($_POST['uname']);
     $pass = validate($_POST['pass']);
-
+    
     if (empty($uname)) {
         header("Location: masuk.php?error=User Name is required");
         exit();
@@ -25,7 +25,6 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
         // Query untuk admin
         $admin_query = "SELECT * FROM admin WHERE username='$uname' AND password='$pass'";
         $admin_result = mysqli_query($conn, $admin_query);
-
         // Query untuk UMKM
         $umkm_query = "SELECT * FROM umkm WHERE username='$uname' AND password='$pass'";
         $umkm_result = mysqli_query($conn, $umkm_query);

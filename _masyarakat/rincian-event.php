@@ -126,7 +126,10 @@ if (!empty($result)) {
           <div class="row">
             <div class="col-lg-3 col-sm-5 col-md-4 mb-sm-7 pl-minus">
               <div class="wrapper-kelas rounded logo-center white-bg wrapper-kelas-sm">
-                <img src="../img/profpic.jpg" class="img-fluid img-thumbnail" alt="event">
+                <?php
+                $gambarEventPilihan = $event['gambar'] ? '../img/event/' . $event['gambar'] : '../img/profpic.jpg';
+                ?>
+                <img src="<?= $gambarEventPilihan?>"  class="img-fluid img-thumbnail" alt="event">
               </div>
             </div>
             <div class="col-lg-9 col-sm-7 col-md-8">
@@ -224,14 +227,14 @@ if (!empty($result)) {
 
   <script>
     document.getElementById("btnIkutEvent").addEventListener("click", function(event) {
-    event.preventDefault(); // Mencegah tindakan default
+      event.preventDefault(); // Mencegah tindakan default
 
-    this.innerHTML = "Event Diikuti";
-    this.classList.remove("btn-edit");
-    this.classList.add("btn-secondary");
-    this.disabled = true;
+      this.innerHTML = "Event Diikuti";
+      this.classList.remove("btn-edit");
+      this.classList.add("btn-secondary");
+      this.disabled = true;
 
-    document.querySelector("form").submit(); // Mengirimkan form secara manual
+      document.querySelector("form").submit(); // Mengirimkan form secara manual
     });
   </script>
   <script src="https://kit.fontawesome.com/dd98c3032a.js" crossorigin="anonymous"></script>

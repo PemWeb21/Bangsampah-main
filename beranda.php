@@ -110,7 +110,7 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="container">
             <div class="carousel-caption text-right">
               <h1 class="display-4"><?= $randomEvent['nama']; ?></h1>
-              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i><?= $randomEvent['lokasi']?> <br><?= $randomEvent['tanggal']; ?></h4>
+              <h4 class="mg-sm-btm"><i class="fa fa-map-marker mr-2"></i><?= $randomEvent['lokasi'] ?> <br><?= $randomEvent['tanggal']; ?></h4>
               <p><a class="btn btn-lg btn-edit" href="event.php" role="button">Ikut Event</a></p>
             </div>
           </div>
@@ -219,7 +219,7 @@ $artikels = array_slice($artikel, 0, $limit);
             <div class="col-lg-4">
               <div class="card">
                 <?php
-                  $gambar = $row['gambar'] ? 'img/artikel/' . $row['gambar'] : 'img/profpic.jpg';
+                $gambar = $row['gambar'] ? 'img/artikel/' . $row['gambar'] : 'img/profpic.jpg';
                 ?>
                 <img src="<?= $gambar ?>" class="card-img-top" alt="artikel">
                 <div class="card-body">
@@ -256,7 +256,7 @@ $artikels = array_slice($artikel, 0, $limit);
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
             <i class="fact-icon fas fa-user"></i>
             <!-- <i class="fact-icon fa fa-user"></i> -->
-            <h3 class="timer" id="websites" data-to="<?= $jumlahPenukaran?>" data-speed="1000"></h3>
+            <h3 class="timer" id="websites" data-to="<?= $jumlahPenukaran ?>" data-speed="1000"></h3>
             <h5 class="fact-title">Penukar</h5>
           </div>
           <div class="col-lg-3 col-md-6 col-xs-12 text-center">
@@ -304,10 +304,13 @@ $artikels = array_slice($artikel, 0, $limit);
               </div>
             </div>
             <div class="col-lg-4">
-              <h4>HUBUN@bangsampah.com</p>
-                <a href="www.facebook.com" class="fa fa-facebook mr-3 fa-3x"></a>
-                <a href="www.twiter.com" class="fa fa-twitter mr-3 fa-3x"></a>
-                <a href="www.instagram.com" class="fa fa-instagram mr-3 fa-3x"></a>
+              <h4>HUBUNGI KAMI</h4>
+              <p>1, Vila Ali, Gunung Sari, Mataram</p>
+              <p>(021) 098 082</p>
+              <p>contact@bangsampah.com</p>
+              <a href="www.facebook.com" class="fa fa-facebook mr-3 fa-3x"></a>
+              <a href="www.twiter.com" class="fa fa-twitter mr-3 fa-3x"></a>
+              <a href="www.instagram.com" class="fa fa-instagram mr-3 fa-3x"></a>
             </div>
           </div>
           <hr>
@@ -319,7 +322,7 @@ $artikels = array_slice($artikel, 0, $limit);
         </div>
       </div>
       </div>
-    </footer>
+    </footer>>
 
 
     <script src="jsh/jquery.min.js"></script>

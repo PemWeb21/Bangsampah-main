@@ -16,58 +16,6 @@
 </head>
 
 <body>
-
-  <!-- <script>
-
-    function login() {
-
-      var username = document.getElementById("uname").value;
-      var password = document.getElementById("pass").value;
-
-      if ((username == "yan") && (password == "yan")) {
-        Swal.fire(
-          'Selamat datang  ' + username,
-          'Save the planet', 'success'
-        ).then((result) => {
-          if (result.value) {
-            window.location = 'profile-masyarakat.php';
-
-          }
-        })
-        return
-      }
-
-      if ((username == "admin") && (password == "admin")) {
-        Swal.fire(
-          'Selamat datang  ' + username,
-          'Save the planet!', 'success'
-        ).then((result) => {
-          if (result.value) {
-            window.location = 'admin-dashboard.php';
-
-          }
-        })
-        return
-      }
-
-      if ((username == "umkm") && (password == "umkm")) {
-        Swal.fire(
-          'Selamat datang  ' + username,
-          'Save the planet!', 'success'
-        ).then((result) => {
-          if (result.value) {
-            window.location = 'umkm-dashboard.php';
-
-          }
-        })
-        return
-      }
-
-      swal.fire('Username/password yang dimasukkan salah', "", 'error');
-    }
-
-  </script> -->
-
   <!--  AWAL NAV  -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">

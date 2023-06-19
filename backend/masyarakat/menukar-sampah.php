@@ -16,7 +16,6 @@ if (isset($_POST['submit'])) {
       'PP' => $_POST['quantity5'],
       'PS' => $_POST['quantity6'],
       'Other' => $_POST['quantity7']
-      // Add more waste types and corresponding quantity fields
     ];
   
     $conversionRates = [
@@ -27,7 +26,6 @@ if (isset($_POST['submit'])) {
       'PP' => 1,
       'PS' => 0.5,
       'Other' => 3
-      // Add more waste types and their conversion rates
     ];
   
     $exchangeData = [];
@@ -67,17 +65,6 @@ if (isset($_POST['submit'])) {
             echo "Error: " . mysqli_error($conn);
             break;
         }
-    
-        // Calculate total point for each iteration of the loop
-        //$idPelanggan = mysqli_real_escape_string($conn, $id);
-        //$totalPoint = calculateTotalPoint($conn, $idPelanggan);
-        /*$insertResult = insertTotalPoint($conn, $idPelanggan, $totalPoint);
-    
-        if ($insertResult) {
-            echo "Total point has been inserted successfully.";
-        } else {
-            echo "Error inserting total point.";
-        }*/
       } 
     header("Location: ../../_masyarakat/profile-masyarakat.php");
     exit();

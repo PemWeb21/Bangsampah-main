@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
         // Email ditemukan, lakukan update data pelanggan
         if ($password === $confirmPassword) {
         // Update password pelanggan
-            $updateQuery = "UPDATE $table_name SET password = ' $confirmPassword' WHERE email = '$email'";
+            $updateQuery = "UPDATE $table_name SET password = '$confirmPassword' WHERE email = '$email'";
             $updateResult = mysqli_query($conn, $updateQuery);
 
             if ($updateResult) {

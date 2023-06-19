@@ -77,7 +77,7 @@ if (!empty($result)) {
           </li>
           <li class="nav-item dropdown">
             <?php
-              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
             ?>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -126,7 +126,10 @@ if (!empty($result)) {
         <div class="col-lg-8">
           <div class="card pd-20">
             <div class="foto-umkm mg-btm">
-              <img src="../img/kuda lumping.png" class="img-fluid" alt="artikel">
+              <?php
+              $gambarArtikelPilihan = $artikel['gambar'] ? '../img/artikel/' . $artikel['gambar'] : '../img/profpic.jpg';
+              ?>
+              <img src="<?= $gambarArtikelPilihan ?>" class="img-fluid" alt="artikel">
             </div>
             <span class="warna"><i class="fab fa-creative-commons mr-1"></i><?= $nama_umkm ?></span>
             <h1><?= $artikel['judul'] ?></h1>
@@ -139,12 +142,21 @@ if (!empty($result)) {
             <h3>Artikel lainnya</h3>
             <hr>
             <table>
+              <?php
+              $tableArtikel_name = 'artikel';
+              $dataArtikel = getSpesifikPage($tableArtikel_name);
+              $artikelss = $dataArtikel['data'];
+              $randomArtikel = $artikelss[array_rand($artikelss)];
+              ?>
               <tr>
+                <?php
+                  $gambarArtikelLain = $randomArtikel['gambar'] ? '../img/artikel/' . $randomArtikel['gambar'] : '../img/profpic.jpg';
+                ?>
                 <td>
-                  <img src="../img/profpic.jpg" class="img-thumbnail" width="65px" alt="artikel">
+                  <img src="<?= $gambarArtikelLain?>" class="img-thumbnail" width="65px" alt="artikel">
                 </td>
                 <td>
-                  <p style="padding-left: 10px"><a href="">Pentingnya Mengelola Sampah Plastik</a></p>
+                  <p style="padding-left: 10px"><a href="rincian-artikel.php?kd_artikel=<?= isset($randomArtikel['kd_artikel']) ? $randomArtikel['kd_artikel'] : '' ?>"><?= $randomArtikel['judul']?></a></p>
                 </td>
               </tr>
             </table>
