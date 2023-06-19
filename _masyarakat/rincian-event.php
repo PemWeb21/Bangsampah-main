@@ -3,6 +3,12 @@ session_start();
 include "../backend/umkmBefore.php";
 include "../backend/masyarakat/ikuti-event.php";
 $id = $_SESSION['id_pelanggan'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_pelanggan'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 $result = query($sql);
 if (!empty($result)) {
@@ -129,7 +135,7 @@ if (!empty($result)) {
                 <?php
                 $gambarEventPilihan = $event['gambar'] ? '../img/event/' . $event['gambar'] : '../img/profpic.jpg';
                 ?>
-                <img src="<?= $gambarEventPilihan?>"  class="img-fluid img-thumbnail" alt="event">
+                <img src="<?= $gambarEventPilihan ?>" class="img-fluid img-thumbnail" alt="event">
               </div>
             </div>
             <div class="col-lg-9 col-sm-7 col-md-8">
@@ -153,9 +159,20 @@ if (!empty($result)) {
           <h2>Deskripsi Event</h2>
           <hr>
           <p><?= $event['deskripsi'] ?></p>
+          <?php
+          // Query the mengikuti_event table to check if the event is followed by the user
+          $sql_followed = "SELECT * FROM mengikuti_event WHERE kd_event = $kd_event AND id_pelanggan = $id";
+          $result_followed = query($sql_followed);
+
+          if (!empty($result_followed)) {
+            $status = "Event Diikuti";
+          } else {
+            $status = "Ikuti Event";
+          }
+          ?>
           <form method="post">
             <input type="hidden" name="kd_event" value="<?= $event['kd_event'] ?>">
-            <button id="btnIkutEvent" type="submit" class="btn btn-edit mg-sm-top mg-btm">Ikuti Event</button>
+            <button id="btnIkutEvent" type="submit" class="btn btn-edit mg-sm-top mg-btm"><?= $status ?></button>
           </form>
         </div>
         <div class="col-lg-4 text-lg-right">
@@ -224,7 +241,6 @@ if (!empty($result)) {
     </div>
     </div>
   </footer>
-
   <script>
     document.getElementById("btnIkutEvent").addEventListener("click", function(event) {
       event.preventDefault(); // Mencegah tindakan default

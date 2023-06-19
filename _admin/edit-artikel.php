@@ -3,6 +3,12 @@ session_start();
 include "../backend/umkmBefore.php";
 //menampilkan gambar profil user
 $id = $_SESSION['id_admin'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_admin'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql1 = "SELECT * FROM admin WHERE id_admin = '$id'";
 $result1 = query($sql1);
 if (!empty($result1)) {
@@ -166,11 +172,6 @@ if (!empty($result)) {
                     <label for="isi-artikel">Isi Artikel</label>
                     <textarea name="isi_artikel" class="form-control" id="isi_artikel" cols="80" rows="5" placeholder="artikel ini"> <?= $artikel['isi'] ?></textarea>
                   </div>
-
-                  <!--
-                    <label for="isi-artikel">Isi artikel</label>
-                  <div id="summernote"></div> 
-                -->
                   <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Perbarui Artikel</button>
                 </form>
               </div>

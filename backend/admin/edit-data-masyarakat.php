@@ -22,11 +22,6 @@ include '../umkmBefore.php';
       $folder = 'masyarakat';
       $gambar = upload($folder);
     }
-  //$gambar = $_FILES['gambar'];
- // $gambarTmpPath = $gambar['tmp_name'];
-
-  // Baca isi file gambar menjadi blob
-  //$gambarBlob = file_get_contents($gambarTmpPath);
     // Lakukan operasi update data di sini
     $query = "UPDATE pelanggan SET nama = '$nama', 
                                   email = '$email', 

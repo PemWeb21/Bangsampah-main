@@ -28,14 +28,6 @@ include '../umkmBefore.php';
       $folder = 'umkm';
       $gambar = upload($folder);
     }
-    /*$gambarDefault = $_POST['gambarDefault'];
-
-    if($_FILES['gambar']['error'] === 4){
-      $gambar = $gambarDefault;
-    }else{
-      $folder = 'umkm';
-      $gambar = upload($folder);
-    }*/
 
     // Lakukan operasi update data di sini
     $query = "UPDATE umkm SET nama = '$nama', 

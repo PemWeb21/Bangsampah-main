@@ -21,18 +21,7 @@ if (isset($_POST['submit'])) {
       $gambar = upload($folder);
     }
 
-   /* $gambarDefault = $_POST['gambarDefault'];
-
-    if($_FILES['gambar']['error'] === 4){
-      $gambar = $gambarDefault;
-    }else{
-      $folder = 'admin';
-      $gambar = upload($folder);
-    }*/
-    // Lakukan operasi update data di sini
-    //var_dump($_POST);die;
     $query = "UPDATE admin SET username = '$username', email = '$email', gambar = '$gambar' WHERE id_admin = '$id'";
-   // var_dump($query);die;
 
       // Eksekusi query
       $result = mysqli_query($conn, $query);

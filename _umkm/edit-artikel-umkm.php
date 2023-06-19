@@ -2,6 +2,11 @@
 session_start();
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_umkm'];
+if (!isset($_SESSION['id_umkm'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM umkm WHERE id_umkm = '$id'";
 $result1 = query($sql);
 if (!empty($result1)) {
@@ -146,63 +151,6 @@ if (!empty($result)) {
     </div>
     </div>
   </section>
-
-
-  <!-- DATA KOMUNITAS 
-
-  <section class="daftar fdb-block pl-40" id="daftar">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card shadow">
-            <div class="row">
-              <div class="col-lg-12 pd-20">
-                <h1>Tambah artikel</h1>
-                <hr>
-
-              <form action="" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-lg-4">
-                      <div class="wrapper-kelas rounded logo-center white-bg">
-                        <img src="../img/profpic.jpg" class="img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg4">
-                      <input type="file" title="Change Avatar" data-filename-placement="inside" id="upload_image" accept="image/*">
-                    </div>
-                  </div>
-
-
-                  <div class="form-group mg-sm-top">
-                    <label for="judul-artikel">Judul Artikel</label>
-                      <input type="text" name="judul-artikel" class="form-control" id="judul-artikel" placeholder="judul-artikel" value="Masukkan Judul Artikel">
-                  </div>
-                 
-                    <label for="isi-artikel">Isi artikel</label>
-                    <div id="summernote"></div>
-                 ]
-                  <div class="form-group">
-                    <label for="email">Author</label>
-                    <select name="Umkm" id="Umkm" class="form-control">
-                      <option value="Umkm">Pilih Umkm</option>
-                      <option value="Exo-L Peduli">Exo-L Peduli</option>
-                      <option value="Tastura">Earth Hour</option>
-                      <option value="Yuk Ngaji">Yuk Ngaji</option>
-                    </select>
-                  </div>
-                  
-                  <button type="submit" name="submit" id="submit" class="btn btn-edit wid">Publikasi</button>
-
-              </form> 
-              
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
 
   <script>
     $('#summernote').summernote({

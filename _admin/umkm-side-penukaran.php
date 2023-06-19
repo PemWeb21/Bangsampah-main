@@ -2,6 +2,12 @@
 session_start();
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_admin'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_admin'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM admin WHERE id_admin = '$id'";
 $result = query($sql);
 if (!empty($result)) {

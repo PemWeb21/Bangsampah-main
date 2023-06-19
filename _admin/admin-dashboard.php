@@ -3,12 +3,17 @@ session_start();
 include "../backend/dashboard.php";
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_admin'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_admin'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM admin WHERE id_admin = '$id'";
 $result = query($sql);
 if (!empty($result)) {
   $admin = $result[0];
 } else {
-  // Jika event tidak ditemukan, Anda dapat mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
   echo "data admin tidak ditemukan.";
   exit;
 }

@@ -3,6 +3,12 @@ session_start();
 include "../backend/umkmBefore.php";
 //menampilkan gambar profil user
 $id = $_SESSION['id_admin'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_admin'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql1 = "SELECT * FROM admin WHERE id_admin = '$id'";
 $result1 = query($sql1);
 if (!empty($result1)) {

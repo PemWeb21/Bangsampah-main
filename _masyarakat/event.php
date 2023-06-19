@@ -2,6 +2,12 @@
 session_start();
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_pelanggan'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_pelanggan'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 $result = query($sql);
 if (!empty($result)) {
@@ -53,7 +59,7 @@ $event = $data['data'];
           </li>
           <li class="nav-item dropdown">
             <?php
-              $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
+            $gambar = $masyarakat['gambar'] ? '../img/masyarakat/' . $masyarakat['gambar'] : '../img/profpic.jpg';
             ?>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<?= $gambar ?>" class="img-circle" width="25px" alt="img-profile">
@@ -114,10 +120,10 @@ $event = $data['data'];
           <!-- col-sm-offset-1 -->
           <div class="col-lg-4">
             <div class="card">
-            <?php
-              $gambarEvent = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
-            ?>
-              <img src="<?= $gambarEvent?>" class="card-img-top" alt="latifa">
+              <?php
+                $gambarEvent = $row['gambar'] ? '../img/event/' . $row['gambar'] : '../img/profpic.jpg';
+              ?>
+              <img src="<?= $gambarEvent ?>" class="card-img-top" alt="latifa">
               <div class="tanggal btn-edit"><?= $row['tanggal']; ?></div>
               <div class="card-body">
                 <p class="komunitas"><?= $nama_umkm ?></p>

@@ -4,6 +4,12 @@ session_start();
 include "../backend/dashboard.php";
 include "../backend/umkmBefore.php";
 $id = $_SESSION['id_pelanggan'];
+// Cek keberadaan session
+if (!isset($_SESSION['id_pelanggan'])) {
+  // Session tidak ada, arahkan ke halaman login
+  header("Location: ../masuk.php");
+  exit;
+}
 $sql = "SELECT * FROM pelanggan WHERE id_pelanggan = '$id'";
 $result = query($sql);
 if (!empty($result)) {
